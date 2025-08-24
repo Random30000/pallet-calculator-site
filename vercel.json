@@ -3,57 +3,36 @@
   "trailingSlash": false,
 
   "redirects": [
-    {
-      "source": "/:slug(.+).html",
-      "destination": "/:slug",
-      "permanent": true
-    }
+    /* apex → www 已由 Vercel UI 负责，不再写 */
+    { "source": "/:slug(.+).html", "destination": "/:slug", "permanent": true },
+    /* 把 /pallet-calculator (无斜杠) 也 301 到根 */
+    { "source": "/pallet-calculator", "destination": "/", "permanent": true }
   ],
 
   "rewrites": [
-    { "source": "/", "destination": "/pallet-calculator.html" },
-
-    { "source": "/pallet-calculator", "destination": "/pallet-calculator.html" },
-    { "source": "/pallet-calculator/", "destination": "/pallet-calculator.html" },
-
-    { "source": "/ti-hi-calculator", "destination": "/ti-hi-calculator.html" },
+    { "source": "/pallet-calculator/", "destination": "/" },
     { "source": "/ti-hi-calculator/", "destination": "/ti-hi-calculator.html" },
-
-    { "source": "/pallet-weight-calculator", "destination": "/pallet-weight-calculator.html" },
     { "source": "/pallet-weight-calculator/", "destination": "/pallet-weight-calculator.html" },
-
-    { "source": "/pallet-cube-calculator", "destination": "/pallet-cube-calculator.html" },
     { "source": "/pallet-cube-calculator/", "destination": "/pallet-cube-calculator.html" },
-
-    { "source": "/how-many-pallets-in-53-foot-trailer", "destination": "/how-many-pallets-in-53-foot-trailer.html" },
     { "source": "/how-many-pallets-in-53-foot-trailer/", "destination": "/how-many-pallets-in-53-foot-trailer.html" },
-
-    { "source": "/how-many-pallets-in-20ft-container", "destination": "/how-many-pallets-in-20ft-container.html" },
     { "source": "/how-many-pallets-in-20ft-container/", "destination": "/how-many-pallets-in-20ft-container.html" },
-
-    { "source": "/how-many-pallets-in-40ft-container", "destination": "/how-many-pallets-in-40ft-container.html" },
     { "source": "/how-many-pallets-in-40ft-container/", "destination": "/how-many-pallets-in-40ft-container.html" },
-
-    { "source": "/pallet-dimensions", "destination": "/pallet-dimensions.html" },
     { "source": "/pallet-dimensions/", "destination": "/pallet-dimensions.html" },
-
     { "source": "/hi", "destination": "/hi/index.html" }
   ],
 
   "headers": [
     {
-      "source": "/(.*).html",
+      "source": "/(.*)\\.(css|js|png|jpg|jpeg|svg|webp|ico|woff|woff2)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" },
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "X-Frame-Options", "value": "SAMEORIGIN" }
-      ]
-    },
-    {
-      "source": "/(.*)\\.(css|js|png|jpg|jpeg|svg|webp|ico|woff|woff2)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     }
   ]
