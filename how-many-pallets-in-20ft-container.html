@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How Many Pallets Fit in a 20‑Foot Container | Pallet Tools</title>
+    <link rel="canonical" href="/how-many-pallets-in-20ft-container.html" />
+    <!-- Meta description for SEO -->
+    <meta
+      name="description"
+      content="Find out how many pallets fit in a standard 20‑foot shipping container by entering pallet dimensions and comparing orientations."
+    />
+    <!-- Open Graph tags for social sharing -->
+    <meta property="og:title" content="20‑Foot Container Pallet Calculator" />
+    <meta
+      property="og:description"
+      content="Calculate the number of pallets that can fit in a 20‑foot container based on pallet size."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="/how-many-pallets-in-20ft-container.html" />
+    <!-- Global stylesheet -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Removed inline styles in favour of global stylesheet -->
+  </head>
+  <body>
+    <header>
+      <h1>20‑Foot Container Pallet Calculator</h1>
+      <nav>
+        <a href="./pallet-calculator/">Pallet Calculator</a>
+        <a href="./ti-hi-calculator.html">TI HI Calculator</a>
+        <a href="./pallet-weight-calculator.html">Weight Calculator</a>
+        <a href="./pallet-cube-calculator.html">Cube Calculator</a>
+        <a href="./how-many-pallets-in-53-foot-trailer.html">53‑ft Trailer</a>
+        <a href="./how-many-pallets-in-20ft-container.html" class="curr">20 ft Container</a>
+        <a href="./how-many-pallets-in-40ft-container.html">40 ft Container</a>
+        <a href="./pallet-dimensions.html">Pallet Dimensions</a>
+      </nav>
+      <div class="language-list">
+        <a href="/how-many-pallets-in-20ft-container.html" class="curr">EN</a>
+        <a href="/hi/how-many-pallets-in-20ft-container.html">HI</a>
+        <a href="/tl/how-many-pallets-in-20ft-container.html">TL</a>
+      </div>
+    </header>
+    <main>
+      <p>
+        A standard 20‑foot shipping container has an interior length of approximately 232 inches and width of 92 inches. Use this calculator to estimate how many pallets fit inside, considering both orientations.
+      </p>
+      <form id="containerForm">
+        <label>
+          Pallet length (in):
+          <input type="number" id="palletLength" step="any" min="1" value="48" required />
+        </label>
+        <label>
+          Pallet width (in):
+          <input type="number" id="palletWidth" step="any" min="1" value="40" required />
+        </label>
+        <button type="submit" class="btn">Calculate</button>
+      </form>
+      <div id="containerResult"></div>
+    </main>
+    <footer>
+      <p>
+        &copy; 2025 Pallet Tools. Last updated on
+        <time datetime="2025-08-17">August 17, 2025</time>.
+      </p>
+    </footer>
+    <script>
+      const CONTAINER_LENGTH = 232; // in inches
+      const CONTAINER_WIDTH = 92; // in inches
+      function parseParams() {
+        const params = new URLSearchParams(window.location.search);
+        const obj = {};
+        params.forEach((v, k) => (obj[k] = v));
+        return obj;
+      }
+      function loadFromQuery() {
+        const q = parseParams();
+        if (q.pl) document.getElementById('palletLength').value = q.pl;
+        if (q.pw) document.getElementById('palletWidth').value = q.pw;
+      }
+      document.getElementById('containerForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        calculateContainer();
+      });
+      function palletsByOrientation(length, width) {
+        const countLength = Math.floor(CONTAINER_LENGTH / length);
+        const countWidth = Math.floor(CONTAINER_WIDTH / width);
+        return countLength * countWidth;
+      }
+      function calculateContainer() {
+        const pL = parseFloat(document.getElementById('palletLength').value);
+        const pW = parseFloat(document.getElementById('palletWidth').value);
+        const resultEl = document.getElementById('containerResult');
+        if ([pL, pW].some((v) => isNaN(v) || v <= 0)) {
+          resultEl.innerHTML = '<div class="error">Please enter valid positive pallet dimensions.</div>';
+          return;
+        }
+        const countA = palletsByOrientation(pL, pW);
+        const countB = palletsByOrientation(pW, pL);
+        const maxCount = Math.max(countA, countB);
+        const orientation = countA >= countB ? 'lengthwise' : 'widthwise';
+        resultEl.innerHTML = `<div class="result"><p>Maximum pallets: <strong>${maxCount}</strong> (orientation: ${orientation})</p><p>Orientation A (pallet ${pL}"×${pW}"): ${countA}</p><p>Orientation B (pallet ${pW}"×${pL}"): ${countB}</p></div>`;
+        const params = new URLSearchParams();
+        params.set('pl', pL.toString());
+        params.set('pw', pW.toString());
+        const newUrl = window.location.pathname + '?' + params.toString();
+        window.history.replaceState({}, '', newUrl);
+      }
+      loadFromQuery();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pallet Cube Calculator | Pallet Tools</title>
+    <link rel="canonical" href="/pallet-cube-calculator.html" />
+    <!-- Meta description for SEO -->
+    <meta
+      name="description"
+      content="Calculate cubic volume for pallets or boxes and convert between cubic inches, cubic feet and cubic metres. Enter dimensions and quantity to get total volume."
+    />
+    <!-- Open Graph tags for social sharing -->
+    <meta property="og:title" content="Pallet Cube Calculator – Convert Volumes" />
+    <meta
+      property="og:description"
+      content="Use our pallet cube calculator to determine the volume of a single pallet or multiple pallets. Supports inches, feet and metres."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="/pallet-cube-calculator.html" />
+    <!-- Global stylesheet -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Removed inline styles in favour of global stylesheet -->
+  </head>
+  <body>
+    <header>
+      <h1>Pallet Cube Calculator</h1>
+      <nav>
+        <a href="./pallet-calculator/">Pallet Calculator</a>
+        <a href="./ti-hi-calculator.html">TI HI Calculator</a>
+        <a href="./pallet-weight-calculator.html">Weight Calculator</a>
+        <a href="./pallet-cube-calculator.html" class="curr">Cube Calculator</a>
+        <a href="./how-many-pallets-in-53-foot-trailer.html">53‑ft Trailer</a>
+        <a href="./how-many-pallets-in-20ft-container.html">20 ft Container</a>
+        <a href="./how-many-pallets-in-40ft-container.html">40 ft Container</a>
+        <a href="./pallet-dimensions.html">Pallet Dimensions</a>
+      </nav>
+      <div class="language-list">
+        <a href="/pallet-cube-calculator.html" class="curr">EN</a>
+        <a href="/hi/pallet-cube-calculator.html">HI</a>
+        <a href="/tl/pallet-cube-calculator.html">TL</a>
+      </div>
+    </header>
+    <main>
+      <p>
+        Calculate the cubic volume of a pallet or box and convert between cubic
+        inches, feet and metres. You can also specify how many pallets to
+        compute the total volume.
+      </p>
+      <form id="cubeForm">
+        <h2>Dimensions</h2>
+        <label>
+          Length:
+          <input type="number" id="length" step="any" min="0" value="48" required />
+        </label>
+        <label>
+          Width:
+          <input type="number" id="width" step="any" min="0" value="40" required />
+        </label>
+        <label>
+          Height:
+          <input type="number" id="height" step="any" min="0" value="5.5" required />
+        </label>
+        <label>
+          Unit:
+          <select id="unit" required>
+            <option value="in">Inches</option>
+            <option value="ft">Feet</option>
+            <option value="m">Metres</option>
+          </select>
+        </label>
+        <label>
+          Quantity (pallets/boxes):
+          <input type="number" id="qty" step="1" min="1" value="1" required />
+        </label>
+        <button type="submit" class="btn">Calculate</button>
+      </form>
+      <div id="cubeResult"></div>
+    </main>
+    <footer>
+      <p>
+        &copy; 2025 Pallet Tools. Last updated on
+        <time datetime="2025-08-17">August 17, 2025</time>.
+      </p>
+    </footer>
+    <script>
+      function parseParams() {
+        const params = new URLSearchParams(window.location.search);
+        const obj = {};
+        params.forEach((v, k) => (obj[k] = v));
+        return obj;
+      }
+      function loadFromQuery() {
+        const q = parseParams();
+        if (q.length) document.getElementById('length').value = q.length;
+        if (q.width) document.getElementById('width').value = q.width;
+        if (q.height) document.getElementById('height').value = q.height;
+        if (q.unit) document.getElementById('unit').value = q.unit;
+        if (q.qty) document.getElementById('qty').value = q.qty;
+      }
+      document.getElementById('cubeForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        calculateCube();
+      });
+      function toCubicInches(len, wid, ht, unit) {
+        // Convert dimensions into inches then compute cubic inches
+        let l = len,
+          w = wid,
+          h = ht;
+        if (unit === 'ft') {
+          l *= 12;
+          w *= 12;
+          h *= 12;
+        } else if (unit === 'm') {
+          l *= 39.3701;
+          w *= 39.3701;
+          h *= 39.3701;
+        }
+        return l * w * h;
+      }
+      function calculateCube() {
+        const len = parseFloat(document.getElementById('length').value);
+        const wid = parseFloat(document.getElementById('width').value);
+        const ht = parseFloat(document.getElementById('height').value);
+        const unit = document.getElementById('unit').value;
+        const qty = parseInt(document.getElementById('qty').value, 10);
+        const resultEl = document.getElementById('cubeResult');
+        if ([len, wid, ht, qty].some((v) => isNaN(v) || v <= 0)) {
+          resultEl.innerHTML = '<div class="error">Please enter valid positive numbers.</div>';
+          return;
+        }
+        const cubicInchesSingle = toCubicInches(len, wid, ht, unit);
+        const cubicFeetSingle = cubicInchesSingle / 1728; // 12^3
+        const cubicMetresSingle = cubicInchesSingle * 0.000016387064; // 1 cubic inch in m^3
+        const totalCubicFeet = cubicFeetSingle * qty;
+        const totalCubicMetres = cubicMetresSingle * qty;
+        let html = `<p>Single volume: <strong>${cubicFeetSingle.toFixed(3)} ft³</strong> / <strong>${cubicMetresSingle.toFixed(3)} m³</strong></p>`;
+        html += `<p>Total for ${qty} ${qty === 1 ? 'unit' : 'units'}: <strong>${totalCubicFeet.toFixed(3)} ft³</strong> / <strong>${totalCubicMetres.toFixed(3)} m³</strong></p>`;
+        resultEl.innerHTML = `<div class="result">${html}</div>`;
+        // Share URL
+        const params = new URLSearchParams();
+        params.set('length', len.toString());
+        params.set('width', wid.toString());
+        params.set('height', ht.toString());
+        params.set('unit', unit);
+        params.set('qty', qty.toString());
+        const newUrl = window.location.pathname + '?' + params.toString();
+        window.history.replaceState({}, '', newUrl);
+      }
+      loadFromQuery();
+    </script>
+  </body>
+</html>

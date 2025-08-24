@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TI HI Calculator | Pallet Tools</title>
+    <link rel="canonical" href="/ti-hi-calculator.html" />
+    <!-- Meta description for SEO -->
+    <meta
+      name="description"
+      content="Calculate TI (cases per layer) and HI (layers per pallet) for a single carton and pallet combination. Enter carton and pallet dimensions to see results."
+    />
+    <!-- Open Graph tags for social sharing -->
+    <meta property="og:title" content="TI HI Calculator – Pallet Tools" />
+    <meta
+      property="og:description"
+      content="Determine TI and HI for your cartons and pallets using this interactive calculator."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="/ti-hi-calculator.html" />
+    <!-- Global stylesheet -->
+    <link rel="stylesheet" href="styles.css" />
+
+  </head>
+  <body>
+    <header>
+      <h1>TI HI Calculator</h1>
+      <nav>
+        <a href="./pallet-calculator/">Pallet Calculator</a>
+        <a href="./ti-hi-calculator.html" class="curr">TI HI Calculator</a>
+        <a href="./pallet-weight-calculator.html">Weight Calculator</a>
+        <a href="./pallet-cube-calculator.html">Cube Calculator</a>
+        <a href="./how-many-pallets-in-53-foot-trailer.html">53‑ft Trailer</a>
+        <a href="./how-many-pallets-in-20ft-container.html">20 ft Container</a>
+        <a href="./how-many-pallets-in-40ft-container.html">40 ft Container</a>
+        <a href="./pallet-dimensions.html">Pallet Dimensions</a>
+      </nav>
+      <div class="language-list">
+        <a href="/ti-hi-calculator.html" class="curr">EN</a>
+        <a href="/hi/ti-hi-calculator.html">HI</a>
+        <a href="/tl/ti-hi-calculator.html">TL</a>
+      </div>
+    </header>
+    <main>
+      <p>
+        Use this calculator to determine TI (cases per layer) and HI (layers per
+        pallet) for a single carton and pallet combination. All inputs are in
+        inches.
+      </p>
+      <form id="tiForm">
+        <h2>Carton dimensions</h2>
+        <label>
+          Length (in):
+          <input type="number" id="boxLength" step="any" min="0" required />
+        </label>
+        <label>
+          Width (in):
+          <input type="number" id="boxWidth" step="any" min="0" required />
+        </label>
+        <label>
+          Height (in):
+          <input type="number" id="boxHeight" step="any" min="0" required />
+        </label>
+        <h2>Pallet dimensions</h2>
+        <label>
+          Length (in):
+          <input type="number" id="palletLength" step="any" min="1" value="48" required />
+        </label>
+        <label>
+          Width (in):
+          <input type="number" id="palletWidth" step="any" min="1" value="40" required />
+        </label>
+        <label>
+          Max stack height (in):
+          <input type="number" id="maxHeight" step="any" min="1" value="60" required />
+        </label>
+        <button type="submit" class="btn">Calculate</button>
+      </form>
+      <div id="tiResult"></div>
+    </main>
+    <footer>
+      <p>
+        &copy; 2025 Pallet Tools. Last updated on
+        <time datetime="2025-08-17">August 17, 2025</time>.
+      </p>
+    </footer>
+    <script>
+      function parseParams() {
+        const params = new URLSearchParams(window.location.search);
+        const obj = {};
+        params.forEach((v, k) => (obj[k] = v));
+        return obj;
+      }
+      function loadFromQuery() {
+        const q = parseParams();
+        if (q.boxLength) document.getElementById('boxLength').value = q.boxLength;
+        if (q.boxWidth) document.getElementById('boxWidth').value = q.boxWidth;
+        if (q.boxHeight) document.getElementById('boxHeight').value = q.boxHeight;
+        if (q.pLength) document.getElementById('palletLength').value = q.pLength;
+        if (q.pWidth) document.getElementById('palletWidth').value = q.pWidth;
+        if (q.maxHeight) document.getElementById('maxHeight').value = q.maxHeight;
+      }
+      document.getElementById('tiForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        calculateTiHi();
+      });
+      function calculateTiHi() {
+        const boxL = parseFloat(document.getElementById('boxLength').value);
+        const boxW = parseFloat(document.getElementById('boxWidth').value);
+        const boxH = parseFloat(document.getElementById('boxHeight').value);
+        const pL = parseFloat(document.getElementById('palletLength').value);
+        const pW = parseFloat(document.getElementById('palletWidth').value);
+        const maxH = parseFloat(document.getElementById('maxHeight').value);
+        const resultEl = document.getElementById('tiResult');
+        if ([boxL, boxW, boxH, pL, pW, maxH].some((v) => isNaN(v) || v <= 0)) {
+          resultEl.innerHTML = '<div class="error">Please enter valid positive numbers.</div>';
+          return;
+        }
+        const ti = Math.floor(pL / boxL) * Math.floor(pW / boxW);
+        const hi = Math.floor(maxH / boxH);
+        const total = ti * hi;
+        resultEl.innerHTML = `<div class="result"><p>TI (cases per layer): <strong>${ti}</strong></p><p>HI (layers per pallet): <strong>${hi}</strong></p><p>Total boxes per pallet: <strong>${total}</strong></p></div>`;
+        // Update URL for sharing
+        const params = new URLSearchParams();
+        params.set('boxLength', boxL.toString());
+        params.set('boxWidth', boxW.toString());
+        params.set('boxHeight', boxH.toString());
+        params.set('pLength', pL.toString());
+        params.set('pWidth', pW.toString());
+        params.set('maxHeight', maxH.toString());
+        const newUrl = window.location.pathname + '?' + params.toString();
+        window.history.replaceState({}, '', newUrl);
+      }
+      loadFromQuery();
+    </script>
+  </body>
+</html>

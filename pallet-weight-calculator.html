@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pallet Weight Calculator | Pallet Tools</title>
+    <link rel="canonical" href="/pallet-weight-calculator.html" />
+    <!-- Meta description for SEO -->
+    <meta
+      name="description"
+      content="Estimate the total weight of a loaded pallet. Enter the empty pallet weight, carton weight and quantity, and an optional maximum weight limit."
+    />
+    <!-- Open Graph tags for social sharing -->
+    <meta property="og:title" content="Pallet Weight Calculator – Pallet Tools" />
+    <meta
+      property="og:description"
+      content="Calculate the combined weight of your pallet and cartons, and see if it stays within a specified limit."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="/pallet-weight-calculator.html" />
+    <!-- Global stylesheet -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- The inline styles below were removed in favour of a global stylesheet. See styles.css for definitions. -->
+  </head>
+  <body>
+    <header>
+      <h1>Pallet Weight Calculator</h1>
+      <nav>
+        <a href="./pallet-calculator/">Pallet Calculator</a>
+        <a href="./ti-hi-calculator.html">TI HI Calculator</a>
+        <a href="./pallet-weight-calculator.html" class="curr">Weight Calculator</a>
+        <a href="./pallet-cube-calculator.html">Cube Calculator</a>
+        <a href="./how-many-pallets-in-53-foot-trailer.html">53‑ft Trailer</a>
+        <a href="./how-many-pallets-in-20ft-container.html">20 ft Container</a>
+        <a href="./how-many-pallets-in-40ft-container.html">40 ft Container</a>
+        <a href="./pallet-dimensions.html">Pallet Dimensions</a>
+      </nav>
+      <div class="language-list">
+        <a href="/pallet-weight-calculator.html" class="curr">EN</a>
+        <a href="/hi/pallet-weight-calculator.html">HI</a>
+        <a href="/tl/pallet-weight-calculator.html">TL</a>
+      </div>
+    </header>
+    <main>
+      <p>
+        Estimate the total loaded weight of a pallet. Enter the empty pallet weight,
+        the weight of a single carton and how many cartons you plan to load. You
+        can also set a maximum allowable weight to see whether your load will
+        exceed it.
+      </p>
+      <form id="weightForm">
+        <label>
+          Empty pallet weight (lb):
+          <input type="number" id="palletWeight" step="any" min="0" value="40" required />
+        </label>
+        <label>
+          Weight per carton (lb):
+          <input type="number" id="cartonWeight" step="any" min="0" value="10" required />
+        </label>
+        <label>
+          Number of cartons:
+          <input type="number" id="numCartons" step="1" min="0" value="0" required />
+        </label>
+        <label>
+          Maximum allowed weight (lb) (optional):
+          <input type="number" id="maxAllowed" step="any" min="0" />
+        </label>
+        <button type="submit" class="btn">Calculate</button>
+      </form>
+      <div id="weightResult"></div>
+    </main>
+    <footer>
+      <p>
+        &copy; 2025 Pallet Tools. Last updated on
+        <time datetime="2025-08-17">August 17, 2025</time>.
+      </p>
+    </footer>
+    <script>
+      function parseParams() {
+        const params = new URLSearchParams(window.location.search);
+        const obj = {};
+        params.forEach((v, k) => (obj[k] = v));
+        return obj;
+      }
+      function loadFromQuery() {
+        const q = parseParams();
+        if (q.palletWeight) document.getElementById('palletWeight').value = q.palletWeight;
+        if (q.cartonWeight) document.getElementById('cartonWeight').value = q.cartonWeight;
+        if (q.numCartons) document.getElementById('numCartons').value = q.numCartons;
+        if (q.maxAllowed) document.getElementById('maxAllowed').value = q.maxAllowed;
+      }
+      document.getElementById('weightForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        calculateWeight();
+      });
+      function calculateWeight() {
+        const palletWeight = parseFloat(document.getElementById('palletWeight').value);
+        const cartonWeight = parseFloat(document.getElementById('cartonWeight').value);
+        const numCartons = parseInt(document.getElementById('numCartons').value, 10);
+        const maxAllowed = parseFloat(document.getElementById('maxAllowed').value);
+        const resultEl = document.getElementById('weightResult');
+        if ([palletWeight, cartonWeight].some((v) => isNaN(v) || v < 0) || isNaN(numCartons) || numCartons < 0) {
+          resultEl.innerHTML = '<div class="error">Please enter valid positive numbers.</div>';
+          return;
+        }
+        const loadWeight = cartonWeight * numCartons;
+        const total = palletWeight + loadWeight;
+        let message = `<p>Weight of cartons: <strong>${loadWeight.toFixed(2)}</strong> lb</p><p>Total pallet weight: <strong>${total.toFixed(2)}</strong> lb</p>`;
+        if (!isNaN(maxAllowed) && maxAllowed > 0) {
+          if (total > maxAllowed) {
+            message += `<p style="color:#c53030">Warning: exceeds maximum allowed weight by ${(total - maxAllowed).toFixed(2)} lb.</p>`;
+          } else {
+            message += `<p style="color:#2f855a">Within limit: you have ${(maxAllowed - total).toFixed(2)} lb remaining.</p>`;
+          }
+        }
+        resultEl.innerHTML = `<div class="result">${message}</div>`;
+        // Update share URL
+        const params = new URLSearchParams();
+        params.set('palletWeight', palletWeight.toString());
+        params.set('cartonWeight', cartonWeight.toString());
+        params.set('numCartons', numCartons.toString());
+        if (!isNaN(maxAllowed) && maxAllowed > 0) params.set('maxAllowed', maxAllowed.toString());
+        const newUrl = window.location.pathname + '?' + params.toString();
+        window.history.replaceState({}, '', newUrl);
+      }
+      loadFromQuery();
+    </script>
+  </body>
+</html>

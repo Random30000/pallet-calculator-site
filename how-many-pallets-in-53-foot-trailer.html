@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How Many Pallets Fit in a 53‑Foot Trailer | Pallet Tools</title>
+    <link rel="canonical" href="/how-many-pallets-in-53-foot-trailer.html" />
+    <!-- Meta description for SEO -->
+    <meta
+      name="description"
+      content="Estimate how many pallets fit in a 53‑foot trailer using pallet dimensions and optional walkway width. Compare orientations and share results."
+    />
+    <!-- Open Graph tags for social sharing -->
+    <meta property="og:title" content="53‑Foot Trailer Pallet Calculator" />
+    <meta
+      property="og:description"
+      content="Calculate the number of pallets that can fit in a 53‑foot trailer, taking into account pallet size and walkway space."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="/how-many-pallets-in-53-foot-trailer.html" />
+    <!-- Global stylesheet -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Removed inline styles in favour of global stylesheet -->
+  </head>
+  <body>
+    <header>
+      <h1>53‑Foot Trailer Pallet Calculator</h1>
+      <nav>
+        <a href="./pallet-calculator/">Pallet Calculator</a>
+        <a href="./ti-hi-calculator.html">TI HI Calculator</a>
+        <a href="./pallet-weight-calculator.html">Weight Calculator</a>
+        <a href="./pallet-cube-calculator.html">Cube Calculator</a>
+        <a href="./how-many-pallets-in-53-foot-trailer.html" class="curr">53‑ft Trailer</a>
+        <a href="./how-many-pallets-in-20ft-container.html">20 ft Container</a>
+        <a href="./how-many-pallets-in-40ft-container.html">40 ft Container</a>
+        <a href="./pallet-dimensions.html">Pallet Dimensions</a>
+      </nav>
+      <div class="language-list">
+        <a href="/how-many-pallets-in-53-foot-trailer.html" class="curr">EN</a>
+        <a href="/hi/how-many-pallets-in-53-foot-trailer.html">HI</a>
+        <a href="/tl/how-many-pallets-in-53-foot-trailer.html">TL</a>
+      </div>
+    </header>
+    <main>
+      <p>
+        A standard 53‑foot trailer has an interior length of approximately 636 inches and width of 101 inches. Use this calculator to estimate how many pallets can fit, considering both orientations and an optional walkway.
+      </p>
+      <form id="trailerForm">
+        <label>
+          Pallet length (in):
+          <input type="number" id="palletLength" step="any" min="1" value="48" required />
+        </label>
+        <label>
+          Pallet width (in):
+          <input type="number" id="palletWidth" step="any" min="1" value="40" required />
+        </label>
+        <label>
+          Walkway width (in) (optional):
+          <input type="number" id="walkway" step="any" min="0" value="0" />
+        </label>
+        <button type="submit" class="btn">Calculate</button>
+      </form>
+      <div id="trailerResult"></div>
+    </main>
+    <footer>
+      <p>
+        &copy; 2025 Pallet Tools. Last updated on
+        <time datetime="2025-08-17">August 17, 2025</time>.
+      </p>
+    </footer>
+    <script>
+      const TRAILER_LENGTH = 636; // in inches
+      const TRAILER_WIDTH = 101; // in inches
+      function parseParams() {
+        const params = new URLSearchParams(window.location.search);
+        const obj = {};
+        params.forEach((v, k) => (obj[k] = v));
+        return obj;
+      }
+      function loadFromQuery() {
+        const q = parseParams();
+        if (q.pl) document.getElementById('palletLength').value = q.pl;
+        if (q.pw) document.getElementById('palletWidth').value = q.pw;
+        if (q.w) document.getElementById('walkway').value = q.w;
+      }
+      document.getElementById('trailerForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        calculateTrailer();
+      });
+      function palletsByOrientation(length, width, walk) {
+        const lengthAvailable = TRAILER_LENGTH;
+        const widthAvailable = TRAILER_WIDTH - walk;
+        if (widthAvailable <= 0) return 0;
+        const countLength = Math.floor(lengthAvailable / length);
+        const countWidth = Math.floor(widthAvailable / width);
+        return countLength * countWidth;
+      }
+      function calculateTrailer() {
+        const pL = parseFloat(document.getElementById('palletLength').value);
+        const pW = parseFloat(document.getElementById('palletWidth').value);
+        const walk = parseFloat(document.getElementById('walkway').value) || 0;
+        const resultEl = document.getElementById('trailerResult');
+        if ([pL, pW].some((v) => isNaN(v) || v <= 0) || walk < 0) {
+          resultEl.innerHTML = '<div class="error">Please enter valid positive pallet dimensions.</div>';
+          return;
+        }
+        // orientation A: pallet length along trailer length, width along width
+        const countA = palletsByOrientation(pL, pW, walk);
+        // orientation B: swap pallet orientation
+        const countB = palletsByOrientation(pW, pL, walk);
+        const maxCount = Math.max(countA, countB);
+        const orientation = countA >= countB ? 'lengthwise' : 'widthwise';
+        resultEl.innerHTML = `<div class="result"><p>Maximum pallets: <strong>${maxCount}</strong> (orientation: ${orientation})</p><p>Orientation A (pallet ${pL}"×${pW}" aligned lengthwise): ${countA}</p><p>Orientation B (pallet ${pW}"×${pL}" aligned widthwise): ${countB}</p></div>`;
+        const params = new URLSearchParams();
+        params.set('pl', pL.toString());
+        params.set('pw', pW.toString());
+        if (walk > 0) params.set('w', walk.toString());
+        const newUrl = window.location.pathname + '?' + params.toString();
+        window.history.replaceState({}, '', newUrl);
+      }
+      loadFromQuery();
+    </script>
+  </body>
+</html>
