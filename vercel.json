@@ -11,14 +11,32 @@
   ],
 
   "rewrites": [
+    { "source": "/", "destination": "/pallet-calculator.html" },
+
+    { "source": "/pallet-calculator", "destination": "/pallet-calculator.html" },
     { "source": "/pallet-calculator/", "destination": "/pallet-calculator.html" },
+
+    { "source": "/ti-hi-calculator", "destination": "/ti-hi-calculator.html" },
     { "source": "/ti-hi-calculator/", "destination": "/ti-hi-calculator.html" },
+
+    { "source": "/pallet-weight-calculator", "destination": "/pallet-weight-calculator.html" },
     { "source": "/pallet-weight-calculator/", "destination": "/pallet-weight-calculator.html" },
+
+    { "source": "/pallet-cube-calculator", "destination": "/pallet-cube-calculator.html" },
     { "source": "/pallet-cube-calculator/", "destination": "/pallet-cube-calculator.html" },
+
+    { "source": "/how-many-pallets-in-53-foot-trailer", "destination": "/how-many-pallets-in-53-foot-trailer.html" },
     { "source": "/how-many-pallets-in-53-foot-trailer/", "destination": "/how-many-pallets-in-53-foot-trailer.html" },
+
+    { "source": "/how-many-pallets-in-20ft-container", "destination": "/how-many-pallets-in-20ft-container.html" },
     { "source": "/how-many-pallets-in-20ft-container/", "destination": "/how-many-pallets-in-20ft-container.html" },
+
+    { "source": "/how-many-pallets-in-40ft-container", "destination": "/how-many-pallets-in-40ft-container.html" },
     { "source": "/how-many-pallets-in-40ft-container/", "destination": "/how-many-pallets-in-40ft-container.html" },
+
+    { "source": "/pallet-dimensions", "destination": "/pallet-dimensions.html" },
     { "source": "/pallet-dimensions/", "destination": "/pallet-dimensions.html" },
+
     { "source": "/hi", "destination": "/hi/index.html" }
   ],
 
@@ -37,14 +55,9 @@
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
-    },
-    {
-      "source": "/",
-      "headers": [
-        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
-      ]
     }
   ]
 }
+
 
 
