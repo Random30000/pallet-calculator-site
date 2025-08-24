@@ -3,9 +3,9 @@
   "trailingSlash": false,
 
   "redirects": [
-    /* apex → www 已由 Vercel UI 负责，不再写 */
+
     { "source": "/:slug(.+).html", "destination": "/:slug", "permanent": true },
-    /* 把 /pallet-calculator (无斜杠) 也 301 到根 */
+
     { "source": "/pallet-calculator", "destination": "/", "permanent": true }
   ],
 
@@ -37,6 +37,7 @@
     }
   ]
 }
+
 
 
 
