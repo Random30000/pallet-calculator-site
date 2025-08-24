@@ -1,3 +1,4 @@
 User-agent: *
 Disallow:
-Sitemap: https://pallet-calculator.com/sitemap.xml
+Sitemap: https://www.pallet-calculator.com/sitemap.xml
+
