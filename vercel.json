@@ -4,12 +4,6 @@
 
   "redirects": [
     {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "pallet-calculator.com" }],
-      "destination": "https://www.pallet-calculator.com/:path*",
-      "permanent": true
-    },
-    {
       "source": "/:slug(.+).html",
       "destination": "/:slug",
       "permanent": true
@@ -25,7 +19,6 @@
     { "source": "/how-many-pallets-in-20ft-container/", "destination": "/how-many-pallets-in-20ft-container.html" },
     { "source": "/how-many-pallets-in-40ft-container/", "destination": "/how-many-pallets-in-40ft-container.html" },
     { "source": "/pallet-dimensions/", "destination": "/pallet-dimensions.html" },
-
     { "source": "/hi", "destination": "/hi/index.html" }
   ],
 
@@ -53,3 +46,5 @@
     }
   ]
 }
+
+
