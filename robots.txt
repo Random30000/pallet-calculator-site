@@ -1,4 +1,12 @@
-User-agent: *
-Disallow:
-Sitemap: https://www.pallet-calculator.com/sitemap.xml
+# robots.txt for pallet-calculator.com
+# Allow all crawlers, block draft areas, and expose sitemap.
 
+User-agent: *
+Allow: /
+
+# Optional: keep non-public workspaces out of the index
+Disallow: /hi/
+Disallow: /draft/
+Disallow: /temp/
+
+Sitemap: https://pallet-calculator.com/sitemap.xml
