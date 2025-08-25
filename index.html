@@ -1,226 +1,305 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X4VDF9JBPE"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<head>
+  <meta charset="utf-8">
+  <title>Pallet Calculator (TI × HI, Multi‑SKU, Shareable)</title>
+  <meta name="description" content="Calculate pallets by TI×HI with multi-SKU, volume and weight. Share results via link or embed.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      gtag('config', 'G-X4VDF9JBPE');
-    </script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pallet Calculator (TI × HI, Multi‑SKU, Shareable)</title>
-    <!-- Canonical URL helps search engines understand the preferred URL for this page -->
-    <link rel="canonical" href="/pallet-calculator/" />
-    <!-- Meta description for SEO -->
-    <meta
-      name="description"
-      content="Calculate how many cartons fit on a pallet with our interactive pallet calculator. Supports multi‑SKU and TI × HI results and generates shareable URLs."
-    />
-    <!-- Open Graph tags for social sharing -->
-    <meta property="og:title" content="Pallet Calculator – Multi‑SKU TI × HI Calculator" />
-    <meta
-      property="og:description"
-      content="Use our pallet calculator to determine TI (cases per layer) and HI (layers per pallet) for multiple cartons. Share results with a link."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://pallet-calculator.com/" />
-    <!-- Global stylesheet -->
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header>
-      <h1>Pallet Calculator</h1>
-      <nav>
-        <a href="/" class="curr">Pallet Calculator</a>
-        <a href="/ti-hi-calculator">TI HI Calculator</a>
-        <a href="/pallet-weight-calculator">Weight Calculator</a>
-        <a href="/pallet-cube-calculator">Cube Calculator</a>
-        <a href="/how-many-pallets-in-53-foot-trailer">53-ft Trailer</a>
-        <a href="/how-many-pallets-in-20ft-container">20 ft Container</a>
-        <a href="/how-many-pallets-in-40ft-container">40 ft Container</a>
-        <a href="/pallet-dimensions">Pallet Dimensions</a>
-      </nav>
-    <div class="language-list">
-      <a href="/" class="curr">EN</a>
-      <a href="/hi/">HI</a>
-      
+  <!-- Speed: preconnect to GA/GTM -->
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+
+  <!-- Canonical + hreflang -->
+  <link rel="canonical" href="https://www.pallet-calculator.com/pallet-calculator/">
+  <link rel="alternate" href="https://www.pallet-calculator.com/pallet-calculator/" hreflang="en">
+  <link rel="alternate" href="https://www.pallet-calculator.com/hi/pallet-calculator/" hreflang="hi">
+  <link rel="alternate" href="https://www.pallet-calculator.com/pallet-calculator/" hreflang="x-default">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Pallet Calculator – Multi-SKU TI×HI, Shareable">
+  <meta property="og:description" content="Calculate pallets by TI×HI with multi-SKU, volume & weight. Share results via a link or embed.">
+  <meta property="og:url" content="https://www.pallet-calculator.com/pallet-calculator/">
+  <meta property="og:image" content="https://www.pallet-calculator.com/assets/og/pallet.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- GA4 -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-X4VDF9JBPE');
+    // Helper for custom events
+    function ev(name, params){ try { gtag('event', name, params || {}); } catch(e) {} }
+  </script>
+
+  <!-- Schema: SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"Pallet Calculator",
+    "url":"https://www.pallet-calculator.com/pallet-calculator/",
+    "applicationCategory":"BusinessApplication",
+    "operatingSystem":"Web",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+    "description":"Calculate pallets by TI×HI with multi-SKU, volume and weight. Share results via link or embed.",
+    "publisher":{"@type":"Organization","name":"Pallet Tools"},
+    "inLanguage":"en"
+  }
+  </script>
+
+  <!-- Schema: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"How do I calculate TI×HI on this tool?",
+        "acceptedAnswer":{"@type":"Answer","text":"Enter your pallet dimensions and the dimensions and quantities for each SKU. The calculator computes TI (cases per layer) and HI (layers per pallet) for you."}
+      },
+      {
+        "@type":"Question",
+        "name":"Can I share my results?",
+        "acceptedAnswer":{"@type":"Answer","text":"Yes! After calculation, click Copy Link to generate a URL that preserves your inputs so others see the same results."}
+      },
+      {
+        "@type":"Question",
+        "name":"Does the calculator support multiple SKUs?",
+        "acceptedAnswer":{"@type":"Answer","text":"Yes. Use the Add SKU button to add multiple carton sizes and quantities. The tool sums totals across all SKUs."}
+      },
+      {
+        "@type":"Question",
+        "name":"How do I embed this calculator on my site?",
+        "acceptedAnswer":{"@type":"Answer","text":"Use the Embed button to copy an iframe snippet that you can paste into your website. It preserves your selected parameters."}
+      },
+      {
+        "@type":"Question",
+        "name":"What pallet sizes are supported?",
+        "acceptedAnswer":{"@type":"Answer","text":"The default pallet size is 48×40 inches, but you can enter any length, width and maximum stack height you need."}
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Header and Navigation -->
+  <header>
+    <h1>Pallet Calculator</h1>
+    <nav>
+      <!-- Use absolute URLs to avoid ambiguity and strengthen canonical signals -->
+      <a href="https://www.pallet-calculator.com/pallet-calculator/">Pallet Calculator</a>
+      <a href="https://www.pallet-calculator.com/ti-hi-calculator.html">TI HI Calculator</a>
+      <a href="https://www.pallet-calculator.com/pallet-weight-calculator.html">Weight Calculator</a>
+      <a href="https://www.pallet-calculator.com/pallet-cube-calculator.html">Cube Calculator</a>
+      <a href="https://www.pallet-calculator.com/how-many-pallets-in-53-foot-trailer.html">53-ft Trailer</a>
+      <a href="https://www.pallet-calculator.com/how-many-pallets-in-20ft-container.html">20 ft Container</a>
+      <a href="https://www.pallet-calculator.com/how-many-pallets-in-40ft-container.html">40 ft Container</a>
+      <a href="https://www.pallet-calculator.com/pallet-dimensions.html">Pallet Dimensions</a>
+    </nav>
+    <div class="lang-switch">
+      <a href="https://www.pallet-calculator.com/pallet-calculator/">EN</a>
+      <a href="https://www.pallet-calculator.com/hi/pallet-calculator/">HI</a>
     </div>
-    </header>
-    <main>
-      <p>
-        Enter the dimensions for one or more cartons and the pallet to estimate
-        how many cartons fit. This tool calculates TI (cases per layer) and HI
-        (layers per pallet) for each SKU and summarises totals. All dimensions
-        are in inches; you can convert units on the Cube Calculator page.
-      </p>
-      <form id="palletForm">
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <p>Enter the dimensions for one or more cartons and the pallet to estimate how many cartons fit. This tool calculates TI (cases per layer) and HI (layers per pallet) for each SKU and summarises totals. All dimensions are in inches; you can convert units on the Cube Calculator page.</p>
+
+    <form id="palletForm">
+      <section>
         <h2>Cartons (SKU)</h2>
         <table id="skuTable">
           <thead>
-            <tr>
-              <th>#</th>
-              <th>Length (in)</th>
-              <th>Width (in)</th>
-              <th>Height (in)</th>
-              <th>Quantity</th>
-              <th>Remove</th>
-            </tr>
+            <tr><th>#</th><th>Length (in)</th><th>Width (in)</th><th>Height (in)</th><th>Quantity</th><th>Remove</th></tr>
           </thead>
           <tbody>
             <tr class="skuRow">
               <td class="skuIndex">1</td>
-              <td><input type="number" step="any" min="0" name="length" required /></td>
-              <td><input type="number" step="any" min="0" name="width" required /></td>
-              <td><input type="number" step="any" min="0" name="height" required /></td>
-              <td><input type="number" step="1" min="1" name="qty" value="1" required /></td>
+              <td><input type="number" step="any" min="0" name="length" required></td>
+              <td><input type="number" step="any" min="0" name="width" required></td>
+              <td><input type="number" step="any" min="0" name="height" required></td>
+              <td><input type="number" step="1" min="1" name="qty" value="1" required></td>
               <td><button type="button" class="btn removeRow" title="Remove row">X</button></td>
             </tr>
           </tbody>
         </table>
-        <button type="button" id="addSkuBtn" class="btn">Add SKU</button>
+        <button type="button" id="addSkuBtn">Add SKU</button>
+      </section>
+      <section>
         <h2>Pallet</h2>
-        <label for="palletLength">Length (in):</label>
-        <input type="number" id="palletLength" name="palletLength" step="any" min="1" value="48" required />
-        <label for="palletWidth">Width (in):</label>
-        <input type="number" id="palletWidth" name="palletWidth" step="any" min="1" value="40" required />
-        <label for="maxHeight">Max stack height (in):</label>
-        <input type="number" id="maxHeight" name="maxHeight" step="any" min="1" value="60" required />
-        <p>
-          (Typical pallet footprint is 48&nbsp;×&nbsp;40&nbsp;inches. Adjust if you use
-          another size. Max stack height excludes pallet height.)
-        </p>
-        <button type="submit" class="btn">Calculate</button>
-      </form>
-      <div id="resultContainer"></div>
-    </main>
-    <footer>
-      <p>
-        &copy; 2025 Pallet Tools. Last updated on
-        <time datetime="2025-08-17">August 17, 2025</time>.
-      </p>
-    </footer>
-    <script>
-      // Helper to parse query parameters into an object
-      function parseQuery() {
-        const params = new URLSearchParams(window.location.search);
-        const result = {};
-        params.forEach((v, k) => {
-          result[k] = v;
-        });
-        return result;
-      }
-      // Populate form based on query parameters
-      function loadFromQuery() {
-        const params = parseQuery();
-        if (params.pLength) document.getElementById("palletLength").value = params.pLength;
-        if (params.pWidth) document.getElementById("palletWidth").value = params.pWidth;
-        if (params.maxHeight) document.getElementById("maxHeight").value = params.maxHeight;
-        if (params.skus) {
-          // Clear existing
-          const tbody = document.querySelector("#skuTable tbody");
-          tbody.innerHTML = "";
-          try {
-            const skus = JSON.parse(decodeURIComponent(params.skus));
-            skus.forEach((sku, idx) => {
-              addRow(sku.length, sku.width, sku.height, sku.qty);
-            });
-          } catch (e) {
-            console.warn("Failed to parse skus from query", e);
-          }
+        <label>Length (in): <input type="number" step="any" min="0" id="palletLength" value="48"></label>
+        <label>Width (in): <input type="number" step="any" min="0" id="palletWidth" value="40"></label>
+        <label>Max stack height (in): <input type="number" step="any" min="0" id="maxHeight" value="52"></label>
+        <p>(Typical pallet footprint is 48×40 inches. Adjust if you use another size. Max stack height excludes pallet height.)</p>
+      </section>
+      <button type="submit">Calculate</button>
+    </form>
+
+    <div id="resultContainer"></div>
+
+    <!-- Share & Embed -->
+    <div id="shareControls" style="margin-top:1rem; display:none;">
+      <button type="button" id="copyLink">Copy Link</button>
+      <button type="button" id="showEmbed">Embed</button>
+      <div id="embedCodeContainer" style="display:none; margin-top:0.5rem;">
+        <textarea id="embedCode" readonly style="width:100%; height:120px;"></textarea>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Pallet Tools. Last updated on August 17, 2025.</p>
+  </footer>
+
+  <script>
+    // Helper to parse query parameters into an object
+    function parseQuery() {
+      const params = new URLSearchParams(window.location.search);
+      const result = {};
+      params.forEach((v, k) => {
+        result[k] = v;
+      });
+      return result;
+    }
+    // Populate form based on query parameters
+    function loadFromQuery() {
+      const params = parseQuery();
+      if (params.pLength) document.getElementById("palletLength").value = params.pLength;
+      if (params.pWidth) document.getElementById("palletWidth").value = params.pWidth;
+      if (params.maxHeight) document.getElementById("maxHeight").value = params.maxHeight;
+      if (params.skus) {
+        // Clear existing
+        const tbody = document.querySelector("#skuTable tbody");
+        tbody.innerHTML = "";
+        try {
+          const skus = JSON.parse(decodeURIComponent(params.skus));
+          skus.forEach((sku) => {
+            addRow(sku.length, sku.width, sku.height, sku.qty);
+          });
+        } catch (e) {
+          console.warn("Failed to parse skus from query", e);
         }
       }
-      // Add a new SKU row to the table
-      function addRow(length = "", width = "", height = "", qty = 1) {
-        const tbody = document.querySelector("#skuTable tbody");
-        const index = tbody.children.length + 1;
-        const tr = document.createElement("tr");
-        tr.classList.add("skuRow");
-        tr.innerHTML = `
-          <td class="skuIndex">${index}</td>
-          <td><input type="number" step="any" min="0" name="length" value="${length}" required></td>
-          <td><input type="number" step="any" min="0" name="width" value="${width}" required></td>
-          <td><input type="number" step="any" min="0" name="height" value="${height}" required></td>
-          <td><input type="number" step="1" min="1" name="qty" value="${qty}" required></td>
-          <td><button type="button" class="btn removeRow" title="Remove row">X</button></td>
-        `;
-        tbody.appendChild(tr);
+    }
+    // Add a new SKU row to the table
+    function addRow(length = "", width = "", height = "", qty = 1) {
+      const tbody = document.querySelector("#skuTable tbody");
+      const index = tbody.children.length + 1;
+      const tr = document.createElement("tr");
+      tr.classList.add("skuRow");
+      tr.innerHTML = `
+        <td class="skuIndex">${index}</td>
+        <td><input type="number" step="any" min="0" name="length" value="${length}" required></td>
+        <td><input type="number" step="any" min="0" name="width" value="${width}" required></td>
+        <td><input type="number" step="any" min="0" name="height" value="${height}" required></td>
+        <td><input type="number" step="1" min="1" name="qty" value="${qty}" required></td>
+        <td><button type="button" class="btn removeRow" title="Remove row">X</button></td>
+      `;
+      tbody.appendChild(tr);
+      updateIndices();
+    }
+    // Update row indices after adding/removing rows
+    function updateIndices() {
+      document.querySelectorAll(".skuIndex").forEach((el, idx) => {
+        el.textContent = idx + 1;
+      });
+    }
+    // Remove SKU row when clicking remove button
+    document.addEventListener("click", function (e) {
+      if (e.target.classList.contains("removeRow")) {
+        const row = e.target.closest("tr");
+        row.remove();
         updateIndices();
       }
-      // Update row indices after adding/removing rows
-      function updateIndices() {
-        document.querySelectorAll(".skuIndex").forEach((el, idx) => {
-          el.textContent = idx + 1;
-        });
+    });
+    // Add SKU button handler
+    document.getElementById("addSkuBtn").addEventListener("click", function () {
+      addRow();
+    });
+    // Calculate results when form is submitted
+    document.getElementById("palletForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      calculate();
+    });
+    function calculate() {
+      const resultEl = document.getElementById("resultContainer");
+      resultEl.innerHTML = "";
+      // Collect pallet dims
+      const pLength = parseFloat(document.getElementById("palletLength").value);
+      const pWidth = parseFloat(document.getElementById("palletWidth").value);
+      const maxHeight = parseFloat(document.getElementById("maxHeight").value);
+      if (isNaN(pLength) || isNaN(pWidth) || isNaN(maxHeight)) {
+        resultEl.innerHTML = '<div class="error">Please enter valid pallet dimensions.</div>';
+        return;
       }
-      // Remove SKU row when clicking remove button
-      document.addEventListener("click", function (e) {
-        if (e.target.classList.contains("removeRow")) {
-          const row = e.target.closest("tr");
-          row.remove();
-          updateIndices();
-        }
-      });
-      // Add SKU button handler
-      document.getElementById("addSkuBtn").addEventListener("click", function () {
-        addRow();
-      });
-      // Calculate results when form is submitted
-      document.getElementById("palletForm").addEventListener("submit", function (e) {
-        e.preventDefault();
-        calculate();
-      });
-      function calculate() {
-        const resultEl = document.getElementById("resultContainer");
-        resultEl.innerHTML = "";
-        // Collect pallet dims
-        const pLength = parseFloat(document.getElementById("palletLength").value);
-        const pWidth = parseFloat(document.getElementById("palletWidth").value);
-        const maxHeight = parseFloat(document.getElementById("maxHeight").value);
-        if (isNaN(pLength) || isNaN(pWidth) || isNaN(maxHeight)) {
-          resultEl.innerHTML = '<div class="error">Please enter valid pallet dimensions.</div>';
-          return;
-        }
-        const skuRows = document.querySelectorAll("#skuTable tbody tr");
-        if (skuRows.length === 0) {
-          resultEl.innerHTML = '<div class="error">Please add at least one SKU.</div>';
-          return;
-        }
-        const skus = [];
-        let totalBoxes = 0;
-        let resultHtml = '';
-        skuRows.forEach((row, idx) => {
-          const length = parseFloat(row.querySelector("input[name='length']").value);
-          const width = parseFloat(row.querySelector("input[name='width']").value);
-          const height = parseFloat(row.querySelector("input[name='height']").value);
-          const qty = parseInt(row.querySelector("input[name='qty']").value, 10);
-          if (isNaN(length) || isNaN(width) || isNaN(height) || isNaN(qty)) return;
-          // TI: how many cases per layer
-          const ti = Math.floor(pLength / length) * Math.floor(pWidth / width);
-          // HI: how many layers given max height
-          const hi = Math.floor(maxHeight / height);
-          const boxesPerPallet = ti * hi;
-          const boxesLoaded = Math.min(qty, boxesPerPallet);
-          totalBoxes += boxesLoaded;
-          skus.push({ length, width, height, qty });
-          resultHtml += `<p>SKU ${idx + 1}: TI = ${ti}, HI = ${hi}, Boxes loaded = ${boxesLoaded} of ${qty}</p>`;
-        });
-        resultHtml += `<p><strong>Total loaded boxes:</strong> ${totalBoxes}</p>`;
-        resultEl.innerHTML = `<div class="result">${resultHtml}</div>`;
-        // Update URL with parameters for sharing
-        const params = new URLSearchParams();
-        params.set('pLength', pLength.toString());
-        params.set('pWidth', pWidth.toString());
-        params.set('maxHeight', maxHeight.toString());
-        params.set('skus', encodeURIComponent(JSON.stringify(skus)));
-        const newUrl = window.location.pathname + '?' + params.toString();
-        window.history.replaceState({}, '', newUrl);
+      const skuRows = document.querySelectorAll("#skuTable tbody tr");
+      if (skuRows.length === 0) {
+        resultEl.innerHTML = '<div class="error">Please add at least one SKU.</div>';
+        return;
       }
-      // On page load, populate values from query string
-      loadFromQuery();
-    </script>
-  </body>
+      const skus = [];
+      let totalBoxes = 0;
+      let resultHtml = '';
+      skuRows.forEach((row, idx) => {
+        const length = parseFloat(row.querySelector("input[name='length']").value);
+        const width = parseFloat(row.querySelector("input[name='width']").value);
+        const height = parseFloat(row.querySelector("input[name='height']").value);
+        const qty = parseInt(row.querySelector("input[name='qty']").value, 10);
+        if (isNaN(length) || isNaN(width) || isNaN(height) || isNaN(qty)) return;
+        // TI: how many cases per layer
+        const ti = Math.floor(pLength / length) * Math.floor(pWidth / width);
+        // HI: how many layers given max height
+        const hi = Math.floor(maxHeight / height);
+        const boxesPerPallet = ti * hi;
+        const boxesLoaded = Math.min(qty, boxesPerPallet);
+        totalBoxes += boxesLoaded;
+        skus.push({ length, width, height, qty });
+        resultHtml += `<p>SKU ${idx + 1}: TI = ${ti}, HI = ${hi}, Boxes loaded = ${boxesLoaded} of ${qty}</p>`;
+      });
+      resultHtml += `<p><strong>Total loaded boxes:</strong> ${totalBoxes}</p>`;
+      resultEl.innerHTML = `<div class="result">${resultHtml}</div>`;
+      // Update URL with parameters for sharing
+      const params = new URLSearchParams();
+      params.set('pLength', pLength.toString());
+      params.set('pWidth', pWidth.toString());
+      params.set('maxHeight', maxHeight.toString());
+      params.set('skus', encodeURIComponent(JSON.stringify(skus)));
+      const newUrl = window.location.pathname + '?' + params.toString();
+      window.history.replaceState({}, '', newUrl);
+      // Show share controls
+      showShareControls();
+      // Log GA event
+      ev('calculate_click', {tool:'pallet', lang:'en'});
+    }
+    // Show share controls after calculation
+    function showShareControls() {
+      const share = document.getElementById('shareControls');
+      share.style.display = 'block';
+      // Update embed code with current URL
+      const iframeUrl = `https://www.pallet-calculator.com/embed/pallet-calculator/${location.search}`;
+      const embedCode = `<iframe src=\"${iframeUrl}\" width=\"100%\" height=\"540\" style=\"border:1px solid #e5e7eb;border-radius:12px\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>`;
+      document.getElementById('embedCode').value = embedCode;
+    }
+    // Copy link button
+    document.getElementById('copyLink').addEventListener('click', async function(){
+      try {
+        await navigator.clipboard.writeText(location.href);
+        ev('copy_result', {tool:'pallet'});
+        alert('Link copied!');
+      } catch(e){ alert('Copy failed'); }
+    });
+    // Show embed code
+    document.getElementById('showEmbed').addEventListener('click', function(){
+      const container = document.getElementById('embedCodeContainer');
+      container.style.display = container.style.display === 'none' ? 'block' : 'none';
+      ev('embed_view', {tool:'pallet'});
+    });
+    // On page load, populate values from query string
+    loadFromQuery();
+  </script>
+</body>
 </html>
