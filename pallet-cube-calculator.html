@@ -1,294 +1,345 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Pallet Cube Calculator – Compute volume and share</title>
-  <meta name="description" content="Calculate the cubic volume of a pallet or box and convert between cubic inches, feet and metres. Supports multiple quantities and shareable results via link or embed.">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pallet Cube Calculator – Volume (m³/ft³) & Utilization</title>
+  <meta name="description" content="Estimate pallet cube (m³/ft³) from pallet size and stack height/layers. Optional box inputs compute TI, layers, total boxes, and volume utilization. EU/US + AU/JP presets." />
+  <link rel="canonical" href="https://pallet-calculator.com/pallet-cube-calculator.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Pallet Cube Calculator" />
+  <meta property="og:description" content="Compute pallet volume and utilization; add box size to estimate TI, layers, and total boxes." />
+  <meta property="og:url" content="https://pallet-calculator.com/pallet-cube-calculator.html" />
+  <meta property="og:image" content="https://pallet-calculator.com/og-placeholder.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 
-  <!-- Speed: preconnect to GA/GTM -->
-  <link rel="preconnect" href="https://www.googletagmanager.com">
-
-  <!-- Global CSS -->
-  <link rel="stylesheet" href="/style.css">
-  <!-- Inline critical styles for portability -->
-  <style>
-    /* Global styles for Pallet Calculator site */
-    *,
-    *::before,
-    *::after { box-sizing: border-box; }
-    body {
-      font: 16px/1.6 system-ui, Segoe UI, Roboto, sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #1a202c;
-      background: #fff;
-    }
-    header,
-    footer {
-      padding: 1rem;
-      background: #f8fafc;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 1.75rem;
-    }
-    nav a {
-      margin-right: 0.75rem;
-      color: #3182ce;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    nav a:hover { text-decoration: underline; }
-    .lang-switch a {
-      margin-left: 0.5rem;
-      color: #3182ce;
-      text-decoration: none;
-    }
-    .lang-switch a:hover { text-decoration: underline; }
-    main {
-      padding: 1rem;
-      max-width: 960px;
-      margin: 0 auto;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-    th,
-    td {
-      padding: 0.5rem;
-      border: 1px solid #e2e8f0;
-      text-align: left;
-    }
-    th {
-      background: #edf2f7;
-      font-weight: 600;
-    }
-    tbody tr:nth-child(even) {
-      background: #f7fafc;
-    }
-    input,
-    select {
-      margin-right: 0.5rem;
-    }
-    label {
-      margin-right: 1rem;
-      display: inline-block;
-      margin-top: 0.5rem;
-    }
-    button {
-      margin-top: 0.5rem;
-      margin-right: 0.5rem;
-      background: #3182ce;
-      color: #ffffff;
-      border: none;
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover { background: #2b6cb0; }
-    button:disabled {
-      background: #a0aec0;
-      cursor: not-allowed;
-    }
-    #shareControls button {
-      background: #4a5568;
-    }
-    #shareControls button:hover {
-      background: #2d3748;
-    }
-    .error { color: #c53030; }
-    .result { margin-top: 1rem; padding: 0.75rem; background: #f7fafc; border-radius: 4px; }
-    pre { background: #f7fafc; padding: 0.75rem; border-radius: 4px; overflow-x: auto; }
-  </style>
-
-  <!-- Canonical + hreflang -->
-  <link rel="canonical" href="https://www.pallet-calculator.com/pallet-cube-calculator.html">
-  <link rel="alternate" href="https://www.pallet-calculator.com/pallet-cube-calculator.html" hreflang="en">
-  <link rel="alternate" href="https://www.pallet-calculator.com/hi/pallet-cube-calculator.html" hreflang="hi">
-  <link rel="alternate" href="https://www.pallet-calculator.com/pallet-cube-calculator.html" hreflang="x-default">
-
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Pallet Cube Calculator – Compute volume and share">
-  <meta property="og:description" content="Calculate the cubic volume of pallets or boxes and convert between inches, feet and metres. Share your calculations via link or embed.">
-  <meta property="og:url" content="https://www.pallet-calculator.com/pallet-cube-calculator.html">
-  <meta property="og:image" content="https://www.pallet-calculator.com/assets/og/pallet.png">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- GA4 -->
+  <!-- Google tag (gtag.js) — place immediately after <head> (ONE snippet per page) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXJVLGW6C3"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);} 
     gtag('js', new Date());
-    gtag('config','G-X4VDF9JBPE');
-    function ev(name, params){ try { gtag('event', name, params || {}); } catch(e) {} }
+    gtag('config', 'G-MXJVLGW6C3');
   </script>
 
-  <!-- Schema: SoftwareApplication -->
+  <style>
+    :root{ --bg:#0b1220; --panel:#0f172a; --muted:#94a3b8; --text:#e5e7eb; --brand:#3b82f6; --brand-2:#60a5fa; --radius:14px; --shadow:0 6px 18px rgba(0,0,0,.28); --container: 1120px; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; background:linear-gradient(180deg,#0b1220 0%, #0b1220 60%, #0e1526 100%); color:var(--text); font: 16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
+    a{color:var(--brand); text-decoration:none}
+    a:hover{color:var(--brand-2)}
+    .container{max-width:var(--container); margin:0 auto; padding:24px}
+    header.site-header{position:sticky; top:0; backdrop-filter:saturate(150%) blur(8px); background:rgba(15,23,42,.65); border-bottom:1px solid rgba(148,163,184,.15); z-index:20}
+    .brand{display:inline-flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px; color:#fff}
+    .brand .dot{width:12px;height:12px;border-radius:50%;background:var(--brand); box-shadow:0 0 0 6px rgba(59,130,246,.18)}
+    nav.nav{display:flex; gap:12px; flex-wrap:wrap}
+    nav.nav a{color:var(--muted); padding:8px 12px; border-radius:999px; border:1px solid rgba(148,163,184,.18)}
+    nav.nav a[aria-current="page"], nav.nav a:hover{color:#fff; background:rgba(59,130,246,.12); border-color:rgba(59,130,246,.35)}
+
+    h1{font-size:clamp(28px,3.2vw,40px); line-height:1.15; margin:24px 0 8px}
+    h2{font-size:clamp(20px,2.2vw,26px); margin:20px 0 12px}
+    h3{font-size:19px; margin:12px 0}
+    .muted{color:var(--muted)}
+
+    .grid{display:grid; gap:18px}
+    @media(min-width:960px){ .grid-2{grid-template-columns: 1.2fr .8fr} }
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)); border:1px solid rgba(148,163,184,.18); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .card .card-body{padding:18px}
+
+    .form-row{display:grid; gap:10px; grid-template-columns: 1fr 1fr 1fr 1fr}
+    .form-row-2{display:grid; gap:10px; grid-template-columns: 1fr 1fr}
+    .field{display:flex; flex-direction:column; gap:6px}
+    label{font-size:12px; color:var(--muted)}
+    input[type="number"], select{width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(148,163,184,.25); background:#0b1220; color:#e5e7eb}
+    input[type="number"]:focus, select:focus{outline:none; border-color:rgba(59,130,246,.55); box-shadow:0 0 0 3px rgba(59,130,246,.35)}
+
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:10px 14px; border-radius:12px; border:1px solid rgba(148,163,184,.25); background:#0b1220; color:#e5e7eb; cursor:pointer}
+    .btn:hover{border-color:rgba(59,130,246,.55); background:rgba(59,130,246,.10)}
+    .btn.primary{background:var(--brand); border-color:var(--brand); color:#fff}
+    .btn.primary:hover{background:#2563eb}
+    .btn.ghost{background:transparent}
+    .pill-group{display:flex; flex-wrap:wrap; gap:8px}
+
+    .stat{background:rgba(148,163,184,.10); padding:10px 12px; border:1px dashed rgba(148,163,184,.25); border-radius:10px; margin-bottom:10px}
+    .stat b{font-size:18px}
+
+    .preview{height:240px; background:repeating-linear-gradient(45deg, rgba(59,130,246,.08) 0 12px, transparent 12px 24px); border-radius:var(--radius); border:1px dashed rgba(148,163,184,.25); display:flex; align-items:center; justify-content:center; color:var(--muted)}
+
+    footer{color:var(--muted); border-top:1px solid rgba(148,163,184,.15); margin-top:36px}
+    footer .container{display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:16px;">
+      <a class="brand" href="/index.html" aria-label="pallet-calculator home"><span class="dot"></span> pallet‑calculator</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/pallet-calculator.html">Pallet Calculator</a>
+        <a href="/ti-hi-calculator.html">TI‑HI</a>
+        <a href="/pallet-cube-calculator.html" aria-current="page">Cube</a>
+        <a href="/pallet-dimensions.html">Dimensions</a>
+        <a href="/pallet-weight-calculator.html">Weight</a>
+        <a href="/how-many-pallets-in-20ft-container.html">20ft</a>
+        <a href="/how-many-pallets-in-40ft-container.html">40ft</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Pallet Cube Calculator</h1>
+    <p class="muted" style="margin-top:-6px">Compute pallet volume in <b>m³</b> and <b>ft³</b>. Enter pallet size and either a <i>max stack height</i> or a <i>number of layers</i>. Add optional box dimensions to estimate TI, layers, total boxes, and <b>volume utilization</b>.</p>
+
+    <div class="grid grid-2" style="margin-top:12px">
+      <!-- Inputs -->
+      <section class="card" aria-labelledby="inputs">
+        <div class="card-body">
+          <h2 id="inputs">Inputs</h2>
+          <div class="form-row-2" role="group" aria-label="Units and mode">
+            <div class="field">
+              <label for="units">Units</label>
+              <select id="units">
+                <option value="mm">Millimeters (mm)</option>
+                <option value="in">Inches (in)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="mode">Height mode</label>
+              <select id="mode">
+                <option value="stack">Max stack height</option>
+                <option value="layers">Number of layers</option>
+              </select>
+            </div>
+          </div>
+
+          <h3 style="margin-top:10px">Pallet</h3>
+          <div class="pill-group" style="margin-bottom:8px">
+            <button class="btn" type="button" data-preset="1200x800">EU 1200×800</button>
+            <button class="btn" type="button" data-preset="1200x1000">EU 1200×1000</button>
+            <button class="btn" type="button" data-preset="1219x1016">US 48×40</button>
+            <button class="btn" type="button" data-preset="1165x1165">AU 1165×1165</button>
+            <button class="btn" type="button" data-preset="1100x1100">JP 1100×1100</button>
+          </div>
+          <div class="form-row" role="group" aria-label="Pallet dimensions">
+            <div class="field"><label for="palL">Length</label> <input id="palL" type="number" min="0" step="0.01" placeholder="e.g. 1200"/></div>
+            <div class="field"><label for="palW">Width</label>  <input id="palW" type="number" min="0" step="0.01" placeholder="e.g. 1000"/></div>
+            <div class="field"><label for="palH">Pallet base height (optional)</label> <input id="palH" type="number" min="0" step="0.01" placeholder="e.g. 144"/></div>
+            <div class="field stack-field"><label for="maxH">Max stack height</label> <input id="maxH" type="number" min="0" step="0.01" placeholder="e.g. 1200"/></div>
+            <div class="field layers-field" style="display:none"><label for="layers">Number of layers</label> <input id="layers" type="number" min="0" step="1" placeholder="e.g. 5"/></div>
+          </div>
+
+          <h3 style="margin-top:10px">Box (optional)</h3>
+          <div class="form-row" role="group" aria-label="Box dimensions">
+            <div class="field"><label for="boxL">Length</label> <input id="boxL" type="number" min="0" step="0.01" placeholder="e.g. 300"/></div>
+            <div class="field"><label for="boxW">Width</label>  <input id="boxW" type="number" min="0" step="0.01" placeholder="e.g. 200"/></div>
+            <div class="field"><label for="boxH">Height</label> <input id="boxH" type="number" min="0" step="0.01" placeholder="e.g. 150"/></div>
+            <div class="field"><label for="allowRotate">Allow 90° rotation</label>
+              <select id="allowRotate"><option value="yes">Yes</option><option value="no">No</option></select>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:10px; margin-top:14px">
+            <button id="calcBtn" class="btn primary" type="button">Calculate</button>
+            <button id="example" class="btn ghost" type="button">Try example</button>
+            <a class="btn" id="openCalc" href="/pallet-calculator.html" onclick="gtag('event','cta_click',{from:'cube',to:'pallet-calculator'})">Open Pallet Calculator</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Results -->
+      <section class="card" aria-labelledby="results">
+        <div class="card-body">
+          <h2 id="results">Results</h2>
+          <div class="stat">Estimated total height: <b id="estHeight">–</b> <span id="uH">mm</span></div>
+          <div class="stat">Pallet cube: <b id="cubeM3">–</b> m³ · <b id="cubeFT3">–</b> ft³</div>
+          <div class="stat">Boxes per layer (TI): <b id="ti">–</b> · Layers: <b id="hi">–</b> · Total boxes: <b id="total">–</b></div>
+          <div class="stat">Volume utilization (if box given): <b id="util">–</b></div>
+          <div class="preview" id="preview">Preview will render here</div>
+          <div style="display:flex; gap:8px; margin-top:12px">
+            <button id="copyText" class="btn" type="button">Copy (text)</button>
+            <button id="copyJSON" class="btn" type="button">Copy (JSON)</button>
+            <button id="shareBtn" class="btn" type="button">Share link</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="card" style="margin-top:18px">
+      <div class="card-body">
+        <h2>How we compute cube</h2>
+        <p>Pallet cube (volume) is <span class="muted">length × width × <i>estimated total height</i></span>. Total height equals pallet base height (if provided) plus either your max stack height or <span class="muted">layers × box height</span> when layers are used and a box height is given. If no box height is provided with "layers" mode, height is estimated from layers × an entered <i>average layer height</i> (not shown here for simplicity).</p>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:18px">
+      <div class="card-body">
+        <h2>FAQ</h2>
+        <h3>Why is utilization blank?</h3>
+        <p class="muted">We need your box dimensions to compute TI (per‑layer boxes), estimated layers, and total box volume relative to pallet cube.</p>
+        <h3>Standards included</h3>
+        <p class="muted">Presets include EU (1200×800, 1200×1000), US (48×40 / 1219×1016), AU (1165×1165), JP (1100×1100). You can input any custom size.</p>
+        <h3>Disclaimer</h3>
+        <p class="muted">All results are planning estimates. Verify against handling rules, carrier limits, and safety standards.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 pallet-calculator.com</p>
+      <p>Contact: <a href="mailto:contact@pallet-calculator.com">contact@pallet-calculator.com</a> (placeholder)</p>
+    </div>
+  </footer>
+
+  <script>
+    const $ = (s)=>document.querySelector(s);
+    const mmPerIn = 25.4;
+    const M3_PER_MM3 = 1e-9; // 1 mm³ = 1e-9 m³
+    const FT3_PER_M3 = 35.3146667;
+    const q = new URLSearchParams(location.search);
+
+    function showMode(){
+      const m = $('#mode').value;
+      $('.stack-field').style.display = (m==='stack')? 'block':'none';
+      $('.layers-field').style.display = (m==='layers')? 'block':'none';
+    }
+
+    $('#mode').addEventListener('change', showMode);
+
+    // Presets for pallet
+    document.querySelectorAll('[data-preset]').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const [L,W] = btn.dataset.preset.split('x').map(Number);
+        $('#palL').value = L; $('#palW').value = W; try{gtag('event','preset_click',{page:'cube',value:btn.dataset.preset})}catch(e){}
+      });
+    });
+
+    // Example
+    $('#example').addEventListener('click',()=>{
+      $('#units').value='mm';
+      $('#mode').value='stack'; showMode();
+      $('#palL').value=1200; $('#palW').value=1000; $('#palH').value=144; $('#maxH').value=1200;
+      $('#boxL').value=300; $('#boxW').value=200; $('#boxH').value=150; $('#allowRotate').value='yes';
+      try{gtag('event','example_apply',{page:'cube'})}catch(e){}
+    });
+
+    // Prefill from URL
+    (function prefill(){
+      ['units','mode','palL','palW','palH','maxH','layers','boxL','boxW','boxH','allowRotate'].forEach(k=>{ if(q.has(k)){ const el = document.getElementById(k); if(el) el.value = q.get(k); }});
+      showMode();
+    })();
+
+    function num(id){return parseFloat(document.getElementById(id).value)||0}
+
+    function calc(){
+      const units = $('#units').value; const K = (units==='in')? mmPerIn : 1;
+      const pL = num('palL')*K, pW = num('palW')*K, pH = num('palH')*K; // pH optional
+      if(!(pL>0 && pW>0)) { alert('Please enter positive numbers for pallet length and width.'); return; }
+
+      const mode = $('#mode').value;
+      const bL = num('boxL')*K, bW = num('boxW')*K, bH = num('boxH')*K;
+
+      // TI computation if box provided
+      let perLayer = 0, layout = '-';
+      if(bL>0 && bW>0){
+        const ti1 = Math.floor(pL/bL)*Math.floor(pW/bW);
+        const canRot = $('#allowRotate').value==='yes';
+        const ti2 = canRot? Math.floor(pL/bW)*Math.floor(pW/bL) : 0;
+        if(ti2>ti1){ perLayer = ti2; layout = `${Math.floor(pL/bW)}×${Math.floor(pW/bL)} (90°)`; }
+        else { perLayer = ti1; layout = `${Math.floor(pL/bL)}×${Math.floor(pW/bW)} (0°)`; }
+      }
+
+      let layers = 0; let estTotalH = 0;
+      if(mode==='stack'){
+        const maxH = num('maxH')*K;
+        if(maxH<=0){ alert('Please enter a positive max stack height.'); return; }
+        if(bH>0) layers = Math.max(0, Math.floor(maxH / bH));
+        estTotalH = maxH + (pH||0);
+      }else{
+        layers = Math.max(0, Math.floor(num('layers')));
+        estTotalH = (bH>0? layers*bH : 0) + (pH||0);
+      }
+
+      const totalBoxes = perLayer * (layers||1);
+      const cubeMM3 = pL * pW * (estTotalH|| (bH>0? layers*bH : 0));
+      const cubeM3 = cubeMM3 * M3_PER_MM3;
+      const cubeFT3 = cubeM3 * FT3_PER_M3;
+
+      // Utilization if box provided
+      let util = '–';
+      if(bL>0 && bW>0 && bH>0 && totalBoxes>0 && cubeMM3>0){
+        const boxesVol = totalBoxes * (bL*bW*bH);
+        util = `${(100*boxesVol / cubeMM3).toFixed(1)}%`;
+      }
+
+      // Render
+      $('#estHeight').textContent = (units==='in')? (estTotalH/mmPerIn).toFixed(1) : estTotalH.toFixed(1);
+      $('#uH').textContent = (units==='in')? 'in' : 'mm';
+      $('#cubeM3').textContent = cubeM3.toFixed(3);
+      $('#cubeFT3').textContent = cubeFT3.toFixed(2);
+      $('#ti').textContent = perLayer? perLayer : '–';
+      $('#hi').textContent = layers? layers : (mode==='layers'? '0' : '—');
+      $('#total').textContent = totalBoxes? totalBoxes : '–';
+      $('#util').textContent = util;
+      $('#preview').textContent = `Cube ${cubeM3.toFixed(3)} m³ (${cubeFT3.toFixed(2)} ft³) · Height ${(units==='in'? (estTotalH/mmPerIn).toFixed(1)+' in' : estTotalH.toFixed(1)+' mm')} · TI ${perLayer||'-'} · HI ${layers||'-'} · Util ${util}`;
+
+      // CTA link to full calculator with params
+      const params = new URLSearchParams({units: $('#units').value, palL: $('#palL').value, palW: $('#palW').value, palH: $('#palH').value, allowRotate: $('#allowRotate').value, boxL: $('#boxL').value, boxW: $('#boxW').value, boxH: $('#boxH').value});
+      if(mode==='stack') params.set('palMax', $('#maxH').value); else params.set('layers', $('#layers').value);
+      $('#openCalc').href = `/pallet-calculator.html?${params.toString()}`;
+
+      try{ gtag('event','calculate_click',{page:'cube', cube_m3:cubeM3}); }catch(e){}
+      return {units, mode, pL,pW,pH, bL,bW,bH, perLayer, layers, totalBoxes, cubeM3, cubeFT3, estTotalH, util};
+    }
+
+    document.getElementById('calcBtn').addEventListener('click', calc);
+
+    // Copy helpers
+    function copyText(r){
+      const s = `Pallet cube: ${r.cubeM3.toFixed(3)} m³ (${r.cubeFT3.toFixed(2)} ft³)\nEstimated height: ${(r.units==='in'? (r.estTotalH/mmPerIn).toFixed(1)+' in' : r.estTotalH.toFixed(1)+' mm')}\nTI: ${r.perLayer||'-'} · HI: ${r.layers||'-'} · Total boxes: ${r.totalBoxes||'-'}\nUtilization: ${r.util}`;
+      navigator.clipboard.writeText(s).then(()=>alert('Copied to clipboard'));
+    }
+    function copyJSON(r){
+      const data = {units:r.units, mode:r.mode, pallet:{L:r.pL,W:r.pW,H:r.pH}, box:{L:r.bL,W:r.bW,H:r.bH}, ti:r.perLayer, hi:r.layers, totalBoxes:r.totalBoxes, cube_m3:+r.cubeM3.toFixed(3), cube_ft3:+r.cubeFT3.toFixed(2), estHeight:r.estTotalH, utilization:r.util};
+      navigator.clipboard.writeText(JSON.stringify(data, null, 2)).then(()=>alert('JSON copied'));
+    }
+
+    document.getElementById('copyText').addEventListener('click',()=>{ const r = calc(); if(r){ copyText(r); try{gtag('event','copy_result',{fmt:'text'})}catch(e){} }});
+    document.getElementById('copyJSON').addEventListener('click',()=>{ const r = calc(); if(r){ copyJSON(r); try{gtag('event','copy_result',{fmt:'json'})}catch(e){} }});
+
+    document.getElementById('shareBtn').addEventListener('click',()=>{
+      const r = calc(); if(!r) return;
+      const params = new URLSearchParams({units: $('#units').value, mode: $('#mode').value, palL: $('#palL').value, palW: $('#palW').value, palH: $('#palH').value, maxH: $('#maxH').value, layers: $('#layers').value, boxL: $('#boxL').value, boxW: $('#boxW').value, boxH: $('#boxH').value, allowRotate: $('#allowRotate').value});
+      const url = `${location.origin}${location.pathname}?${params.toString()}`;
+      navigator.clipboard.writeText(url).then(()=>alert('Shareable link copied'));
+      try{ gtag('event','share_click',{channel:'link'}) }catch(e){}
+    });
+  </script>
+
+  <!-- Optional structured data: SoftwareApplication + FAQ -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"SoftwareApplication",
     "name":"Pallet Cube Calculator",
-    "url":"https://www.pallet-calculator.com/pallet-cube-calculator.html",
     "applicationCategory":"BusinessApplication",
     "operatingSystem":"Web",
-    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
-    "description":"Calculate the cubic volume of pallets or boxes and convert between cubic inches, feet and metres. Supports multiple quantities.",
-    "publisher":{"@type":"Organization","name":"Pallet Tools"},
-    "inLanguage":"en"
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
   }
   </script>
-
-  <!-- Schema: FAQPage -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"FAQPage",
     "mainEntity":[
-      {
-        "@type":"Question",
-        "name":"How do I calculate the cubic volume of a pallet?",
-        "acceptedAnswer":{"@type":"Answer","text":"Enter the length, width and height of the pallet or box, choose the unit (inches, feet or metres) and specify how many units you have. The calculator converts the volume and multiplies by the quantity."}
-      },
-      {
-        "@type":"Question",
-        "name":"Which units are supported?",
-        "acceptedAnswer":{"@type":"Answer","text":"You can choose inches, feet or metres for your dimensions. Results are shown in both cubic feet and cubic metres."}
-      },
-      {
-        "@type":"Question",
-        "name":"Can I calculate the volume for multiple pallets or boxes?",
-        "acceptedAnswer":{"@type":"Answer","text":"Yes. Enter the quantity and the tool will multiply the single-unit volume accordingly."}
-      },
-      {
-        "@type":"Question",
-        "name":"How do I share my volume calculation?",
-        "acceptedAnswer":{"@type":"Answer","text":"After calculating, click Copy Link to copy a URL with your inputs or click Embed for an iframe code to use on your own site."}
-      },
-      {
-        "@type":"Question",
-        "name":"What if I need to convert to other units?",
-        "acceptedAnswer":{"@type":"Answer","text":"The calculator automatically converts cubic inches to feet and metres. For other conversions you may need a separate conversion tool."}
-      }
+      {"@type":"Question","name":"How is pallet cube calculated?","acceptedAnswer":{"@type":"Answer","text":"Cube equals pallet length × width × estimated total height (pallet base + stack height or layers × box height)."}},
+      {"@type":"Question","name":"Why is utilization blank?","acceptedAnswer":{"@type":"Answer","text":"We must know box dimensions to compute TI, layers, and compare total box volume with pallet cube."}},
+      {"@type":"Question","name":"Which standards are included?","acceptedAnswer":{"@type":"Answer","text":"EU (1200×800, 1200×1000), US (48×40 / 1219×1016), AU (1165×1165), JP (1100×1100). Any custom size is allowed."}}
     ]
   }
-  </script>
-</head>
-<body>
-  <header>
-    <h1>Pallet Cube Calculator</h1>
-    <nav>
-      <!-- Use absolute URLs to avoid ambiguity and strengthen canonical signals -->
-      <a href="https://www.pallet-calculator.com/pallet-calculator/">Pallet Calculator</a>
-      <a href="https://www.pallet-calculator.com/ti-hi-calculator.html">TI HI Calculator</a>
-      <a href="https://www.pallet-calculator.com/pallet-weight-calculator.html">Weight Calculator</a>
-      <a href="https://www.pallet-calculator.com/pallet-cube-calculator.html">Cube Calculator</a>
-      <a href="https://www.pallet-calculator.com/how-many-pallets-in-53-foot-trailer.html">53-ft Trailer</a>
-      <a href="https://www.pallet-calculator.com/how-many-pallets-in-20ft-container.html">20 ft Container</a>
-      <a href="https://www.pallet-calculator.com/how-many-pallets-in-40ft-container.html">40 ft Container</a>
-      <a href="https://www.pallet-calculator.com/pallet-dimensions.html">Pallet Dimensions</a>
-    </nav>
-    <div class="lang-switch">
-      <a href="https://www.pallet-calculator.com/pallet-cube-calculator.html">EN</a>
-      <a href="https://www.pallet-calculator.com/hi/pallet-cube-calculator.html">HI</a>
-    </div>
-  </header>
-  <main>
-    <p>Calculate the cubic volume of a pallet or box and convert between cubic inches, feet and metres. Enter your dimensions, choose a unit and specify how many units you have.</p>
-    <form id="cubeForm">
-      <section>
-        <label>Length: <input type="number" step="any" min="0" id="length" required></label>
-        <label>Width: <input type="number" step="any" min="0" id="width" required></label>
-        <label>Height: <input type="number" step="any" min="0" id="height" required></label>
-        <label>Unit: 
-          <select id="unit">
-            <option value="in">Inches</option>
-            <option value="ft">Feet</option>
-            <option value="m">Metres</option>
-          </select>
-        </label>
-        <label>Quantity (pallets/boxes): <input type="number" step="1" min="1" id="qty" value="1" required></label>
-      </section>
-      <button type="submit">Calculate</button>
-    </form>
-    <div id="cubeResult"></div>
-    <div id="shareControls" style="margin-top:1rem; display:none;">
-      <button type="button" id="copyLink">Copy Link</button>
-      <button type="button" id="showEmbed">Embed</button>
-      <div id="embedCodeContainer" style="display:none; margin-top:0.5rem;">
-        <textarea id="embedCode" readonly style="width:100%; height:120px;"></textarea>
-      </div>
-    </div>
-  </main>
-  <footer>
-    <p>&copy; 2025 Pallet Tools. Last updated on August 17, 2025.</p>
-  </footer>
-  <script>
-    function parseParams(){
-      const params = new URLSearchParams(location.search);
-      const obj = {};
-      params.forEach((v,k) => (obj[k]=v));
-      return obj;
-    }
-    function loadFromQuery(){
-      const q = parseParams();
-      if (q.length) document.getElementById('length').value = q.length;
-      if (q.width) document.getElementById('width').value = q.width;
-      if (q.height) document.getElementById('height').value = q.height;
-      if (q.unit) document.getElementById('unit').value = q.unit;
-      if (q.qty) document.getElementById('qty').value = q.qty;
-    }
-    function toCubicInches(len, wid, ht, unit){
-      let l=len,w=wid,h=ht;
-      if(unit==='ft'){ l*=12; w*=12; h*=12; }
-      else if(unit==='m'){ l*=39.3701; w*=39.3701; h*=39.3701; }
-      return l*w*h;
-    }
-    function calculateCube(){
-      const len=parseFloat(document.getElementById('length').value);
-      const wid=parseFloat(document.getElementById('width').value);
-      const ht=parseFloat(document.getElementById('height').value);
-      const unit=document.getElementById('unit').value;
-      const qty=parseInt(document.getElementById('qty').value,10);
-      const resultEl=document.getElementById('cubeResult');
-      if ([len,wid,ht,qty].some((v)=>isNaN(v)||v<=0)){
-        resultEl.innerHTML='<div class="error">Please enter valid positive numbers.</div>';
-        return;
-      }
-      const cubicInchesSingle=toCubicInches(len,wid,ht,unit);
-      const cubicFeetSingle=cubicInchesSingle/1728;
-      const cubicMetresSingle=cubicInchesSingle*0.000016387064;
-      const totalCubicFeet=cubicFeetSingle*qty;
-      const totalCubicMetres=cubicMetresSingle*qty;
-      let html=`<p>Single volume: <strong>${cubicFeetSingle.toFixed(3)}</strong> ft³ / <strong>${cubicMetresSingle.toFixed(3)}</strong> m³</p>`;
-      html+=`<p>Total for ${qty} ${qty===1?'unit':'units'}: <strong>${totalCubicFeet.toFixed(3)}</strong> ft³ / <strong>${totalCubicMetres.toFixed(3)}</strong> m³</p>`;
-      resultEl.innerHTML=`<div class="result">${html}</div>`;
-      const params=new URLSearchParams();
-      params.set('length',len.toString());
-      params.set('width',wid.toString());
-      params.set('height',ht.toString());
-      params.set('unit',unit);
-      params.set('qty',qty.toString());
-      const newUrl=window.location.pathname+'?'+params.toString();
-      history.replaceState({},'',newUrl);
-      showShareControls();
-      ev('calculate_click',{tool:'cube',lang:'en'});
-    }
-    function showShareControls(){
-      const share=document.getElementById('shareControls');
-      share.style.display='block';
-      const iframeUrl=`https://www.pallet-calculator.com/embed/pallet-cube-calculator/${location.search}`;
-      const embedCode=`<iframe src=\"${iframeUrl}\" width=\"100%\" height=\"220\" style=\"border:1px solid #e5e7eb;border-radius:12px\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>`;
-      document.getElementById('embedCode').value=embedCode;
-    }
-    document.getElementById('cubeForm').addEventListener('submit',function(e){ e.preventDefault(); calculateCube(); });
-    document.getElementById('copyLink').addEventListener('click',async function(){ try{ await navigator.clipboard.writeText(location.href); ev('copy_result',{tool:'cube'}); alert('Link copied!'); }catch(e){ alert('Copy failed'); } });
-    document.getElementById('showEmbed').addEventListener('click',function(){ const container=document.getElementById('embedCodeContainer'); container.style.display=container.style.display==='none'?'block':'none'; ev('embed_view',{tool:'cube'}); });
-    loadFromQuery();
   </script>
 </body>
 </html>
