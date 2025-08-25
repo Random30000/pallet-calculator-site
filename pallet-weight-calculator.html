@@ -1,308 +1,313 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Pallet Weight Calculator – Estimate total pallet weight and share</title>
-  <meta name="description" content="Estimate the total weight of a loaded pallet by combining the empty pallet weight, weight per carton and number of cartons. Includes optional maximum weight warning. Share your calculation via a link or embed it on your own site.">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pallet Weight Calculator – Total Weight & Limits</title>
+  <meta name="description" content="Compute total pallet weight from box weight × quantity, plus pallet tare and extras. Check against per‑pallet limit and optional container/trailer payload. EU/US + AU/JP workflows supported." />
+  <link rel="canonical" href="https://pallet-calculator.com/pallet-weight-calculator.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Pallet Weight Calculator" />
+  <meta property="og:description" content="Boxes × weight, pallet tare, extras, and limits – with shareable results and a link to the full pallet calculator." />
+  <meta property="og:url" content="https://pallet-calculator.com/pallet-weight-calculator.html" />
+  <meta property="og:image" content="https://pallet-calculator.com/og-placeholder.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 
-  <!-- Speed: preconnect to GA/GTM -->
-  <link rel="preconnect" href="https://www.googletagmanager.com">
-
-  <!-- Global CSS -->
-  <link rel="stylesheet" href="/style.css">
-  <!-- Inline critical styles for portability -->
-  <style>
-    /* Global styles for Pallet Calculator site */
-    *,
-    *::before,
-    *::after { box-sizing: border-box; }
-    body {
-      font: 16px/1.6 system-ui, Segoe UI, Roboto, sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #1a202c;
-      background: #fff;
-    }
-    header,
-    footer {
-      padding: 1rem;
-      background: #f8fafc;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 1.75rem;
-    }
-    nav a {
-      margin-right: 0.75rem;
-      color: #3182ce;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    nav a:hover { text-decoration: underline; }
-    .lang-switch a {
-      margin-left: 0.5rem;
-      color: #3182ce;
-      text-decoration: none;
-    }
-    .lang-switch a:hover { text-decoration: underline; }
-    main {
-      padding: 1rem;
-      max-width: 960px;
-      margin: 0 auto;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-    th,
-    td {
-      padding: 0.5rem;
-      border: 1px solid #e2e8f0;
-      text-align: left;
-    }
-    th {
-      background: #edf2f7;
-      font-weight: 600;
-    }
-    tbody tr:nth-child(even) {
-      background: #f7fafc;
-    }
-    input,
-    select {
-      margin-right: 0.5rem;
-    }
-    label {
-      margin-right: 1rem;
-      display: inline-block;
-      margin-top: 0.5rem;
-    }
-    button {
-      margin-top: 0.5rem;
-      margin-right: 0.5rem;
-      background: #3182ce;
-      color: #ffffff;
-      border: none;
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover { background: #2b6cb0; }
-    button:disabled {
-      background: #a0aec0;
-      cursor: not-allowed;
-    }
-    #shareControls button {
-      background: #4a5568;
-    }
-    #shareControls button:hover {
-      background: #2d3748;
-    }
-    .error { color: #c53030; }
-    .result { margin-top: 1rem; padding: 0.75rem; background: #f7fafc; border-radius: 4px; }
-    pre { background: #f7fafc; padding: 0.75rem; border-radius: 4px; overflow-x: auto; }
-  </style>
-
-  <!-- Canonical + hreflang -->
-  <link rel="canonical" href="https://www.pallet-calculator.com/pallet-weight-calculator.html">
-  <link rel="alternate" href="https://www.pallet-calculator.com/pallet-weight-calculator.html" hreflang="en">
-  <link rel="alternate" href="https://www.pallet-calculator.com/hi/pallet-weight-calculator.html" hreflang="hi">
-  <link rel="alternate" href="https://www.pallet-calculator.com/pallet-weight-calculator.html" hreflang="x-default">
-
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Pallet Weight Calculator – Estimate total pallet weight and share">
-  <meta property="og:description" content="Calculate the loaded weight of a pallet from empty pallet weight, carton weight and quantity. Share results via link or embed.">
-  <meta property="og:url" content="https://www.pallet-calculator.com/pallet-weight-calculator.html">
-  <meta property="og:image" content="https://www.pallet-calculator.com/assets/og/pallet.png">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- GA4 -->
+  <!-- Google tag (gtag.js) — place immediately after <head> (ONE snippet per page) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXJVLGW6C3"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){dataLayer.push(arguments);} 
     gtag('js', new Date());
-    gtag('config', 'G-X4VDF9JBPE');
-    // Helper for custom events
-    function ev(name, params){ try { gtag('event', name, params || {}); } catch(e) {} }
+    gtag('config', 'G-MXJVLGW6C3');
   </script>
 
-  <!-- Schema: SoftwareApplication -->
+  <style>
+    :root{ --bg:#0b1220; --panel:#0f172a; --muted:#94a3b8; --text:#e5e7eb; --brand:#3b82f6; --brand-2:#60a5fa; --radius:14px; --shadow:0 6px 18px rgba(0,0,0,.28); --container: 1120px; --ok:#22c55e; --warn:#f59e0b; --bad:#ef4444; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; background:linear-gradient(180deg,#0b1220 0%, #0b1220 60%, #0e1526 100%); color:var(--text); font: 16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
+    a{color:var(--brand); text-decoration:none}
+    a:hover{color:var(--brand-2)}
+    .container{max-width:var(--container); margin:0 auto; padding:24px}
+    header.site-header{position:sticky; top:0; backdrop-filter:saturate(150%) blur(8px); background:rgba(15,23,42,.65); border-bottom:1px solid rgba(148,163,184,.15); z-index:20}
+    .brand{display:inline-flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px; color:#fff}
+    .brand .dot{width:12px;height:12px;border-radius:50%;background:var(--brand); box-shadow:0 0 0 6px rgba(59,130,246,.18)}
+    nav.nav{display:flex; gap:12px; flex-wrap:wrap}
+    nav.nav a{color:var(--muted); padding:8px 12px; border-radius:999px; border:1px solid rgba(148,163,184,.18)}
+    nav.nav a[aria-current="page"], nav.nav a:hover{color:#fff; background:rgba(59,130,246,.12); border-color:rgba(59,130,246,.35)}
+
+    h1{font-size:clamp(28px,3.2vw,40px); line-height:1.15; margin:24px 0 8px}
+    h2{font-size:clamp(20px,2.2vw,26px); margin:20px 0 12px}
+    h3{font-size:19px; margin:12px 0}
+    .muted{color:var(--muted)}
+
+    .grid{display:grid; gap:18px}
+    @media(min-width:960px){ .grid-2{grid-template-columns: 1.2fr .8fr} }
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)); border:1px solid rgba(148,163,184,.18); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .card .card-body{padding:18px}
+
+    .form-row{display:grid; gap:10px; grid-template-columns: 1fr 1fr 1fr 1fr}
+    .form-row-2{display:grid; gap:10px; grid-template-columns: 1fr 1fr}
+    .field{display:flex; flex-direction:column; gap:6px}
+    label{font-size:12px; color:var(--muted)}
+    input[type="number"], select{width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(148,163,184,.25); background:#0b1220; color:#e5e7eb}
+    input[type="number"]:focus, select:focus{outline:none; border-color:rgba(59,130,246,.55); box-shadow:0 0 0 3px rgba(59,130,246,.35)}
+
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:10px 14px; border-radius:12px; border:1px solid rgba(148,163,184,.25); background:#0b1220; color:#e5e7eb; cursor:pointer}
+    .btn:hover{border-color:rgba(59,130,246,.55); background:rgba(59,130,246,.10)}
+    .btn.primary{background:var(--brand); border-color:var(--brand); color:#fff}
+    .btn.primary:hover{background:#2563eb}
+
+    .stat{background:rgba(148,163,184,.10); padding:10px 12px; border:1px dashed rgba(148,163,184,.25); border-radius:10px; margin-bottom:10px}
+    .stat b{font-size:18px}
+    .status-ok{color:var(--ok)}
+    .status-warn{color:var(--warn)}
+    .status-bad{color:var(--bad)}
+
+    .preview{height:220px; background:repeating-linear-gradient(45deg, rgba(59,130,246,.08) 0 12px, transparent 12px 24px); border-radius:var(--radius); border:1px dashed rgba(148,163,184,.25); display:flex; align-items:center; justify-content:center; color:var(--muted)}
+
+    footer{color:var(--muted); border-top:1px solid rgba(148,163,184,.15); margin-top:36px}
+    footer .container{display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:16px;">
+      <a class="brand" href="/index.html" aria-label="pallet-calculator home"><span class="dot"></span> pallet‑calculator</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/pallet-calculator.html">Pallet Calculator</a>
+        <a href="/ti-hi-calculator.html">TI‑HI</a>
+        <a href="/pallet-cube-calculator.html">Cube</a>
+        <a href="/pallet-dimensions.html">Dimensions</a>
+        <a href="/pallet-weight-calculator.html" aria-current="page">Weight</a>
+        <a href="/how-many-pallets-in-20ft-container.html">20ft</a>
+        <a href="/how-many-pallets-in-40ft-container.html">40ft</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Pallet Weight Calculator</h1>
+    <p class="muted" style="margin-top:-6px">Enter <b>box weight</b> and either a <b>box count</b> or <b>TI × HI</b>. Add <b>pallet tare</b> and <b>extras</b>, then compare with your <b>per‑pallet limit</b> or a <b>container/trailer payload</b>. Share or export results.</p>
+
+    <div class="grid grid-2" style="margin-top:12px">
+      <!-- Inputs -->
+      <section class="card" aria-labelledby="inputs">
+        <div class="card-body">
+          <h2 id="inputs">Inputs</h2>
+          <div class="form-row-2" role="group" aria-label="Units and mode">
+            <div class="field">
+              <label for="wunits">Weight units</label>
+              <select id="wunits"><option value="kg">Kilograms (kg)</option><option value="lb">Pounds (lb)</option></select>
+            </div>
+            <div class="field">
+              <label for="mode">Quantity mode</label>
+              <select id="mode"><option value="count">Total box count</option><option value="tihi">TI × HI (per‑layer × layers)</option></select>
+            </div>
+          </div>
+
+          <h3 style="margin-top:10px">Box</h3>
+          <div class="form-row" role="group" aria-label="Box weight and count">
+            <div class="field"><label for="boxWeight">Weight per box</label> <input id="boxWeight" type="number" min="0" step="0.001" placeholder="e.g. 8.5"/></div>
+            <div class="field count-field"><label for="boxCount">Total boxes</label> <input id="boxCount" type="number" min="0" step="1" placeholder="e.g. 500"/></div>
+            <div class="field tihi-field" style="display:none"><label for="ti">TI (boxes per layer)</label> <input id="ti" type="number" min="0" step="1" placeholder="e.g. 10"/></div>
+            <div class="field tihi-field" style="display:none"><label for="hi">HI (layers)</label> <input id="hi" type="number" min="0" step="1" placeholder="e.g. 5"/></div>
+          </div>
+
+          <h3 style="margin-top:10px">Pallet & extras</h3>
+          <div class="form-row" role="group" aria-label="Pallet tare and extras">
+            <div class="field"><label for="palletTare">Pallet tare (optional)</label> <input id="palletTare" type="number" min="0" step="0.01" placeholder="e.g. 20"/></div>
+            <div class="field"><label for="extras">Wrap/straps etc. (optional)</label> <input id="extras" type="number" min="0" step="0.01" placeholder="e.g. 1.2"/></div>
+            <div class="field"><label for="limit">Per‑pallet limit (optional)</label> <input id="limit" type="number" min="0" step="0.1" placeholder="e.g. 1000"/></div>
+            <div class="field"><label for="payload">Container/trailer payload (optional)</label> <input id="payload" type="number" min="0" step="0.1" placeholder="e.g. 28000"/></div>
+          </div>
+
+          <div style="display:flex; gap:10px; margin-top:14px">
+            <button id="calcBtn" class="btn primary" type="button">Calculate</button>
+            <button id="example" class="btn ghost" type="button">Try example</button>
+            <a class="btn" id="openCalc" href="/pallet-calculator.html" onclick="gtag('event','cta_click',{from:'weight',to:'pallet-calculator'})">Open Pallet Calculator</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Results -->
+      <section class="card" aria-labelledby="results">
+        <div class="card-body">
+          <h2 id="results">Results</h2>
+          <div class="stat">Total box weight: <b id="boxTotal">–</b> <span id="wu1">kg</span></div>
+          <div class="stat">Estimated pallet weight (with tare & extras): <b id="palletTotal">–</b> <span id="wu2">kg</span></div>
+          <div class="stat">Per‑pallet limit check: <b id="limitCheck">–</b></div>
+          <div class="stat">If payload given: approx pallets allowed <b id="palletsAllowed">–</b></div>
+          <div class="preview" id="preview">Preview will render here</div>
+          <div style="display:flex; gap:8px; margin-top:12px">
+            <button id="copyText" class="btn" type="button">Copy (text)</button>
+            <button id="copyJSON" class="btn" type="button">Copy (JSON)</button>
+            <button id="shareBtn" class="btn" type="button">Share link</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="card" style="margin-top:18px">
+      <div class="card-body">
+        <h2>Notes & disclaimer</h2>
+        <ul>
+          <li><b>Payload</b> is the mass capacity excluding tare of the vehicle/container. Check your line's gross and tare weights.</li>
+          <li>Always consider <b>stack height limits</b> and <b>weight distribution</b> rules. Use the full Pallet Calculator for TI‑HI and container fit.</li>
+          <li>These are <b>planning estimates</b>. Confirm with your logistics provider before shipping.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 pallet-calculator.com</p>
+      <p>Contact: <a href="mailto:contact@pallet-calculator.com">contact@pallet-calculator.com</a> (placeholder)</p>
+    </div>
+  </footer>
+
+  <script>
+    const $ = (s)=>document.querySelector(s);
+    const LB_PER_KG = 2.2046226218;
+    const q = new URLSearchParams(location.search);
+
+    function showMode(){
+      const m = $('#mode').value;
+      document.querySelectorAll('.count-field').forEach(e=>e.style.display = (m==='count')?'block':'none');
+      document.querySelectorAll('.tihi-field').forEach(e=>e.style.display = (m==='tihi')?'block':'none');
+    }
+    $('#mode').addEventListener('change', showMode);
+
+    // Example
+    $('#example').addEventListener('click',()=>{
+      $('#wunits').value='kg';
+      $('#mode').value='tihi'; showMode();
+      $('#boxWeight').value=8.5; $('#ti').value=10; $('#hi').value=5; // 50 boxes
+      $('#palletTare').value=20; $('#extras').value=1.2; $('#limit').value=1000; $('#payload').value=28000;
+      try{gtag('event','example_apply',{page:'weight'})}catch(e){}
+    });
+
+    // Prefill from URL
+    (function prefill(){
+      ['wunits','mode','boxWeight','boxCount','ti','hi','palletTare','extras','limit','payload'].forEach(k=>{ if(q.has(k)){ const el = document.getElementById(k); if(el) el.value = q.get(k); }});
+      showMode();
+    })();
+
+    function n(id){return parseFloat(document.getElementById(id).value)||0}
+
+    function calc(){
+      const wunits = $('#wunits').value;
+      const toKG = (wunits==='lb')? (v)=>v/LB_PER_KG : (v)=>v;
+      const fromKG = (wunits==='lb')? (v)=>v*LB_PER_KG : (v)=>v;
+
+      const boxWeight = toKG(n('boxWeight'));
+      if(!(boxWeight>0)) { alert('Enter a positive box weight.'); return; }
+
+      const mode = $('#mode').value;
+      let boxes = 0;
+      if(mode==='count'){
+        boxes = Math.max(0, Math.floor(n('boxCount')));
+      }else{
+        const ti = Math.max(0, Math.floor(n('ti')));
+        const hi = Math.max(0, Math.floor(n('hi')));
+        boxes = ti * hi;
+      }
+      if(!(boxes>0)) { alert('Enter a positive box count or TI×HI.'); return; }
+
+      const boxTotalKG = boxWeight * boxes;
+      const tareKG = toKG(n('palletTare'));
+      const extrasKG = toKG(n('extras'));
+      const palletTotalKG = boxTotalKG + tareKG + extrasKG;
+
+      // Limits
+      const limitKG = toKG(n('limit'));
+      let limitMsg = '—';
+      if(limitKG>0){
+        if(palletTotalKG <= limitKG){
+          const spare = fromKG(limitKG - palletTotalKG).toFixed(2);
+          limitMsg = `<span class="status-ok">OK</span> · spare ${spare} ${wunits}`;
+        }else{
+          const over = fromKG(palletTotalKG - limitKG).toFixed(2);
+          const maxBoxes = Math.max(0, Math.floor((limitKG - tareKG - extrasKG) / boxWeight));
+          limitMsg = `<span class="status-bad">Over by ${over} ${wunits}</span> · max boxes ≈ ${maxBoxes}`;
+        }
+      }
+
+      // Payload
+      const payloadKG = toKG(n('payload'));
+      let palletsAllowed = '—';
+      if(payloadKG>0 && palletTotalKG>0){
+        palletsAllowed = Math.max(0, Math.floor(payloadKG / palletTotalKG));
+      }
+
+      // Render
+      $('#boxTotal').textContent = fromKG(boxTotalKG).toFixed(2);
+      $('#palletTotal').textContent = fromKG(palletTotalKG).toFixed(2);
+      $('#wu1').textContent = wunits; $('#wu2').textContent = wunits;
+      $('#limitCheck').innerHTML = limitMsg;
+      $('#palletsAllowed').textContent = palletsAllowed;
+      $('#preview').textContent = `Boxes ${boxes} × ${fromKG(boxWeight).toFixed(3)} ${wunits} → Pallet ${fromKG(palletTotalKG).toFixed(2)} ${wunits}`;
+
+      // Update CTA link to full calculator (pass weight per box if needed)
+      const params = new URLSearchParams({boxWeight: $('#boxWeight').value});
+      $('#openCalc').href = `/pallet-calculator.html?${params.toString()}`;
+
+      try{ gtag('event','calculate_click',{page:'weight', pallet_weight: fromKG(palletTotalKG)}); }catch(e){}
+      return {wunits, boxes, boxWeightKG:boxWeight, boxTotalKG, tareKG, extrasKG, palletTotalKG, limitKG, palletsAllowed};
+    }
+
+    document.getElementById('calcBtn').addEventListener('click', calc);
+
+    // Copy helpers
+    function copyText(r){
+      const toWU = (kg)=> (r.wunits==='lb'? (kg*LB_PER_KG) : kg);
+      const wu = r.wunits;
+      const s = `Total box weight: ${toWU(r.boxTotalKG).toFixed(2)} ${wu}\nPallet total: ${toWU(r.palletTotalKG).toFixed(2)} ${wu}\nLimit: ${toWU(r.limitKG).toFixed(2)} ${wu} (if provided)\nPallets allowed (payload): ${r.palletsAllowed}`;
+      navigator.clipboard.writeText(s).then(()=>alert('Copied to clipboard'));
+    }
+    function copyJSON(r){
+      const data = {units:r.wunits, boxes:r.boxes, weights_kg:{box_total:r.boxTotalKG, pallet_total:r.palletTotalKG, limit:r.limitKG}, pallets_allowed:r.palletsAllowed};
+      navigator.clipboard.writeText(JSON.stringify(data, null, 2)).then(()=>alert('JSON copied'));
+    }
+
+    document.getElementById('copyText').addEventListener('click',()=>{ const r = calc(); if(r){ copyText(r); try{gtag('event','copy_result',{fmt:'text'})}catch(e){} }});
+    document.getElementById('copyJSON').addEventListener('click',()=>{ const r = calc(); if(r){ copyJSON(r); try{gtag('event','copy_result',{fmt:'json'})}catch(e){} }});
+
+    document.getElementById('shareBtn').addEventListener('click',()=>{
+      const r = calc(); if(!r) return;
+      const params = new URLSearchParams({wunits: $('#wunits').value, mode: $('#mode').value, boxWeight: $('#boxWeight').value, boxCount: $('#boxCount').value, ti: $('#ti').value, hi: $('#hi').value, palletTare: $('#palletTare').value, extras: $('#extras').value, limit: $('#limit').value, payload: $('#payload').value});
+      const url = `${location.origin}${location.pathname}?${params.toString()}`;
+      navigator.clipboard.writeText(url).then(()=>alert('Shareable link copied'));
+      try{ gtag('event','share_click',{channel:'link'}) }catch(e){}
+    });
+  </script>
+
+  <!-- Optional structured data: SoftwareApplication + FAQ -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"SoftwareApplication",
     "name":"Pallet Weight Calculator",
-    "url":"https://www.pallet-calculator.com/pallet-weight-calculator.html",
     "applicationCategory":"BusinessApplication",
     "operatingSystem":"Web",
-    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
-    "description":"Estimate the total loaded weight of a pallet by combining the empty pallet weight, weight per carton and number of cartons. Includes optional maximum weight warning.",
-    "publisher":{"@type":"Organization","name":"Pallet Tools"},
-    "inLanguage":"en"
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
   }
   </script>
-
-  <!-- Schema: FAQPage -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"FAQPage",
     "mainEntity":[
-      {
-        "@type":"Question",
-        "name":"How do I use the pallet weight calculator?",
-        "acceptedAnswer":{"@type":"Answer","text":"Enter the empty pallet weight in pounds, the weight of a single carton and the number of cartons you plan to load. Optionally set a maximum allowed weight to check if your load exceeds it, then click Calculate."}
-      },
-      {
-        "@type":"Question",
-        "name":"Can I specify a maximum weight limit?",
-        "acceptedAnswer":{"@type":"Answer","text":"Yes. Enter a maximum allowable weight and the calculator will warn you if the total pallet weight exceeds this value."}
-      },
-      {
-        "@type":"Question",
-        "name":"What units does this calculator use?",
-        "acceptedAnswer":{"@type":"Answer","text":"This tool works in pounds (lb). For conversions to kilograms or metric units, you can use the Cube Calculator page or another conversion tool."}
-      },
-      {
-        "@type":"Question",
-        "name":"How can I share my results?",
-        "acceptedAnswer":{"@type":"Answer","text":"After calculating, click Copy Link to copy a URL containing your inputs. Send it to colleagues or clients; they will see the same results. You can also click Embed to get an iframe code for your website."}
-      },
-      {
-        "@type":"Question",
-        "name":"Do I need to include pallet height?",
-        "acceptedAnswer":{"@type":"Answer","text":"No. You only need to provide the empty pallet weight. The calculator focuses on weight rather than dimensions."}
-      }
+      {"@type":"Question","name":"What counts as payload?","acceptedAnswer":{"@type":"Answer","text":"Payload is the allowed cargo mass excluding vehicle/container tare. Always verify gross and tare weights for your route."}},
+      {"@type":"Question","name":"Can I use TI×HI?","acceptedAnswer":{"@type":"Answer","text":"Yes. Switch quantity mode to TI×HI, enter per‑layer boxes and layers, and the tool computes total boxes automatically."}},
+      {"@type":"Question","name":"Do you support kg and lb?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose kilograms or pounds from the Weight units selector; conversions are handled automatically."}}
     ]
   }
-  </script>
-</head>
-<body>
-  <!-- Header and Navigation -->
-  <header>
-    <h1>Pallet Weight Calculator</h1>
-    <nav>
-      <!-- Use absolute URLs to avoid ambiguity and strengthen canonical signals -->
-      <a href="https://www.pallet-calculator.com/pallet-calculator/">Pallet Calculator</a>
-      <a href="https://www.pallet-calculator.com/ti-hi-calculator.html">TI HI Calculator</a>
-      <a href="https://www.pallet-calculator.com/pallet-weight-calculator.html">Weight Calculator</a>
-      <a href="https://www.pallet-calculator.com/pallet-cube-calculator.html">Cube Calculator</a>
-      <a href="https://www.pallet-calculator.com/how-many-pallets-in-53-foot-trailer.html">53-ft Trailer</a>
-      <a href="https://www.pallet-calculator.com/how-many-pallets-in-20ft-container.html">20 ft Container</a>
-      <a href="https://www.pallet-calculator.com/how-many-pallets-in-40ft-container.html">40 ft Container</a>
-      <a href="https://www.pallet-calculator.com/pallet-dimensions.html">Pallet Dimensions</a>
-    </nav>
-    <div class="lang-switch">
-      <a href="https://www.pallet-calculator.com/pallet-weight-calculator.html">EN</a>
-      <a href="https://www.pallet-calculator.com/hi/pallet-weight-calculator.html">HI</a>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <main>
-    <p>Estimate the total loaded weight of a pallet by entering the empty pallet weight, the weight of each carton and the number of cartons. You can optionally specify a maximum allowable weight to see whether your load will exceed it.</p>
-    <form id="weightForm">
-      <section>
-        <label>Empty pallet weight (lb): <input type="number" step="any" min="0" id="palletWeight" required></label>
-        <label>Weight per carton (lb): <input type="number" step="any" min="0" id="cartonWeight" required></label>
-        <label>Number of cartons: <input type="number" step="1" min="0" id="numCartons" required></label>
-        <label>Maximum allowed weight (lb) (optional): <input type="number" step="any" min="0" id="maxAllowed"></label>
-      </section>
-      <button type="submit">Calculate</button>
-    </form>
-    <div id="weightResult"></div>
-
-    <!-- Share & Embed -->
-    <div id="shareControls" style="margin-top:1rem; display:none;">
-      <button type="button" id="copyLink">Copy Link</button>
-      <button type="button" id="showEmbed">Embed</button>
-      <div id="embedCodeContainer" style="display:none; margin-top:0.5rem;">
-        <textarea id="embedCode" readonly style="width:100%; height:120px;"></textarea>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Pallet Tools. Last updated on August 17, 2025.</p>
-  </footer>
-
-  <script>
-    // Helper to parse query parameters into an object
-    function parseParams() {
-      const params = new URLSearchParams(window.location.search);
-      const obj = {};
-      params.forEach((v, k) => (obj[k] = v));
-      return obj;
-    }
-    // Populate form based on query parameters
-    function loadFromQuery() {
-      const q = parseParams();
-      if (q.palletWeight) document.getElementById('palletWeight').value = q.palletWeight;
-      if (q.cartonWeight) document.getElementById('cartonWeight').value = q.cartonWeight;
-      if (q.numCartons) document.getElementById('numCartons').value = q.numCartons;
-      if (q.maxAllowed) document.getElementById('maxAllowed').value = q.maxAllowed;
-    }
-    // Calculate total weight
-    function calculateWeight() {
-      const palletWeight = parseFloat(document.getElementById('palletWeight').value);
-      const cartonWeight = parseFloat(document.getElementById('cartonWeight').value);
-      const numCartons = parseInt(document.getElementById('numCartons').value, 10);
-      const maxAllowed = parseFloat(document.getElementById('maxAllowed').value);
-      const resultEl = document.getElementById('weightResult');
-      if ([palletWeight, cartonWeight].some((v) => isNaN(v) || v < 0) || isNaN(numCartons) || numCartons < 0) {
-        resultEl.innerHTML = '<div class="error">Please enter valid positive numbers.</div>';
-        return;
-      }
-      const loadWeight = cartonWeight * numCartons;
-      const total = palletWeight + loadWeight;
-      let message = `<p>Weight of cartons: <strong>${loadWeight.toFixed(2)}</strong> lb</p><p>Total pallet weight: <strong>${total.toFixed(2)}</strong> lb</p>`;
-      if (!isNaN(maxAllowed) && maxAllowed > 0) {
-        if (total > maxAllowed) {
-          message += `<p style="color:#c53030">Warning: exceeds maximum allowed weight by ${(total - maxAllowed).toFixed(2)} lb.</p>`;
-        } else {
-          message += `<p style="color:#2f855a">Within limit: you have ${(maxAllowed - total).toFixed(2)} lb remaining.</p>`;
-        }
-      }
-      resultEl.innerHTML = `<div class="result">${message}</div>`;
-      // Update share URL
-      const params = new URLSearchParams();
-      params.set('palletWeight', palletWeight.toString());
-      params.set('cartonWeight', cartonWeight.toString());
-      params.set('numCartons', numCartons.toString());
-      if (!isNaN(maxAllowed) && maxAllowed > 0) params.set('maxAllowed', maxAllowed.toString());
-      const newUrl = window.location.pathname + '?' + params.toString();
-      window.history.replaceState({}, '', newUrl);
-      // Show share controls and embed code
-      showShareControls();
-      // Log GA event
-      ev('calculate_click', {tool:'weight', lang:'en'});
-    }
-    // Show share controls after calculation and populate embed code
-    function showShareControls() {
-      const share = document.getElementById('shareControls');
-      share.style.display = 'block';
-      const iframeUrl = `https://www.pallet-calculator.com/embed/pallet-weight-calculator/${location.search}`;
-      const embedCode = `<iframe src="${iframeUrl}" width="100%" height="200" style="border:1px solid #e5e7eb;border-radius:12px" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
-      document.getElementById('embedCode').value = embedCode;
-    }
-    // Event listeners
-    document.getElementById('weightForm').addEventListener('submit', function(e){ e.preventDefault(); calculateWeight(); });
-    document.getElementById('copyLink').addEventListener('click', async function(){
-      try {
-        await navigator.clipboard.writeText(location.href);
-        ev('copy_result', {tool:'weight'});
-        alert('Link copied!');
-      } catch(e){ alert('Copy failed'); }
-    });
-    document.getElementById('showEmbed').addEventListener('click', function(){
-      const container = document.getElementById('embedCodeContainer');
-      container.style.display = container.style.display === 'none' ? 'block' : 'none';
-      ev('embed_view', {tool:'weight'});
-    });
-    // On load
-    loadFromQuery();
   </script>
 </body>
 </html>
