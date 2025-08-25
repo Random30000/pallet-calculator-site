@@ -4,11 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pallet Calculator & Load Planning Tools</title>
-  <meta name="description" content="Plan pallets faster. Use our Pallet Calculator, TI‑HI Calculator, Container capacity guides (20ft/40ft), Cube & Weight tools. EU/US + AU/JP presets." />
+  <meta name="description" content="Plan pallets faster. Use our Pallet Calculator, TI‑HI Calculator, Container capacity guides (20ft/40ft/53‑ft), Cube & Weight tools. EU/US + AU/JP presets." />
   <link rel="canonical" href="https://pallet-calculator.com/" />
+  <link rel="alternate" hreflang="en" href="https://pallet-calculator.com/" />
+  <link rel="alternate" hreflang="hi" href="https://pallet-calculator.com/hi/" />
+  <link rel="alternate" hreflang="x-default" href="https://pallet-calculator.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Pallet Calculator & Tools" />
-  <meta property="og:description" content="Boxes per pallet, TI‑HI, cube & weight, plus 20ft/40ft capacity guides." />
+  <meta property="og:description" content="Boxes per pallet, TI‑HI, cube & weight, plus 20ft/40ft/53‑ft capacity guides." />
   <meta property="og:url" content="https://pallet-calculator.com/" />
   <meta property="og:image" content="https://pallet-calculator.com/og-placeholder.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -16,12 +19,13 @@
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 
   <!-- Google tag (gtag.js) — place immediately after <head> (ONE snippet per page) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXJVLGW6C3"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X4VDF9JBPE"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);} 
     gtag('js', new Date());
-    gtag('config', 'G-MXJVLGW6C3');
+    gtag('config', 'G-X4VDF9JBPE');
   </script>
 
   <style>
@@ -58,7 +62,7 @@
     .muted{color:var(--muted)}
 
     .sample{display:grid; gap:12px}
-    @media(min-width:960px){ .sample{grid-template-columns: repeat(3,1fr)} }
+    @media(min-width:960px){ .sample{grid-template-columns: repeat(4,1fr)} }
     .sample a{display:block; padding:14px; border-radius:12px; border:1px solid rgba(148,163,184,.18)}
     .sample a:hover{background:rgba(59,130,246,.08); border-color:rgba(59,130,246,.35)}
 
@@ -78,6 +82,7 @@
         <a href="/pallet-weight-calculator.html">Weight</a>
         <a href="/how-many-pallets-in-20ft-container.html">20ft</a>
         <a href="/how-many-pallets-in-40ft-container.html">40ft</a>
+        <a href="/how-many-pallets-in-53-foot-trailer.html">53‑ft</a>
       </nav>
     </div>
   </header>
@@ -86,11 +91,12 @@
     <!-- Hero -->
     <section class="hero">
       <h1>Pallet Calculator & Load Planning Tools</h1>
-      <p>Calculate boxes per pallet, TI‑HI (layers × columns), stack height & weight, plus estimated 20ft/40ft capacity. EU/US presets included, with AU/JP added.</p>
+      <p>Calculate boxes per pallet, TI‑HI (layers × columns), stack height & weight, plus estimated 20ft/40ft/53‑ft capacity. EU/US presets included, with AU/JP added.</p>
       <div class="cta">
         <a class="btn primary" href="/pallet-calculator.html" onclick="gtag('event','cta_click',{to:'pallet-calculator'})">Open Pallet Calculator</a>
         <a class="btn" href="/how-many-pallets-in-20ft-container.html">20ft capacity</a>
         <a class="btn" href="/how-many-pallets-in-40ft-container.html">40ft capacity</a>
+        <a class="btn" href="/how-many-pallets-in-53-foot-trailer.html">53‑ft capacity</a>
       </div>
     </section>
 
@@ -128,7 +134,7 @@
       </article>
       <article class="card">
         <div class="card-body">
-          <h3><a href="/pallet-calculator.html?container=20ft">Container Fit (20/40ft)</a></h3>
+          <h3><a href="/pallet-calculator.html?container=20ft">Container Fit (20/40/53‑ft)</a></h3>
           <p class="muted">Open the calculator pre‑set with a container type.</p>
         </div>
       </article>
@@ -141,6 +147,7 @@
         <a href="/pallet-calculator.html?units=mm&boxL=300&boxW=200&boxH=150&palL=1200&palW=1000&palH=144&palMax=1200&allowRotate=yes" onclick="gtag('event','sample_click',{sample:'EU 1200×1000'})">EU 1200×1000 pallet · Box 300×200×150mm · Max 1200mm</a>
         <a href="/pallet-calculator.html?units=in&boxL=12&boxW=8&boxH=6&palL=48&palW=40&palH=5.5&palMax=48&allowRotate=yes" onclick="gtag('event','sample_click',{sample:'US 48×40'})">US 48×40 pallet · Box 12×8×6in · Max 48in</a>
         <a href="/pallet-calculator.html?units=mm&boxL=300&boxW=300&boxH=200&palL=1165&palW=1165&allowRotate=no" onclick="gtag('event','sample_click',{sample:'AU 1165×1165'})">AU 1165×1165 pallet · Box 300×300×200mm · single layer</a>
+        <a href="/pallet-calculator.html?container=53ft&units=in&palL=48&palW=40&allowRotate=yes" onclick="gtag('event','sample_click',{sample:'53‑ft 48×40'})">53‑ft trailer · US 48×40 · quick start</a>
       </div>
     </section>
 
@@ -161,7 +168,7 @@
   <footer>
     <div class="container">
       <p>© 2025 pallet-calculator.com</p>
-      <p>Contact: <a href="mailto:contact@pallet-calculator.com">contact@pallet-calculator.com</a> (placeholder)</p>
+      <p>Contact: <a href="mailto:support@pallet-calculator.com">support@pallet-calculator.com</a></p>
     </div>
   </footer>
 
@@ -171,15 +178,30 @@
     document.querySelectorAll('nav.nav a').forEach(a=>a.addEventListener('click',()=>gnav(a.textContent.trim())));
   </script>
 
-  <!-- Optional structured data: WebSite -->
+  <!-- Structured data: WebSite + Organization -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"WebSite",
     "name":"pallet-calculator.com",
     "url":"https://pallet-calculator.com/",
-    "inLanguage":"en"
+    "inLanguage":"en",
+    "potentialAction":{
+      "@type":"SearchAction",
+      "target":"https://pallet-calculator.com/?q={query}",
+      "query-input":"required name=query"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"pallet-calculator.com",
+    "url":"https://pallet-calculator.com/",
+    "contactPoint":[{"@type":"ContactPoint","contactType":"customer support","email":"support@pallet-calculator.com","availableLanguage":["en","hi"]}]
   }
   </script>
 </body>
 </html>
+
