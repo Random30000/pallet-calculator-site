@@ -1,28 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Generated: 2025-08-25 -->
+
+  <!-- Home (EN) with hreflang alternates (EN, HI, x-default) -->
   <url>
     <loc>https://pallet-calculator.com/</loc>
+    <lastmod>2025-08-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pallet-calculator.com/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://pallet-calculator.com/hi/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pallet-calculator.com/" />
+  </url>
+
+  <!-- Hindi home -->
+  <url>
+    <loc>https://pallet-calculator.com/hi/</loc>
+    <lastmod>2025-08-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://pallet-calculator.com/hi/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pallet-calculator.com/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pallet-calculator.com/" />
+  </url>
+
+  <!-- Core calculators -->
+  <url>
+    <loc>https://pallet-calculator.com/pallet-calculator.html</loc>
     <lastmod>2025-08-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://pallet-calculator.com/pallet-calculator.html</loc>
-    <lastmod>2025-08-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
     <loc>https://pallet-calculator.com/ti-hi-calculator.html</loc>
     <lastmod>2025-08-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://pallet-calculator.com/pallet-cube-calculator.html</loc>
     <lastmod>2025-08-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://pallet-calculator.com/pallet-weight-calculator.html</loc>
+    <lastmod>2025-08-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://pallet-calculator.com/pallet-dimensions.html</loc>
@@ -30,36 +56,27 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://pallet-calculator.com/pallet-weight-calculator.html</loc>
-    <lastmod>2025-08-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+
+  <!-- Capacity guides -->
   <url>
     <loc>https://pallet-calculator.com/how-many-pallets-in-20ft-container.html</loc>
     <lastmod>2025-08-25</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://pallet-calculator.com/how-many-pallets-in-40ft-container.html</loc>
     <lastmod>2025-08-25</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://pallet-calculator.com/how-many-pallets-in-53-foot-trailer.html</loc>
     <lastmod>2025-08-25</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.75</priority>
   </url>
-  <!-- Stylesheet (optional to list) -->
-  <url>
-    <loc>https://pallet-calculator.com/styles.css</loc>
-    <lastmod>2025-08-25</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <!-- Add other future pages here as they launch -->
+
 </urlset>
+
+
