@@ -3,12 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pallet Weight Calculator – Total Weight & Limits</title>
-  <meta name="description" content="Compute total pallet weight from box weight × quantity, plus pallet tare and extras. Check against per‑pallet limit and optional container/trailer payload. EU/US + AU/JP workflows supported." />
+  <title>Pallet Weight Calculator – Net/Gross by Boxes, TI‑HI or Pallets</title>
+  <meta name="description" content="Compute pallet net and gross weight from box weight × quantity or TI‑HI, with pallet tare and extras. Supports kg/lb, EU/US + AU/JP presets, and limit checks." />
   <link rel="canonical" href="https://pallet-calculator.com/pallet-weight-calculator.html" />
+  <link rel="alternate" hreflang="en" href="https://pallet-calculator.com/pallet-weight-calculator.html" />
+  <link rel="alternate" hreflang="x-default" href="https://pallet-calculator.com/pallet-weight-calculator.html" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Pallet Weight Calculator" />
-  <meta property="og:description" content="Boxes × weight, pallet tare, extras, and limits – with shareable results and a link to the full pallet calculator." />
+  <meta property="og:description" content="Net/Gross pallet weight from box weight × quantity or TI‑HI, plus pallet tare/extras. kg/lb with EU/US + AU/JP presets and limit checks." />
   <meta property="og:url" content="https://pallet-calculator.com/pallet-weight-calculator.html" />
   <meta property="og:image" content="https://pallet-calculator.com/og-placeholder.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -16,19 +18,20 @@
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 
   <!-- Google tag (gtag.js) — place immediately after <head> (ONE snippet per page) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXJVLGW6C3"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X4VDF9JBPE"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);} 
     gtag('js', new Date());
-    gtag('config', 'G-MXJVLGW6C3');
+    gtag('config', 'G-X4VDF9JBPE');
   </script>
 
   <style>
-    :root{ --bg:#0b1220; --panel:#0f172a; --muted:#94a3b8; --text:#e5e7eb; --brand:#3b82f6; --brand-2:#60a5fa; --radius:14px; --shadow:0 6px 18px rgba(0,0,0,.28); --container: 1120px; --ok:#22c55e; --warn:#f59e0b; --bad:#ef4444; }
+    :root{ --bg:#0b1220; --panel:#0f172a; --muted:#94a3b8; --text:#e5e7eb; --brand:#3b82f6; --brand-2:#60a5fa; --ok:#22c55e; --warn:#f59e0b; --bad:#ef4444; --radius:14px; --shadow:0 6px 18px rgba(0,0,0,.28); --container:1120px; }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0; background:linear-gradient(180deg,#0b1220 0%, #0b1220 60%, #0e1526 100%); color:var(--text); font: 16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
+    body{margin:0; background:linear-gradient(180deg,#0b1220 0%, #0b1220 60%, #0e1526 100%); color:var(--text); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
     a{color:var(--brand); text-decoration:none}
     a:hover{color:var(--brand-2)}
     .container{max-width:var(--container); margin:0 auto; padding:24px}
@@ -64,11 +67,7 @@
 
     .stat{background:rgba(148,163,184,.10); padding:10px 12px; border:1px dashed rgba(148,163,184,.25); border-radius:10px; margin-bottom:10px}
     .stat b{font-size:18px}
-    .status-ok{color:var(--ok)}
-    .status-warn{color:var(--warn)}
-    .status-bad{color:var(--bad)}
-
-    .preview{height:220px; background:repeating-linear-gradient(45deg, rgba(59,130,246,.08) 0 12px, transparent 12px 24px); border-radius:var(--radius); border:1px dashed rgba(148,163,184,.25); display:flex; align-items:center; justify-content:center; color:var(--muted)}
+    .status-ok{color:var(--ok)} .status-warn{color:var(--warn)} .status-bad{color:var(--bad)}
 
     footer{color:var(--muted); border-top:1px solid rgba(148,163,184,.15); margin-top:36px}
     footer .container{display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between}
@@ -86,49 +85,83 @@
         <a href="/pallet-weight-calculator.html" aria-current="page">Weight</a>
         <a href="/how-many-pallets-in-20ft-container.html">20ft</a>
         <a href="/how-many-pallets-in-40ft-container.html">40ft</a>
+        <a href="/how-many-pallets-in-53-foot-trailer.html">53‑ft</a>
       </nav>
     </div>
   </header>
 
   <main class="container">
     <h1>Pallet Weight Calculator</h1>
-    <p class="muted" style="margin-top:-6px">Enter <b>box weight</b> and either a <b>box count</b> or <b>TI × HI</b>. Add <b>pallet tare</b> and <b>extras</b>, then compare with your <b>per‑pallet limit</b> or a <b>container/trailer payload</b>. Share or export results.</p>
+    <p class="muted" style="margin-top:-6px">Compute pallet <b>net</b> = boxes × box weight and <b>gross</b> = net + pallet tare + extras. Choose total boxes or <b>TI × HI</b>. Supports <b>kg/lb</b>. Includes limits, EU/US presets plus AU/JP, and shareable links.</p>
 
     <div class="grid grid-2" style="margin-top:12px">
       <!-- Inputs -->
       <section class="card" aria-labelledby="inputs">
         <div class="card-body">
           <h2 id="inputs">Inputs</h2>
+
+          <!-- Units + Mode -->
           <div class="form-row-2" role="group" aria-label="Units and mode">
             <div class="field">
-              <label for="wunits">Weight units</label>
-              <select id="wunits"><option value="kg">Kilograms (kg)</option><option value="lb">Pounds (lb)</option></select>
+              <label for="units">Units</label>
+              <select id="units"><option value="kg">Kilograms (kg)</option><option value="lb">Pounds (lb)</option></select>
             </div>
             <div class="field">
               <label for="mode">Quantity mode</label>
-              <select id="mode"><option value="count">Total box count</option><option value="tihi">TI × HI (per‑layer × layers)</option></select>
+              <select id="mode"><option value="boxes">Total boxes</option><option value="tihi">TI × HI</option><option value="pallets">Number of pallets</option></select>
             </div>
           </div>
 
-          <h3 style="margin-top:10px">Box</h3>
-          <div class="form-row" role="group" aria-label="Box weight and count">
-            <div class="field"><label for="boxWeight">Weight per box</label> <input id="boxWeight" type="number" min="0" step="0.001" placeholder="e.g. 8.5"/></div>
-            <div class="field count-field"><label for="boxCount">Total boxes</label> <input id="boxCount" type="number" min="0" step="1" placeholder="e.g. 500"/></div>
-            <div class="field tihi-field" style="display:none"><label for="ti">TI (boxes per layer)</label> <input id="ti" type="number" min="0" step="1" placeholder="e.g. 10"/></div>
-            <div class="field tihi-field" style="display:none"><label for="hi">HI (layers)</label> <input id="hi" type="number" min="0" step="1" placeholder="e.g. 5"/></div>
+          <!-- Box / TI-HI / Pallets -->
+          <div id="mode-boxes" class="form-row" role="group" aria-label="Boxes total">
+            <div class="field"><label for="boxCount">Boxes (total)</label> <input id="boxCount" type="number" min="0" step="1" placeholder="e.g. 500"/></div>
+            <div class="field"><label for="boxWt">Box weight</label> <input id="boxWt" type="number" min="0" step="0.001" placeholder="e.g. 2.5"/></div>
+            <div class="field"><label for="boxesPerPallet">Boxes per pallet (optional)</label> <input id="boxesPerPallet" type="number" min="0" step="1" placeholder="e.g. 80"/></div>
+            <div class="field"><label for="palletsBoxes">Pallets (optional)</label> <input id="palletsBoxes" type="number" min="0" step="1" placeholder="auto"/></div>
           </div>
 
-          <h3 style="margin-top:10px">Pallet & extras</h3>
-          <div class="form-row" role="group" aria-label="Pallet tare and extras">
-            <div class="field"><label for="palletTare">Pallet tare (optional)</label> <input id="palletTare" type="number" min="0" step="0.01" placeholder="e.g. 20"/></div>
-            <div class="field"><label for="extras">Wrap/straps etc. (optional)</label> <input id="extras" type="number" min="0" step="0.01" placeholder="e.g. 1.2"/></div>
-            <div class="field"><label for="limit">Per‑pallet limit (optional)</label> <input id="limit" type="number" min="0" step="0.1" placeholder="e.g. 1000"/></div>
-            <div class="field"><label for="payload">Container/trailer payload (optional)</label> <input id="payload" type="number" min="0" step="0.1" placeholder="e.g. 28000"/></div>
+          <div id="mode-tihi" class="form-row" style="display:none" role="group" aria-label="TI HI">
+            <div class="field"><label for="ti">TI (boxes per layer)</label> <input id="ti" type="number" min="0" step="1" placeholder="e.g. 10"/></div>
+            <div class="field"><label for="hi">HI (layers)</label> <input id="hi" type="number" min="0" step="1" placeholder="e.g. 6"/></div>
+            <div class="field"><label for="palletsTIHI">Pallets</label> <input id="palletsTIHI" type="number" min="1" step="1" placeholder="e.g. 1"/></div>
+            <div class="field"><label for="boxWtTIHI">Box weight</label> <input id="boxWtTIHI" type="number" min="0" step="0.001" placeholder="e.g. 2.5"/></div>
           </div>
 
-          <div style="display:flex; gap:10px; margin-top:14px">
+          <div id="mode-pallets" class="form-row" style="display:none" role="group" aria-label="Pallets count">
+            <div class="field"><label for="palletsOnly">Pallets</label> <input id="palletsOnly" type="number" min="1" step="1" placeholder="e.g. 10"/></div>
+            <div class="field"><label for="boxesEach">Boxes per pallet</label> <input id="boxesEach" type="number" min="0" step="1" placeholder="e.g. 80"/></div>
+            <div class="field"><label for="boxWtOnly">Box weight</label> <input id="boxWtOnly" type="number" min="0" step="0.001" placeholder="e.g. 2.5"/></div>
+            <div class="field"><label for="unusedPallets3"> </label><input type="number" style="opacity:0" tabindex="-1" aria-hidden="true"></div>
+          </div>
+
+          <!-- Tare & Extras presets -->
+          <h3 style="margin-top:10px">Pallet tare & extras</h3>
+          <div class="form-row-2" role="group" aria-label="Pallet type presets">
+            <div class="field">
+              <label for="palType">Pallet type (preset)</label>
+              <select id="palType">
+                <option value="custom">Custom</option>
+                <option value="us48">US 48×40 wood (~15–20 kg / 33–44 lb)</option>
+                <option value="euEpal">EU Euro EPAL (~20–25 kg / 44–55 lb)</option>
+                <option value="au1165">AU 1165×1165 wood (~20–25 kg / 44–55 lb)</option>
+                <option value="jp1100">JP 1100×1100 wood (~18–22 kg / 40–49 lb)</option>
+                <option value="plastic">Plastic pallet (varies widely)</option>
+              </select>
+            </div>
+            <div class="field"><label for="tare">Tare per pallet</label> <input id="tare" type="number" min="0" step="0.01" placeholder="e.g. 20"/></div>
+          </div>
+          <div class="form-row-2" role="group" aria-label="Extras and limits">
+            <div class="field"><label for="extras">Extras per pallet (wrap, top, etc.)</label> <input id="extras" type="number" min="0" step="0.01" placeholder="e.g. 1.2"/></div>
+            <div class="field"><label for="limitPal">Limit per pallet (optional)</label> <input id="limitPal" type="number" min="0" step="0.1" placeholder="e.g. 1000"/></div>
+          </div>
+          <div class="form-row-2" role="group" aria-label="Shipment limits">
+            <div class="field"><label for="limitTotal">Total shipment limit (optional)</label> <input id="limitTotal" type="number" min="0" step="0.1" placeholder="e.g. 24000"/></div>
+            <div class="field"><label for="notes">Notes (optional)</label> <input id="notes" type="text" placeholder="PO #, lane, etc."/></div>
+          </div>
+
+          <div style="display:flex; gap:10px; margin-top:14px; flex-wrap:wrap">
             <button id="calcBtn" class="btn primary" type="button">Calculate</button>
-            <button id="example" class="btn ghost" type="button">Try example</button>
+            <button id="example" class="btn" type="button">Try example</button>
             <a class="btn" id="openCalc" href="/pallet-calculator.html" onclick="gtag('event','cta_click',{from:'weight',to:'pallet-calculator'})">Open Pallet Calculator</a>
           </div>
         </div>
@@ -138,12 +171,10 @@
       <section class="card" aria-labelledby="results">
         <div class="card-body">
           <h2 id="results">Results</h2>
-          <div class="stat">Total box weight: <b id="boxTotal">–</b> <span id="wu1">kg</span></div>
-          <div class="stat">Estimated pallet weight (with tare & extras): <b id="palletTotal">–</b> <span id="wu2">kg</span></div>
-          <div class="stat">Per‑pallet limit check: <b id="limitCheck">–</b></div>
-          <div class="stat">If payload given: approx pallets allowed <b id="palletsAllowed">–</b></div>
-          <div class="preview" id="preview">Preview will render here</div>
-          <div style="display:flex; gap:8px; margin-top:12px">
+          <div class="stat">Per pallet — Net: <b id="netPal">–</b> · Tare+extras: <b id="tarePal">–</b> · Gross: <b id="grossPal">–</b></div>
+          <div class="stat">Totals — Boxes: <b id="boxesOut">–</b> · Pallets: <b id="palletsOut">–</b> · Net: <b id="netTotal">–</b> · Gross: <b id="grossTotal">–</b> <span id="limitMsg"></span></div>
+          <div class="preview" id="preview">Preview will summarize here</div>
+          <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap">
             <button id="copyText" class="btn" type="button">Copy (text)</button>
             <button id="copyJSON" class="btn" type="button">Copy (JSON)</button>
             <button id="shareBtn" class="btn" type="button">Share link</button>
@@ -156,9 +187,9 @@
       <div class="card-body">
         <h2>Notes & disclaimer</h2>
         <ul>
-          <li><b>Payload</b> is the mass capacity excluding tare of the vehicle/container. Check your line's gross and tare weights.</li>
-          <li>Always consider <b>stack height limits</b> and <b>weight distribution</b> rules. Use the full Pallet Calculator for TI‑HI and container fit.</li>
-          <li>These are <b>planning estimates</b>. Confirm with your logistics provider before shipping.</li>
+          <li>Preset pallet tares are <b>typical ranges</b>, not guarantees. Real weights vary by build, moisture and accessories.</li>
+          <li>Results are <b>planning estimates</b>; verify against carrier/warehouse limits and local safety rules.</li>
+          <li>You can switch between <b>kg/lb</b>; values convert automatically.</li>
         </ul>
       </div>
     </section>
@@ -167,111 +198,154 @@
   <footer>
     <div class="container">
       <p>© 2025 pallet-calculator.com</p>
-      <p>Contact: <a href="mailto:contact@pallet-calculator.com">contact@pallet-calculator.com</a> (placeholder)</p>
+      <p>Contact: <a href="mailto:support@pallet-calculator.com">support@pallet-calculator.com</a></p>
     </div>
   </footer>
 
   <script>
     const $ = (s)=>document.querySelector(s);
-    const LB_PER_KG = 2.2046226218;
-    const q = new URLSearchParams(location.search);
+    const KG_PER_LB = 0.45359237; // 1 lb = 0.45359237 kg
 
+    // Mode switcher
     function showMode(){
       const m = $('#mode').value;
-      document.querySelectorAll('.count-field').forEach(e=>e.style.display = (m==='count')?'block':'none');
-      document.querySelectorAll('.tihi-field').forEach(e=>e.style.display = (m==='tihi')?'block':'none');
+      $('#mode-boxes').style.display = (m==='boxes')?'grid':'none';
+      $('#mode-tihi').style.display = (m==='tihi')?'grid':'none';
+      $('#mode-pallets').style.display = (m==='pallets')?'grid':'none';
     }
     $('#mode').addEventListener('change', showMode);
 
+    // Pallet type presets → fills tare
+    const tarePresetsKg = {
+      custom: null,
+      us48: 18,
+      euEpal: 22,
+      au1165: 23,
+      jp1100: 20,
+      plastic: 12
+    };
+    $('#palType').addEventListener('change',()=>{
+      const v = tarePresetsKg[$('#palType').value];
+      if(v==null) return;
+      const inKg = ($('#units').value==='kg');
+      $('#tare').value = inKg? v : (v / KG_PER_LB).toFixed(2);
+    });
+
+    // Units conversion (kg ↔ lb) for numeric inputs
+    function convertAll(toUnits){
+      const fromKg = (toUnits==='lb')? true : false; // if converting to lb, we multiply kg by (1/KG_PER_LB)
+      const ids = ['boxWt','boxWtTIHI','boxWtOnly','tare','extras','limitPal','limitTotal'];
+      ids.forEach(id=>{
+        const el = document.getElementById(id); if(!el||!el.value) return;
+        let v = parseFloat(el.value);
+        if(isNaN(v)) return;
+        v = fromKg? (v / KG_PER_LB) : (v * KG_PER_LB);
+        el.value = +v.toFixed(3);
+      });
+      // preview stays textual; recalculated on next calc
+    }
+
+    $('#units').addEventListener('change',()=>{
+      const to = $('#units').value; try{ gtag('event','units_change',{to}); }catch(e){}
+      convertAll(to);
+    });
+
     // Example
     $('#example').addEventListener('click',()=>{
-      $('#wunits').value='kg';
-      $('#mode').value='tihi'; showMode();
-      $('#boxWeight').value=8.5; $('#ti').value=10; $('#hi').value=5; // 50 boxes
-      $('#palletTare').value=20; $('#extras').value=1.2; $('#limit').value=1000; $('#payload').value=28000;
+      $('#units').value='kg'; $('#mode').value='tihi'; showMode();
+      $('#ti').value=10; $('#hi').value=6; $('#palletsTIHI').value=20; $('#boxWtTIHI').value=2.5;
+      $('#palType').value='euEpal'; $('#palType').dispatchEvent(new Event('change'));
+      $('#extras').value=1.2; $('#limitPal').value=1000; $('#limitTotal').value=24000;
       try{gtag('event','example_apply',{page:'weight'})}catch(e){}
     });
 
-    // Prefill from URL
+    // Prefill from query
+    const q = new URLSearchParams(location.search);
     (function prefill(){
-      ['wunits','mode','boxWeight','boxCount','ti','hi','palletTare','extras','limit','payload'].forEach(k=>{ if(q.has(k)){ const el = document.getElementById(k); if(el) el.value = q.get(k); }});
+      ['units','mode','boxCount','boxWt','boxesPerPallet','palletsBoxes','ti','hi','palletsTIHI','boxWtTIHI','palletsOnly','boxesEach','boxWtOnly','palType','tare','extras','limitPal','limitTotal','notes'].forEach(k=>{ if(q.has(k)){ const el = document.getElementById(k); if(el) el.value = q.get(k); }});
       showMode();
     })();
 
     function n(id){return parseFloat(document.getElementById(id).value)||0}
 
+    function format(v){
+      const u = $('#units').value; return (u==='kg')? `${v.toFixed(2)} kg` : `${(v / KG_PER_LB).toFixed(2)} lb`;
+    }
+
     function calc(){
-      const wunits = $('#wunits').value;
-      const toKG = (wunits==='lb')? (v)=>v/LB_PER_KG : (v)=>v;
-      const fromKG = (wunits==='lb')? (v)=>v*LB_PER_KG : (v)=>v;
+      const u = $('#units').value;
 
-      const boxWeight = toKG(n('boxWeight'));
-      if(!(boxWeight>0)) { alert('Enter a positive box weight.'); return; }
-
-      const mode = $('#mode').value;
-      let boxes = 0;
-      if(mode==='count'){
+      // Determine boxes & pallets & box weight (in kg)
+      let boxes=0, pallets=0, boxKg=0;
+      if($('#mode').value==='boxes'){
         boxes = Math.max(0, Math.floor(n('boxCount')));
-      }else{
+        const boxesPerPallet = Math.max(0, Math.floor(n('boxesPerPallet')));
+        pallets = Math.max(Math.ceil(boxesPerPallet? (boxes/boxesPerPallet) : n('palletsBoxes')), 0);
+        boxKg = (u==='kg')? n('boxWt') : n('boxWt')*KG_PER_LB;
+      } else if($('#mode').value==='tihi'){
         const ti = Math.max(0, Math.floor(n('ti')));
         const hi = Math.max(0, Math.floor(n('hi')));
-        boxes = ti * hi;
-      }
-      if(!(boxes>0)) { alert('Enter a positive box count or TI×HI.'); return; }
-
-      const boxTotalKG = boxWeight * boxes;
-      const tareKG = toKG(n('palletTare'));
-      const extrasKG = toKG(n('extras'));
-      const palletTotalKG = boxTotalKG + tareKG + extrasKG;
-
-      // Limits
-      const limitKG = toKG(n('limit'));
-      let limitMsg = '—';
-      if(limitKG>0){
-        if(palletTotalKG <= limitKG){
-          const spare = fromKG(limitKG - palletTotalKG).toFixed(2);
-          limitMsg = `<span class="status-ok">OK</span> · spare ${spare} ${wunits}`;
-        }else{
-          const over = fromKG(palletTotalKG - limitKG).toFixed(2);
-          const maxBoxes = Math.max(0, Math.floor((limitKG - tareKG - extrasKG) / boxWeight));
-          limitMsg = `<span class="status-bad">Over by ${over} ${wunits}</span> · max boxes ≈ ${maxBoxes}`;
-        }
+        pallets = Math.max(1, Math.floor(n('palletsTIHI'))||1);
+        const boxesPer = ti*hi; boxes = boxesPer * pallets;
+        boxKg = (u==='kg')? n('boxWtTIHI') : n('boxWtTIHI')*KG_PER_LB;
+      } else { // pallets only
+        pallets = Math.max(1, Math.floor(n('palletsOnly'))||1);
+        const boxesEach = Math.max(0, Math.floor(n('boxesEach')));
+        boxes = pallets * boxesEach;
+        boxKg = (u==='kg')? n('boxWtOnly') : n('boxWtOnly')*KG_PER_LB;
       }
 
-      // Payload
-      const payloadKG = toKG(n('payload'));
-      let palletsAllowed = '—';
-      if(payloadKG>0 && palletTotalKG>0){
-        palletsAllowed = Math.max(0, Math.floor(payloadKG / palletTotalKG));
-      }
+      // Tare/extras (per pallet) in kg
+      const tare = (u==='kg')? n('tare') : n('tare')*KG_PER_LB;
+      const extras = (u==='kg')? n('extras') : n('extras')*KG_PER_LB;
+
+      const netPal = boxKg * (boxes/pallets || 0);
+      const grossPal = netPal + tare + extras;
+      const netTotal = boxKg * boxes;
+      const grossTotal = netTotal + pallets*(tare+extras);
+
+      // Limits (in kg)
+      const limitPal = (u==='kg')? n('limitPal') : n('limitPal')*KG_PER_LB;
+      const limitTotal = (u==='kg')? n('limitTotal') : n('limitTotal')*KG_PER_LB;
 
       // Render
-      $('#boxTotal').textContent = fromKG(boxTotalKG).toFixed(2);
-      $('#palletTotal').textContent = fromKG(palletTotalKG).toFixed(2);
-      $('#wu1').textContent = wunits; $('#wu2').textContent = wunits;
-      $('#limitCheck').innerHTML = limitMsg;
-      $('#palletsAllowed').textContent = palletsAllowed;
-      $('#preview').textContent = `Boxes ${boxes} × ${fromKG(boxWeight).toFixed(3)} ${wunits} → Pallet ${fromKG(palletTotalKG).toFixed(2)} ${wunits}`;
+      $('#netPal').textContent   = isFinite(netPal)?   format(netPal)   : '–';
+      $('#tarePal').textContent  = isFinite(tare+extras)? format(tare+extras) : '–';
+      $('#grossPal').textContent = isFinite(grossPal)? format(grossPal) : '–';
 
-      // Update CTA link to full calculator (pass weight per box if needed)
-      const params = new URLSearchParams({boxWeight: $('#boxWeight').value});
+      $('#boxesOut').textContent = boxes? boxes : '–';
+      $('#palletsOut').textContent = pallets? pallets : '–';
+      $('#netTotal').textContent = isFinite(netTotal)? format(netTotal) : '–';
+      $('#grossTotal').textContent = isFinite(grossTotal)? format(grossTotal) : '–';
+
+      const msgs=[]; let cls='';
+      if(limitPal>0 && isFinite(grossPal)){
+        const over = grossPal - limitPal; if(over>0){ msgs.push(`Per pallet exceeds by ${format(over)}`); cls='status-bad'; } else if(over>-0.0001){ msgs.push('Per pallet within limit'); cls='status-ok'; }
+      }
+      if(limitTotal>0 && isFinite(grossTotal)){
+        const overT = grossTotal - limitTotal; if(overT>0){ msgs.push(`Total exceeds by ${format(overT)}`); cls='status-bad'; } else if(overT>-0.0001){ msgs.push('Total within limit'); if(!cls) cls='status-ok'; }
+      }
+      $('#limitMsg').className = cls; $('#limitMsg').textContent = msgs.join(' · ');
+
+      $('#preview').textContent = `Boxes ${boxes||'-'} · Pallets ${pallets||'-'} · Net ${isFinite(netTotal)?format(netTotal):'-'} · Gross ${isFinite(grossTotal)?format(grossTotal):'-'}`;
+
+      // Build share link
+      const params = new URLSearchParams({units: $('#units').value, mode: $('#mode').value, boxCount: $('#boxCount').value, boxWt: $('#boxWt').value, boxesPerPallet: $('#boxesPerPallet').value, palletsBoxes: $('#palletsBoxes').value, ti: $('#ti').value, hi: $('#hi').value, palletsTIHI: $('#palletsTIHI').value, boxWtTIHI: $('#boxWtTIHI').value, palletsOnly: $('#palletsOnly').value, boxesEach: $('#boxesEach').value, boxWtOnly: $('#boxWtOnly').value, palType: $('#palType').value, tare: $('#tare').value, extras: $('#extras').value, limitPal: $('#limitPal').value, limitTotal: $('#limitTotal').value, notes: $('#notes').value});
       $('#openCalc').href = `/pallet-calculator.html?${params.toString()}`;
 
-      try{ gtag('event','calculate_click',{page:'weight', pallet_weight: fromKG(palletTotalKG)}); }catch(e){}
-      return {wunits, boxes, boxWeightKG:boxWeight, boxTotalKG, tareKG, extrasKG, palletTotalKG, limitKG, palletsAllowed};
+      try{ gtag('event','calculate_click',{page:'weight', boxes, pallets}); }catch(e){}
+      return {boxes,pallets,netPal,grossPal,netTotal,grossTotal}
     }
 
     document.getElementById('calcBtn').addEventListener('click', calc);
 
     // Copy helpers
     function copyText(r){
-      const toWU = (kg)=> (r.wunits==='lb'? (kg*LB_PER_KG) : kg);
-      const wu = r.wunits;
-      const s = `Total box weight: ${toWU(r.boxTotalKG).toFixed(2)} ${wu}\nPallet total: ${toWU(r.palletTotalKG).toFixed(2)} ${wu}\nLimit: ${toWU(r.limitKG).toFixed(2)} ${wu} (if provided)\nPallets allowed (payload): ${r.palletsAllowed}`;
+      const s = `Per pallet: Net ${format(r.netPal)} · Gross ${format(r.grossPal)}\nTotals: Boxes ${r.boxes} · Pallets ${r.pallets} · Net ${format(r.netTotal)} · Gross ${format(r.grossTotal)}`;
       navigator.clipboard.writeText(s).then(()=>alert('Copied to clipboard'));
     }
     function copyJSON(r){
-      const data = {units:r.wunits, boxes:r.boxes, weights_kg:{box_total:r.boxTotalKG, pallet_total:r.palletTotalKG, limit:r.limitKG}, pallets_allowed:r.palletsAllowed};
+      const data = {per_pallet:{net:r.netPal,gross:r.grossPal}, totals:{boxes:r.boxes,pallets:r.pallets,net:r.netTotal,gross:r.grossTotal}, units: $('#units').value};
       navigator.clipboard.writeText(JSON.stringify(data, null, 2)).then(()=>alert('JSON copied'));
     }
 
@@ -280,7 +354,7 @@
 
     document.getElementById('shareBtn').addEventListener('click',()=>{
       const r = calc(); if(!r) return;
-      const params = new URLSearchParams({wunits: $('#wunits').value, mode: $('#mode').value, boxWeight: $('#boxWeight').value, boxCount: $('#boxCount').value, ti: $('#ti').value, hi: $('#hi').value, palletTare: $('#palletTare').value, extras: $('#extras').value, limit: $('#limit').value, payload: $('#payload').value});
+      const params = new URLSearchParams({units: $('#units').value, mode: $('#mode').value, boxCount: $('#boxCount').value, boxWt: $('#boxWt').value, boxesPerPallet: $('#boxesPerPallet').value, palletsBoxes: $('#palletsBoxes').value, ti: $('#ti').value, hi: $('#hi').value, palletsTIHI: $('#palletsTIHI').value, boxWtTIHI: $('#boxWtTIHI').value, palletsOnly: $('#palletsOnly').value, boxesEach: $('#boxesEach').value, boxWtOnly: $('#boxWtOnly').value, palType: $('#palType').value, tare: $('#tare').value, extras: $('#extras').value, limitPal: $('#limitPal').value, limitTotal: $('#limitTotal').value, notes: $('#notes').value});
       const url = `${location.origin}${location.pathname}?${params.toString()}`;
       navigator.clipboard.writeText(url).then(()=>alert('Shareable link copied'));
       try{ gtag('event','share_click',{channel:'link'}) }catch(e){}
@@ -303,9 +377,9 @@
     "@context":"https://schema.org",
     "@type":"FAQPage",
     "mainEntity":[
-      {"@type":"Question","name":"What counts as payload?","acceptedAnswer":{"@type":"Answer","text":"Payload is the allowed cargo mass excluding vehicle/container tare. Always verify gross and tare weights for your route."}},
-      {"@type":"Question","name":"Can I use TI×HI?","acceptedAnswer":{"@type":"Answer","text":"Yes. Switch quantity mode to TI×HI, enter per‑layer boxes and layers, and the tool computes total boxes automatically."}},
-      {"@type":"Question","name":"Do you support kg and lb?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose kilograms or pounds from the Weight units selector; conversions are handled automatically."}}
+      {"@type":"Question","name":"What counts as pallet gross weight?","acceptedAnswer":{"@type":"Answer","text":"Gross = net product weight + pallet tare + extras (wrap/top/etc.)."}},
+      {"@type":"Question","name":"Are pallet tare presets exact?","acceptedAnswer":{"@type":"Answer","text":"No. They are typical ranges; real weights vary by build and condition. You can override the tare value."}},
+      {"@type":"Question","name":"Can I switch kg/lb?","acceptedAnswer":{"@type":"Answer","text":"Yes. All values convert when you change Units."}}
     ]
   }
   </script>
