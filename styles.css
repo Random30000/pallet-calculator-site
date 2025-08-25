@@ -1,122 +1,113 @@
-/* Global styles for Pallet Tools site */
+/* =============================================
+   styles.css — Shared styles for pallet-calculator.com
+   Theme: Neutral Blue‑Gray · 2025
+   Note: Link this file in every page <head> via
+   <link rel="stylesheet" href="/styles.css">
+   ============================================= */
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-  line-height: 1.4;
-  background-color: #f7fafc;
-  color: #1a202c;
+/* Variables */
+:root{
+  --bg:#0b1220;          /* page background */
+  --panel:#0f172a;       /* slate-900 */
+  --muted:#94a3b8;       /* slate-400 */
+  --text:#e5e7eb;        /* gray-200 */
+  --brand:#3b82f6;       /* blue-500 */
+  --brand-2:#60a5fa;     /* blue-400 */
+  --ok:#22c55e;          /* green-500 */
+  --warn:#f59e0b;        /* amber-500 */
+  --bad:#ef4444;         /* red-500 */
+  --radius:14px;
+  --shadow:0 6px 18px rgba(0,0,0,.28);
+  --ring:0 0 0 3px rgba(59,130,246,.35);
+  --container:1120px;
 }
 
-header,
-footer {
-  background-color: #2d3748;
-  color: #f7fafc;
-  padding: 1rem;
-}
+/* Base */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0; background:linear-gradient(180deg,#0b1220 0%, #0b1220 60%, #0e1526 100%); color:var(--text); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
+img{max-width:100%; height:auto}
+a{color:var(--brand); text-decoration:none}
+a:hover{color:var(--brand-2)}
+:focus-visible{outline:none; box-shadow:var(--ring)}
 
-header h1 {
-  margin: 0 0 0.5rem;
-  font-size: 1.5rem;
-}
+/* Layout helpers */
+.container{max-width:var(--container); margin:0 auto; padding:24px}
+.grid{display:grid; gap:18px}
+@media(min-width:960px){ .grid-2{grid-template-columns: 1.2fr .8fr} }
 
-nav a {
-  color: #a0aec0;
-  margin-right: 1rem;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
+/* Header / Nav */
+header.site-header{position:sticky; top:0; z-index:20; backdrop-filter:saturate(150%) blur(8px); background:rgba(15,23,42,.65); border-bottom:1px solid rgba(148,163,184,.15)}
+.brand{display:inline-flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px; color:#fff}
+.brand .dot{width:12px; height:12px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 6px rgba(59,130,246,.18)}
+nav.nav{display:flex; gap:12px; flex-wrap:wrap}
+nav.nav a{color:var(--muted); padding:8px 12px; border-radius:999px; border:1px solid rgba(148,163,184,.18)}
+nav.nav a[aria-current="page"], nav.nav a:hover{color:#fff; background:rgba(59,130,246,.12); border-color:rgba(59,130,246,.35)}
 
-nav a.curr {
-  color: #f7fafc;
-  font-weight: bold;
-}
+/* Typography */
+h1{font-size:clamp(28px,3.2vw,40px); line-height:1.15; margin:24px 0 8px}
+h2{font-size:clamp(20px,2.2vw,26px); margin:20px 0 12px}
+h3{font-size:19px; margin:12px 0}
+.muted{color:var(--muted)}
+.kbd{font:12px ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; padding:2px 6px; border-radius:6px; background:#0b1220; border:1px solid rgba(148,163,184,.25); color:#cbd5e1}
 
-nav a:hover {
-  color: #f7fafc;
-}
+/* Cards */
+.card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)); border:1px solid rgba(148,163,184,.18); border-radius:var(--radius); box-shadow:var(--shadow)}
+.card .card-body{padding:18px}
 
-main {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 1rem;
-}
+/* Hero + CTA (home) */
+.hero{display:grid; gap:16px; align-items:center; padding:32px 0}
+.cta{display:flex; gap:12px; flex-wrap:wrap}
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 1rem;
-}
+/* Badges */
+.badge{display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:999px; font-size:12px; color:#dbeafe; background:rgba(59,130,246,.18); border:1px solid rgba(59,130,246,.35)}
 
-th,
-td {
-  border: 1px solid #e2e8f0;
-  padding: 0.5rem;
-  text-align: left;
-}
+/* Buttons */
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:10px 14px; border-radius:12px; border:1px solid rgba(148,163,184,.25); background:#0b1220; color:#e5e7eb; cursor:pointer}
+.btn:hover{border-color:rgba(59,130,246,.55); background:rgba(59,130,246,.10)}
+.btn.primary{background:var(--brand); border-color:var(--brand); color:#fff}
+.btn.primary:hover{background:#2563eb}
+.btn.ghost{background:transparent}
+.btn:disabled{opacity:.6; cursor:not-allowed}
+.pill-group{display:flex; flex-wrap:wrap; gap:8px}
 
-th {
-  background-color: #edf2f7;
-}
+/* Forms */
+.form-row{display:grid; gap:10px; grid-template-columns: 1fr 1fr 1fr 1fr}
+.form-row-2{display:grid; gap:10px; grid-template-columns: 1fr 1fr}
+.field{display:flex; flex-direction:column; gap:6px}
+label{font-size:12px; color:var(--muted)}
+input[type="number"], select, input[type="text"], input[type="email"]{width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(148,163,184,.25); background:#0b1220; color:#e5e7eb}
+input:focus, select:focus{outline:none; border-color:rgba(59,130,246,.55); box-shadow:var(--ring)}
+.radio{display:flex; gap:12px; align-items:center; margin:8px 0 12px}
+.radio label{display:flex; gap:8px; align-items:center}
+.field-error{color:#fecaca; font-size:12px}
 
-input[type='number'],
-input[type='text'],
-select {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0.4rem;
-  margin-top: 0.2rem;
-}
+/* Results & Preview */
+.result{display:grid; gap:12px}
+.result .stat,.stat{background:rgba(148,163,184,.10); padding:10px 12px; border:1px dashed rgba(148,163,184,.25); border-radius:10px}
+.result .stat b,.stat b{font-size:18px}
+.preview{height:240px; background:repeating-linear-gradient(45deg, rgba(59,130,246,.08) 0 12px, transparent 12px 24px); border-radius:var(--radius); border:1px dashed rgba(148,163,184,.25); display:flex; align-items:center; justify-content:center; color:var(--muted)}
+.status-ok{color:var(--ok)}
+.status-warn{color:var(--warn)}
+.status-bad{color:var(--bad)}
 
-.btn {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  margin-top: 1rem;
-  background-color: #3182ce;
-  color: #ffffff;
-  border: none;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
+/* Tables */
+.table{width:100%; border-collapse:collapse}
+.table th,.table td{padding:10px 12px; border-bottom:1px solid rgba(148,163,184,.18)}
 
-.btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
+/* Samples grid (home) */
+.sample{display:grid; gap:12px}
+@media(min-width:960px){ .sample{grid-template-columns: repeat(3,1fr)} }
+.sample a{display:block; padding:14px; border-radius:12px; border:1px solid rgba(148,163,184,.18)}
+.sample a:hover{background:rgba(59,130,246,.08); border-color:rgba(59,130,246,.35)}
 
-.result {
-  background-color: #e6fffa;
-  border: 1px solid #81e6d9;
-  padding: 1rem;
-  margin-top: 1rem;
-  border-radius: 0.25rem;
-}
+/* Footer */
+footer{color:var(--muted); border-top:1px solid rgba(148,163,184,.15); margin-top:36px}
+footer .container{display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between}
 
-.error {
-  background-color: #fff5f5;
-  border: 1px solid #fed7d7;
-  color: #c53030;
-  padding: 0.75rem;
-  margin-top: 0.5rem;
-  border-radius: 0.25rem;
-}
-
-/* Language list for multi-language support */
-.language-list {
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-}
-
-.language-list a {
-  margin-right: 0.5rem;
-  text-decoration: none;
-  color: #a0aec0;
-}
-
-.language-list a.curr {
-  font-weight: bold;
-  color: #f7fafc;
+/* Responsive tweaks */
+@media(max-width:640px){
+  .form-row{grid-template-columns:1fr 1fr}
+  .form-row-2{grid-template-columns:1fr}
+  .preview{height:200px}
 }
