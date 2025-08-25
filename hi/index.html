@@ -1,198 +1,141 @@
-<!--
-  Hindi (hi) translation placeholder.
-  This page is a copy of the English Pallet Calculator home page, prepared for multi‑language support.
-  The text remains in English until translations are provided.
--->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="hi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pallet Calculator (TI × HI, Multi‑SKU, Shareable)</title>
-    <!-- Canonical URL helps search engines understand the preferred URL for this page -->
-    <link rel="canonical" href="/hi/pallet-calculator/" />
-    <!-- Meta description for SEO -->
-    <meta
-      name="description"
-      content="Calculate how many cartons fit on a pallet with our interactive pallet calculator. Supports multi‑SKU and TI × HI results and generates shareable URLs."
-    />
-    <!-- Open Graph tags for social sharing -->
-    <meta property="og:title" content="Pallet Calculator – Multi‑SKU TI × HI Calculator (Hindi)" />
-    <meta
-      property="og:description"
-      content="Use our pallet calculator to determine TI (cases per layer) and HI (layers per pallet) for multiple cartons. Share results with a link."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="/hi/pallet-calculator/" />
-    <!-- Global stylesheet -->
-    <link rel="stylesheet" href="../styles.css" />
-  </head>
-  <body>
-    <header>
-      <h1>Pallet Calculator</h1>
-      <nav>
-        <a href="./" class="curr">Pallet Calculator</a>
-        <a href="ti-hi-calculator.html">TI HI Calculator</a>
-        <a href="pallet-weight-calculator.html">Weight Calculator</a>
-        <a href="pallet-cube-calculator.html">Cube Calculator</a>
-        <a href="how-many-pallets-in-53-foot-trailer.html">53‑ft Trailer</a>
-        <a href="how-many-pallets-in-20ft-container.html">20 ft Container</a>
-        <a href="how-many-pallets-in-40ft-container.html">40 ft Container</a>
-        <a href="pallet-dimensions.html">Pallet Dimensions</a>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>पैलेट कैलकुलेटर और लोड‑प्लानिंग टूल्स</title>
+  <meta name="description" content="प्रति पैलेट बॉक्स, TI‑HI (लेयर्स × कॉलम), स्टैक ऊँचाई/वजन और 20ft/40ft क्षमता का अनुमान। EU/US प्रीसेट्स, साथ में AU/JP।" />
+  <link rel="canonical" href="https://pallet-calculator.com/hi/" />
+  <link rel="alternate" hreflang="hi" href="https://pallet-calculator.com/hi/" />
+  <link rel="alternate" hreflang="en" href="https://pallet-calculator.com/" />
+  <link rel="alternate" hreflang="x-default" href="https://pallet-calculator.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="पैलेट कैलकुलेटर" />
+  <meta property="og:description" content="पैलेट प्लानिंग के लिए तेज़ टूल्स: प्रति पैलेट बॉक्स, TI‑HI, घनफल/वजन और कंटेनर क्षमता।" />
+  <meta property="og:url" content="https://pallet-calculator.com/hi/" />
+  <meta property="og:image" content="https://pallet-calculator.com/og-placeholder.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+
+  <!-- Google tag (gtag.js) — place immediately after <head> (ONE snippet per page) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXJVLGW6C3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'G-MXJVLGW6C3');
+  </script>
+
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .lang-switch{font-size:13px; color:#94a3b8}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:16px;">
+      <a class="brand" href="/hi/" aria-label="होम"><span class="dot"></span> pallet‑calculator</a>
+      <nav class="nav" aria-label="मुख्य">
+        <a href="/pallet-calculator.html">Pallet Calculator</a>
+        <a href="/ti-hi-calculator.html">TI‑HI</a>
+        <a href="/pallet-cube-calculator.html">Cube</a>
+        <a href="/pallet-dimensions.html">Dimensions</a>
+        <a href="/pallet-weight-calculator.html">Weight</a>
+        <a href="/how-many-pallets-in-20ft-container.html">20ft</a>
+        <a href="/how-many-pallets-in-40ft-container.html">40ft</a>
       </nav>
-      <div class="language-list">
-        <a href="/pallet-calculator/">EN</a>
-        <a href="/hi/pallet-calculator/" class="curr">HI</a>
-        <a href="/tl/pallet-calculator/">TL</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="lang-switch">Language: हिन्दी (IN) · <a href="/">English</a></div>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>पैलेट कैलकुलेटर और लोड‑प्लानिंग टूल्स</h1>
+      <p class="muted">प्रति पैलेट बॉक्स, <b>TI‑HI</b> (लेयर्स × कॉलम), स्टैक ऊँचाई/वजन और 20ft/40ft क्षमता का अनुमान। EU/US प्रीसेट्स, साथ में AU/JP।</p>
+      <div class="cta">
+        <a class="btn primary" href="/pallet-calculator.html" onclick="gtag('event','cta_click',{to:'pallet-calculator',lang:'hi'})">Pallet Calculator खोलें</a>
+        <a class="btn" href="/how-many-pallets-in-20ft-container.html">20ft क्षमता</a>
+        <a class="btn" href="/how-many-pallets-in-40ft-container.html">40ft क्षमता</a>
       </div>
-    </header>
-    <main>
-      <p>
-        Enter the dimensions for one or more cartons and the pallet to estimate how many cartons fit. This tool calculates TI (cases per layer) and HI (layers per pallet) for each SKU and summarises totals. All dimensions are in inches; you can convert units on the Cube Calculator page.
-      </p>
-      <form id="palletForm">
-        <h2>Cartons (SKU)</h2>
-        <table id="skuTable">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Length (in)</th>
-              <th>Width (in)</th>
-              <th>Height (in)</th>
-              <th>Quantity</th>
-              <th>Remove</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="skuRow">
-              <td class="skuIndex">1</td>
-              <td><input type="number" step="any" min="0" name="length" required /></td>
-              <td><input type="number" step="any" min="0" name="width" required /></td>
-              <td><input type="number" step="any" min="0" name="height" required /></td>
-              <td><input type="number" step="1" min="1" name="qty" value="1" required /></td>
-              <td><button type="button" class="btn removeRow" title="Remove row">X</button></td>
-            </tr>
-          </tbody>
-        </table>
-        <button type="button" id="addSkuBtn" class="btn">Add SKU</button>
-        <h2>Pallet</h2>
-        <label for="palletLength">Length (in):</label>
-        <input type="number" id="palletLength" name="palletLength" step="any" min="1" value="48" required />
-        <label for="palletWidth">Width (in):</label>
-        <input type="number" id="palletWidth" name="palletWidth" step="any" min="1" value="40" required />
-        <label for="maxHeight">Max stack height (in):</label>
-        <input type="number" id="maxHeight" name="maxHeight" step="any" min="1" value="60" required />
-        <p>
-          (Typical pallet footprint is 48 × 40 inches. Adjust if you use another size. Max stack height excludes pallet height.)
-        </p>
-        <button type="submit" class="btn">Calculate</button>
-      </form>
-      <div id="palletResult"></div>
-    </main>
-    <footer>
-      <p>
-        &copy; 2025 Pallet Tools. Last updated on <time datetime="2025-08-17">August 17, 2025</time>.
-      </p>
-    </footer>
-    <script>
-      // This script is identical to the English version and remains in English for now.
-      function parseParams() {
-        const params = new URLSearchParams(window.location.search);
-        const obj = {};
-        params.forEach((v, k) => (obj[k] = v));
-        return obj;
-      }
-      function loadFromQuery() {
-        const q = parseParams();
-        const rows = document.querySelectorAll('.skuRow');
-        if (q.sku && q.sku > 1) {
-          for (let i = 1; i < q.sku; i++) {
-            addSkuRow();
-          }
-        }
-        const setVal = (selector, value) => {
-          const el = document.querySelector(selector);
-          if (value) el.value = value;
-        };
-        setVal('#palletLength', q.pl); setVal('#palletWidth', q.pw); setVal('#maxHeight', q.maxH);
-        // For each SKU, set values if present
-        rows.forEach((row, idx) => {
-          const suffix = idx + 1;
-          ['length', 'width', 'height', 'qty'].forEach((field) => {
-            const key = field + suffix;
-            if (q[key]) row.querySelector(`input[name="${field}"]`).value = q[key];
-          });
-        });
-      }
-      function addSkuRow() {
-        const tbody = document.getElementById('skuTable').querySelector('tbody');
-        const row = tbody.querySelector('tr.skuRow').cloneNode(true);
-        tbody.appendChild(row);
-        updateSkuIndices();
-      }
-      function updateSkuIndices() {
-        const rows = document.querySelectorAll('.skuRow');
-        rows.forEach((row, idx) => {
-          row.querySelector('.skuIndex').textContent = idx + 1;
-        });
-      }
-      document.getElementById('addSkuBtn').addEventListener('click', addSkuRow);
-      document.getElementById('palletForm').addEventListener('click', function (e) {
-        if (e.target.classList.contains('removeRow')) {
-          const row = e.target.closest('tr');
-          row.remove();
-          updateSkuIndices();
-        }
-      });
-      document.getElementById('palletForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        calculatePallet();
-      });
-      function calculatePallet() {
-        const rows = document.querySelectorAll('.skuRow');
-        const palletL = parseFloat(document.getElementById('palletLength').value);
-        const palletW = parseFloat(document.getElementById('palletWidth').value);
-        const maxH = parseFloat(document.getElementById('maxHeight').value);
-        if ([palletL, palletW, maxH].some((v) => isNaN(v) || v <= 0)) {
-          document.getElementById('palletResult').innerHTML = '<div class="error">Please enter valid positive pallet dimensions.</div>';
-          return;
-        }
-        let html = '';
-        let grandTotal = 0;
-        rows.forEach((row, idx) => {
-          const l = parseFloat(row.querySelector('input[name="length"]').value);
-          const w = parseFloat(row.querySelector('input[name="width"]').value);
-          const h = parseFloat(row.querySelector('input[name="height"]').value);
-          const qty = parseInt(row.querySelector('input[name="qty"]').value, 10);
-          if ([l, w, h, qty].some((v) => isNaN(v) || v <= 0)) {
-            html += `<div class="error">Row ${idx + 1}: Invalid inputs.</div>`;
-            return;
-          }
-          const ti = Math.floor(palletL / l) * Math.floor(palletW / w);
-          const hi = Math.floor(maxH / h);
-          const total = ti * hi;
-          grandTotal += total * qty;
-          html += `<p><strong>SKU ${idx + 1}</strong> - TI: ${ti}, HI: ${hi}, Total per pallet: ${total} (× ${qty} units)</p>`;
-        });
-        html += `<p><strong>Total cartons per pallet:</strong> ${grandTotal}</p>`;
-        document.getElementById('palletResult').innerHTML = `<div class="result">${html}</div>`;
-        // Build shareable URL
-        const params = new URLSearchParams();
-        params.set('pl', palletL.toString());
-        params.set('pw', palletW.toString());
-        params.set('maxH', maxH.toString());
-        params.set('sku', rows.length.toString());
-        rows.forEach((row, idx) => {
-          const suffix = idx + 1;
-          ['length', 'width', 'height', 'qty'].forEach((field) => {
-            const key = field + suffix;
-            params.set(key, row.querySelector(`input[name="${field}"]`).value);
-          });
-        });
-        const newUrl = window.location.pathname + '?' + params.toString();
-        window.history.replaceState({}, '', newUrl);
-      }
-      loadFromQuery();
-    </script>
-  </body>
+    </section>
+
+    <!-- Tools grid -->
+    <section class="grid tools" aria-label="टूल्स">
+      <article class="card"><div class="card-body">
+        <h3><a href="/pallet-calculator.html">Pallet Calculator</a></h3>
+        <p class="muted">प्रति लेयर बॉक्स (TI), लेयर्स (HI), ऊँचाई/क्षेत्र उपयोग और शेयर‑लिंक।</p>
+      </div></article>
+      <article class="card"><div class="card-body">
+        <h3><a href="/ti-hi-calculator.html">TI‑HI Calculator</a></h3>
+        <p class="muted">0°/90° ओरिएंटेशन के साथ सर्वश्रेष्ठ rows × cols (TI)।</p>
+      </div></article>
+      <article class="card"><div class="card-body">
+        <h3><a href="/pallet-cube-calculator.html">Pallet Cube Calculator</a></h3>
+        <p class="muted">घनफल (m³/ft³) और वॉल्यूम उपयोग का अनुमान।</p>
+      </div></article>
+      <article class="card"><div class="card-body">
+        <h3><a href="/pallet-dimensions.html">Pallet Dimensions</a></h3>
+        <p class="muted">EU/US/AU/JP मानक आकार; एक क्लिक में कैलकुलेटर।</p>
+      </div></article>
+      <article class="card"><div class="card-body">
+        <h3><a href="/pallet-weight-calculator.html">Pallet Weight Calculator</a></h3>
+        <p class="muted">बॉक्स वजन × मात्रा, पैलेट टेयर/एक्स्ट्रा और सीमाएँ।</p>
+      </div></article>
+      <article class="card"><div class="card-body">
+        <h3><a href="/pallet-calculator.html?container=20ft">Container Fit (20/40ft)</a></h3>
+        <p class="muted">कंटेनर प्रकार के साथ प्री‑सेट खोलें।</p>
+      </div></article>
+    </section>
+
+    <!-- Quick samples -->
+    <section style="margin-top:24px">
+      <h2>त्वरित उदाहरण</h2>
+      <div class="sample">
+        <a href="/pallet-calculator.html?units=mm&boxL=300&boxW=200&boxH=150&palL=1200&palW=1000&palH=144&palMax=1200&allowRotate=yes" onclick="gtag('event','sample_click',{sample:'EU 1200×1000',lang:'hi'})">EU 1200×1000 · बॉक्स 300×200×150mm · मैक्स 1200mm</a>
+        <a href="/pallet-calculator.html?units=in&boxL=12&boxW=8&boxH=6&palL=48&palW=40&palH=5.5&palMax=48&allowRotate=yes" onclick="gtag('event','sample_click',{sample:'US 48×40',lang:'hi'})">US 48×40 · बॉक्स 12×8×6in · मैक्स 48in</a>
+        <a href="/pallet-calculator.html?units=mm&boxL=300&boxW=300&boxH=200&palL=1165&palW=1165&allowRotate=no" onclick="gtag('event','sample_click',{sample:'AU 1165×1165',lang:'hi'})">AU 1165×1165 · बॉक्स 300×300×200mm · Single layer</a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="margin-top:24px" class="card">
+      <div class="card-body">
+        <h2>प्रश्नोत्तर</h2>
+        <h3>क्या नतीजे बिल्कुल सटीक हैं?</h3>
+        <p class="muted">ये प्लानिंग अनुमान हैं। वास्तविक फिट पर पैलेट ओवरहैंग, पैकेजिंग टॉलरेंस और सुरक्षा नीतियाँ प्रभाव डालती हैं।</p>
+        <h3>कौन‑कौन से मानक समर्थित हैं?</h3>
+        <p class="muted">EU (1200×800, 1200×1000), US (48×40 / 1219×1016), AU (1165×1165), JP (1100×1100)। आप कस्टम आकार भी दे सकते हैं।</p>
+        <h3>क्या मैं नतीजे साझा कर सकता/सकती हूँ?</h3>
+        <p class="muted">हाँ, कैलकुलेटर आपकी इनपुट से शेयर‑योग्य URL बनाता है, ताकि टीम आसानी से पुन: उत्पन्न कर सके।</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 pallet-calculator.com</p>
+      <p>Contact: <a href="mailto:support@pallet-calculator.com">support@pallet-calculator.com</a></p>
+    </div>
+  </footer>
+
+  <!-- Structured data: WebSite (hi) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"pallet-calculator.com",
+    "url":"https://pallet-calculator.com/hi/",
+    "inLanguage":"hi",
+    "potentialAction":{
+      "@type":"SearchAction",
+      "target":"https://pallet-calculator.com/?q={query}",
+      "query-input":"required name=query"
+    }
+  }
+  </script>
+</body>
 </html>
