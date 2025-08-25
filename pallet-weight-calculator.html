@@ -1,138 +1,308 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X4VDF9JBPE"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<head>
+  <meta charset="utf-8">
+  <title>Pallet Weight Calculator – Estimate total pallet weight and share</title>
+  <meta name="description" content="Estimate the total weight of a loaded pallet by combining the empty pallet weight, weight per carton and number of cartons. Includes optional maximum weight warning. Share your calculation via a link or embed it on your own site.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      gtag('config', 'G-X4VDF9JBPE');
-    </script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pallet Weight Calculator | Pallet Tools</title>
-    <link rel="canonical" href="/pallet-weight-calculator.html" />
-    <!-- Meta description for SEO -->
-    <meta
-      name="description"
-      content="Estimate the total weight of a loaded pallet. Enter the empty pallet weight, carton weight and quantity, and an optional maximum weight limit."
-    />
-    <!-- Open Graph tags for social sharing -->
-    <meta property="og:title" content="Pallet Weight Calculator – Pallet Tools" />
-    <meta
-      property="og:description"
-      content="Calculate the combined weight of your pallet and cartons, and see if it stays within a specified limit."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="/pallet-weight-calculator.html" />
-    <!-- Global stylesheet -->
-    <link rel="stylesheet" href="styles.css" />
-    <!-- The inline styles below were removed in favour of a global stylesheet. See styles.css for definitions. -->
-  </head>
-  <body>
-    <header>
-      <h1>Pallet Weight Calculator</h1>
-      <nav>
-        <a href="./pallet-calculator/">Pallet Calculator</a>
-        <a href="./ti-hi-calculator.html">TI HI Calculator</a>
-        <a href="./pallet-weight-calculator.html" class="curr">Weight Calculator</a>
-        <a href="./pallet-cube-calculator.html">Cube Calculator</a>
-        <a href="./how-many-pallets-in-53-foot-trailer.html">53‑ft Trailer</a>
-        <a href="./how-many-pallets-in-20ft-container.html">20 ft Container</a>
-        <a href="./how-many-pallets-in-40ft-container.html">40 ft Container</a>
-        <a href="./pallet-dimensions.html">Pallet Dimensions</a>
-      </nav>
-      <div class="language-list">
-        <a href="/pallet-weight-calculator.html" class="curr">EN</a>
-        <a href="/hi/pallet-weight-calculator.html">HI</a>
-        <a href="/tl/pallet-weight-calculator.html">TL</a>
+  <!-- Speed: preconnect to GA/GTM -->
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="/style.css">
+  <!-- Inline critical styles for portability -->
+  <style>
+    /* Global styles for Pallet Calculator site */
+    *,
+    *::before,
+    *::after { box-sizing: border-box; }
+    body {
+      font: 16px/1.6 system-ui, Segoe UI, Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #1a202c;
+      background: #fff;
+    }
+    header,
+    footer {
+      padding: 1rem;
+      background: #f8fafc;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.75rem;
+    }
+    nav a {
+      margin-right: 0.75rem;
+      color: #3182ce;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    nav a:hover { text-decoration: underline; }
+    .lang-switch a {
+      margin-left: 0.5rem;
+      color: #3182ce;
+      text-decoration: none;
+    }
+    .lang-switch a:hover { text-decoration: underline; }
+    main {
+      padding: 1rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th,
+    td {
+      padding: 0.5rem;
+      border: 1px solid #e2e8f0;
+      text-align: left;
+    }
+    th {
+      background: #edf2f7;
+      font-weight: 600;
+    }
+    tbody tr:nth-child(even) {
+      background: #f7fafc;
+    }
+    input,
+    select {
+      margin-right: 0.5rem;
+    }
+    label {
+      margin-right: 1rem;
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+    button {
+      margin-top: 0.5rem;
+      margin-right: 0.5rem;
+      background: #3182ce;
+      color: #ffffff;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover { background: #2b6cb0; }
+    button:disabled {
+      background: #a0aec0;
+      cursor: not-allowed;
+    }
+    #shareControls button {
+      background: #4a5568;
+    }
+    #shareControls button:hover {
+      background: #2d3748;
+    }
+    .error { color: #c53030; }
+    .result { margin-top: 1rem; padding: 0.75rem; background: #f7fafc; border-radius: 4px; }
+    pre { background: #f7fafc; padding: 0.75rem; border-radius: 4px; overflow-x: auto; }
+  </style>
+
+  <!-- Canonical + hreflang -->
+  <link rel="canonical" href="https://www.pallet-calculator.com/pallet-weight-calculator.html">
+  <link rel="alternate" href="https://www.pallet-calculator.com/pallet-weight-calculator.html" hreflang="en">
+  <link rel="alternate" href="https://www.pallet-calculator.com/hi/pallet-weight-calculator.html" hreflang="hi">
+  <link rel="alternate" href="https://www.pallet-calculator.com/pallet-weight-calculator.html" hreflang="x-default">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Pallet Weight Calculator – Estimate total pallet weight and share">
+  <meta property="og:description" content="Calculate the loaded weight of a pallet from empty pallet weight, carton weight and quantity. Share results via link or embed.">
+  <meta property="og:url" content="https://www.pallet-calculator.com/pallet-weight-calculator.html">
+  <meta property="og:image" content="https://www.pallet-calculator.com/assets/og/pallet.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- GA4 -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-X4VDF9JBPE');
+    // Helper for custom events
+    function ev(name, params){ try { gtag('event', name, params || {}); } catch(e) {} }
+  </script>
+
+  <!-- Schema: SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"Pallet Weight Calculator",
+    "url":"https://www.pallet-calculator.com/pallet-weight-calculator.html",
+    "applicationCategory":"BusinessApplication",
+    "operatingSystem":"Web",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+    "description":"Estimate the total loaded weight of a pallet by combining the empty pallet weight, weight per carton and number of cartons. Includes optional maximum weight warning.",
+    "publisher":{"@type":"Organization","name":"Pallet Tools"},
+    "inLanguage":"en"
+  }
+  </script>
+
+  <!-- Schema: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"How do I use the pallet weight calculator?",
+        "acceptedAnswer":{"@type":"Answer","text":"Enter the empty pallet weight in pounds, the weight of a single carton and the number of cartons you plan to load. Optionally set a maximum allowed weight to check if your load exceeds it, then click Calculate."}
+      },
+      {
+        "@type":"Question",
+        "name":"Can I specify a maximum weight limit?",
+        "acceptedAnswer":{"@type":"Answer","text":"Yes. Enter a maximum allowable weight and the calculator will warn you if the total pallet weight exceeds this value."}
+      },
+      {
+        "@type":"Question",
+        "name":"What units does this calculator use?",
+        "acceptedAnswer":{"@type":"Answer","text":"This tool works in pounds (lb). For conversions to kilograms or metric units, you can use the Cube Calculator page or another conversion tool."}
+      },
+      {
+        "@type":"Question",
+        "name":"How can I share my results?",
+        "acceptedAnswer":{"@type":"Answer","text":"After calculating, click Copy Link to copy a URL containing your inputs. Send it to colleagues or clients; they will see the same results. You can also click Embed to get an iframe code for your website."}
+      },
+      {
+        "@type":"Question",
+        "name":"Do I need to include pallet height?",
+        "acceptedAnswer":{"@type":"Answer","text":"No. You only need to provide the empty pallet weight. The calculator focuses on weight rather than dimensions."}
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Header and Navigation -->
+  <header>
+    <h1>Pallet Weight Calculator</h1>
+    <nav>
+      <!-- Use absolute URLs to avoid ambiguity and strengthen canonical signals -->
+      <a href="https://www.pallet-calculator.com/pallet-calculator/">Pallet Calculator</a>
+      <a href="https://www.pallet-calculator.com/ti-hi-calculator.html">TI HI Calculator</a>
+      <a href="https://www.pallet-calculator.com/pallet-weight-calculator.html">Weight Calculator</a>
+      <a href="https://www.pallet-calculator.com/pallet-cube-calculator.html">Cube Calculator</a>
+      <a href="https://www.pallet-calculator.com/how-many-pallets-in-53-foot-trailer.html">53-ft Trailer</a>
+      <a href="https://www.pallet-calculator.com/how-many-pallets-in-20ft-container.html">20 ft Container</a>
+      <a href="https://www.pallet-calculator.com/how-many-pallets-in-40ft-container.html">40 ft Container</a>
+      <a href="https://www.pallet-calculator.com/pallet-dimensions.html">Pallet Dimensions</a>
+    </nav>
+    <div class="lang-switch">
+      <a href="https://www.pallet-calculator.com/pallet-weight-calculator.html">EN</a>
+      <a href="https://www.pallet-calculator.com/hi/pallet-weight-calculator.html">HI</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <p>Estimate the total loaded weight of a pallet by entering the empty pallet weight, the weight of each carton and the number of cartons. You can optionally specify a maximum allowable weight to see whether your load will exceed it.</p>
+    <form id="weightForm">
+      <section>
+        <label>Empty pallet weight (lb): <input type="number" step="any" min="0" id="palletWeight" required></label>
+        <label>Weight per carton (lb): <input type="number" step="any" min="0" id="cartonWeight" required></label>
+        <label>Number of cartons: <input type="number" step="1" min="0" id="numCartons" required></label>
+        <label>Maximum allowed weight (lb) (optional): <input type="number" step="any" min="0" id="maxAllowed"></label>
+      </section>
+      <button type="submit">Calculate</button>
+    </form>
+    <div id="weightResult"></div>
+
+    <!-- Share & Embed -->
+    <div id="shareControls" style="margin-top:1rem; display:none;">
+      <button type="button" id="copyLink">Copy Link</button>
+      <button type="button" id="showEmbed">Embed</button>
+      <div id="embedCodeContainer" style="display:none; margin-top:0.5rem;">
+        <textarea id="embedCode" readonly style="width:100%; height:120px;"></textarea>
       </div>
-    </header>
-    <main>
-      <p>
-        Estimate the total loaded weight of a pallet. Enter the empty pallet weight,
-        the weight of a single carton and how many cartons you plan to load. You
-        can also set a maximum allowable weight to see whether your load will
-        exceed it.
-      </p>
-      <form id="weightForm">
-        <label>
-          Empty pallet weight (lb):
-          <input type="number" id="palletWeight" step="any" min="0" value="40" required />
-        </label>
-        <label>
-          Weight per carton (lb):
-          <input type="number" id="cartonWeight" step="any" min="0" value="10" required />
-        </label>
-        <label>
-          Number of cartons:
-          <input type="number" id="numCartons" step="1" min="0" value="0" required />
-        </label>
-        <label>
-          Maximum allowed weight (lb) (optional):
-          <input type="number" id="maxAllowed" step="any" min="0" />
-        </label>
-        <button type="submit" class="btn">Calculate</button>
-      </form>
-      <div id="weightResult"></div>
-    </main>
-    <footer>
-      <p>
-        &copy; 2025 Pallet Tools. Last updated on
-        <time datetime="2025-08-17">August 17, 2025</time>.
-      </p>
-    </footer>
-    <script>
-      function parseParams() {
-        const params = new URLSearchParams(window.location.search);
-        const obj = {};
-        params.forEach((v, k) => (obj[k] = v));
-        return obj;
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Pallet Tools. Last updated on August 17, 2025.</p>
+  </footer>
+
+  <script>
+    // Helper to parse query parameters into an object
+    function parseParams() {
+      const params = new URLSearchParams(window.location.search);
+      const obj = {};
+      params.forEach((v, k) => (obj[k] = v));
+      return obj;
+    }
+    // Populate form based on query parameters
+    function loadFromQuery() {
+      const q = parseParams();
+      if (q.palletWeight) document.getElementById('palletWeight').value = q.palletWeight;
+      if (q.cartonWeight) document.getElementById('cartonWeight').value = q.cartonWeight;
+      if (q.numCartons) document.getElementById('numCartons').value = q.numCartons;
+      if (q.maxAllowed) document.getElementById('maxAllowed').value = q.maxAllowed;
+    }
+    // Calculate total weight
+    function calculateWeight() {
+      const palletWeight = parseFloat(document.getElementById('palletWeight').value);
+      const cartonWeight = parseFloat(document.getElementById('cartonWeight').value);
+      const numCartons = parseInt(document.getElementById('numCartons').value, 10);
+      const maxAllowed = parseFloat(document.getElementById('maxAllowed').value);
+      const resultEl = document.getElementById('weightResult');
+      if ([palletWeight, cartonWeight].some((v) => isNaN(v) || v < 0) || isNaN(numCartons) || numCartons < 0) {
+        resultEl.innerHTML = '<div class="error">Please enter valid positive numbers.</div>';
+        return;
       }
-      function loadFromQuery() {
-        const q = parseParams();
-        if (q.palletWeight) document.getElementById('palletWeight').value = q.palletWeight;
-        if (q.cartonWeight) document.getElementById('cartonWeight').value = q.cartonWeight;
-        if (q.numCartons) document.getElementById('numCartons').value = q.numCartons;
-        if (q.maxAllowed) document.getElementById('maxAllowed').value = q.maxAllowed;
-      }
-      document.getElementById('weightForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        calculateWeight();
-      });
-      function calculateWeight() {
-        const palletWeight = parseFloat(document.getElementById('palletWeight').value);
-        const cartonWeight = parseFloat(document.getElementById('cartonWeight').value);
-        const numCartons = parseInt(document.getElementById('numCartons').value, 10);
-        const maxAllowed = parseFloat(document.getElementById('maxAllowed').value);
-        const resultEl = document.getElementById('weightResult');
-        if ([palletWeight, cartonWeight].some((v) => isNaN(v) || v < 0) || isNaN(numCartons) || numCartons < 0) {
-          resultEl.innerHTML = '<div class="error">Please enter valid positive numbers.</div>';
-          return;
+      const loadWeight = cartonWeight * numCartons;
+      const total = palletWeight + loadWeight;
+      let message = `<p>Weight of cartons: <strong>${loadWeight.toFixed(2)}</strong> lb</p><p>Total pallet weight: <strong>${total.toFixed(2)}</strong> lb</p>`;
+      if (!isNaN(maxAllowed) && maxAllowed > 0) {
+        if (total > maxAllowed) {
+          message += `<p style="color:#c53030">Warning: exceeds maximum allowed weight by ${(total - maxAllowed).toFixed(2)} lb.</p>`;
+        } else {
+          message += `<p style="color:#2f855a">Within limit: you have ${(maxAllowed - total).toFixed(2)} lb remaining.</p>`;
         }
-        const loadWeight = cartonWeight * numCartons;
-        const total = palletWeight + loadWeight;
-        let message = `<p>Weight of cartons: <strong>${loadWeight.toFixed(2)}</strong> lb</p><p>Total pallet weight: <strong>${total.toFixed(2)}</strong> lb</p>`;
-        if (!isNaN(maxAllowed) && maxAllowed > 0) {
-          if (total > maxAllowed) {
-            message += `<p style="color:#c53030">Warning: exceeds maximum allowed weight by ${(total - maxAllowed).toFixed(2)} lb.</p>`;
-          } else {
-            message += `<p style="color:#2f855a">Within limit: you have ${(maxAllowed - total).toFixed(2)} lb remaining.</p>`;
-          }
-        }
-        resultEl.innerHTML = `<div class="result">${message}</div>`;
-        // Update share URL
-        const params = new URLSearchParams();
-        params.set('palletWeight', palletWeight.toString());
-        params.set('cartonWeight', cartonWeight.toString());
-        params.set('numCartons', numCartons.toString());
-        if (!isNaN(maxAllowed) && maxAllowed > 0) params.set('maxAllowed', maxAllowed.toString());
-        const newUrl = window.location.pathname + '?' + params.toString();
-        window.history.replaceState({}, '', newUrl);
       }
-      loadFromQuery();
-    </script>
-  </body>
+      resultEl.innerHTML = `<div class="result">${message}</div>`;
+      // Update share URL
+      const params = new URLSearchParams();
+      params.set('palletWeight', palletWeight.toString());
+      params.set('cartonWeight', cartonWeight.toString());
+      params.set('numCartons', numCartons.toString());
+      if (!isNaN(maxAllowed) && maxAllowed > 0) params.set('maxAllowed', maxAllowed.toString());
+      const newUrl = window.location.pathname + '?' + params.toString();
+      window.history.replaceState({}, '', newUrl);
+      // Show share controls and embed code
+      showShareControls();
+      // Log GA event
+      ev('calculate_click', {tool:'weight', lang:'en'});
+    }
+    // Show share controls after calculation and populate embed code
+    function showShareControls() {
+      const share = document.getElementById('shareControls');
+      share.style.display = 'block';
+      const iframeUrl = `https://www.pallet-calculator.com/embed/pallet-weight-calculator/${location.search}`;
+      const embedCode = `<iframe src="${iframeUrl}" width="100%" height="200" style="border:1px solid #e5e7eb;border-radius:12px" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
+      document.getElementById('embedCode').value = embedCode;
+    }
+    // Event listeners
+    document.getElementById('weightForm').addEventListener('submit', function(e){ e.preventDefault(); calculateWeight(); });
+    document.getElementById('copyLink').addEventListener('click', async function(){
+      try {
+        await navigator.clipboard.writeText(location.href);
+        ev('copy_result', {tool:'weight'});
+        alert('Link copied!');
+      } catch(e){ alert('Copy failed'); }
+    });
+    document.getElementById('showEmbed').addEventListener('click', function(){
+      const container = document.getElementById('embedCodeContainer');
+      container.style.display = container.style.display === 'none' ? 'block' : 'none';
+      ev('embed_view', {tool:'weight'});
+    });
+    // On load
+    loadFromQuery();
+  </script>
+</body>
 </html>

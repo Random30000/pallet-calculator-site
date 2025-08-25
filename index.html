@@ -9,6 +9,101 @@
   <!-- Speed: preconnect to GA/GTM -->
   <link rel="preconnect" href="https://www.googletagmanager.com">
 
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="/style.css">
+  <!-- Inline critical styles for portability -->
+  <style>
+    /* Global styles for Pallet Calculator site */
+    *,
+    *::before,
+    *::after { box-sizing: border-box; }
+    body {
+      font: 16px/1.6 system-ui, Segoe UI, Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #1a202c;
+      background: #fff;
+    }
+    header,
+    footer {
+      padding: 1rem;
+      background: #f8fafc;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.75rem;
+    }
+    nav a {
+      margin-right: 0.75rem;
+      color: #3182ce;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    nav a:hover { text-decoration: underline; }
+    .lang-switch a {
+      margin-left: 0.5rem;
+      color: #3182ce;
+      text-decoration: none;
+    }
+    .lang-switch a:hover { text-decoration: underline; }
+    main {
+      padding: 1rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th,
+    td {
+      padding: 0.5rem;
+      border: 1px solid #e2e8f0;
+      text-align: left;
+    }
+    th {
+      background: #edf2f7;
+      font-weight: 600;
+    }
+    tbody tr:nth-child(even) {
+      background: #f7fafc;
+    }
+    input,
+    select {
+      margin-right: 0.5rem;
+    }
+    label {
+      margin-right: 1rem;
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+    button {
+      margin-top: 0.5rem;
+      margin-right: 0.5rem;
+      background: #3182ce;
+      color: #ffffff;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover { background: #2b6cb0; }
+    button:disabled {
+      background: #a0aec0;
+      cursor: not-allowed;
+    }
+    #shareControls button {
+      background: #4a5568;
+    }
+    #shareControls button:hover {
+      background: #2d3748;
+    }
+    .error { color: #c53030; }
+    .result { margin-top: 1rem; padding: 0.75rem; background: #f7fafc; border-radius: 4px; }
+    pre { background: #f7fafc; padding: 0.75rem; border-radius: 4px; overflow-x: auto; }
+  </style>
+
   <!-- Canonical + hreflang -->
   <link rel="canonical" href="https://www.pallet-calculator.com/pallet-calculator/">
   <link rel="alternate" href="https://www.pallet-calculator.com/pallet-calculator/" hreflang="en">

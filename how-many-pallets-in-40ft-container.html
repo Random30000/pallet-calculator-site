@@ -1,121 +1,229 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X4VDF9JBPE"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<head>
+  <meta charset="utf-8">
+  <title>40‑Foot Container Pallet Calculator – How many pallets fit?</title>
+  <meta name="description" content="Estimate how many pallets fit in a standard 40‑foot shipping container based on pallet dimensions. Includes shareable results and embed functionality.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      gtag('config', 'G-X4VDF9JBPE');
-    </script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>How Many Pallets Fit in a 40‑Foot Container | Pallet Tools</title>
-    <link rel="canonical" href="/how-many-pallets-in-40ft-container.html" />
-    <!-- Meta description for SEO -->
-    <meta
-      name="description"
-      content="Find out how many pallets fit in a standard 40‑foot shipping container by entering pallet dimensions and comparing orientations."
-    />
-    <!-- Open Graph tags for social sharing -->
-    <meta property="og:title" content="40‑Foot Container Pallet Calculator" />
-    <meta
-      property="og:description"
-      content="Estimate how many pallets you can load into a 40‑foot container using our interactive calculator."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="/how-many-pallets-in-40ft-container.html" />
-    <!-- Global stylesheet -->
-    <link rel="stylesheet" href="styles.css" />
-    <!-- Removed inline styles in favour of global stylesheet -->
-  </head>
-  <body>
-    <header>
-      <h1>40‑Foot Container Pallet Calculator</h1>
-      <nav>
-        <a href="./pallet-calculator/">Pallet Calculator</a>
-        <a href="./ti-hi-calculator.html">TI HI Calculator</a>
-        <a href="./pallet-weight-calculator.html">Weight Calculator</a>
-        <a href="./pallet-cube-calculator.html">Cube Calculator</a>
-        <a href="./how-many-pallets-in-53-foot-trailer.html">53‑ft Trailer</a>
-        <a href="./how-many-pallets-in-20ft-container.html">20 ft Container</a>
-        <a href="./how-many-pallets-in-40ft-container.html" class="curr">40 ft Container</a>
-        <a href="./pallet-dimensions.html">Pallet Dimensions</a>
-      </nav>
-      <div class="language-list">
-        <a href="/how-many-pallets-in-40ft-container.html" class="curr">EN</a>
-        <a href="/hi/how-many-pallets-in-40ft-container.html">HI</a>
-        <a href="/tl/how-many-pallets-in-40ft-container.html">TL</a>
+  <!-- Speed: preconnect to GA/GTM -->
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="/style.css">
+  <!-- Inline critical styles for portability -->
+  <style>
+    /* Global styles for Pallet Calculator site */
+    *,
+    *::before,
+    *::after { box-sizing: border-box; }
+    body {
+      font: 16px/1.6 system-ui, Segoe UI, Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #1a202c;
+      background: #fff;
+    }
+    header,
+    footer {
+      padding: 1rem;
+      background: #f8fafc;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.75rem;
+    }
+    nav a {
+      margin-right: 0.75rem;
+      color: #3182ce;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    nav a:hover { text-decoration: underline; }
+    .lang-switch a {
+      margin-left: 0.5rem;
+      color: #3182ce;
+      text-decoration: none;
+    }
+    .lang-switch a:hover { text-decoration: underline; }
+    main {
+      padding: 1rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th,
+    td {
+      padding: 0.5rem;
+      border: 1px solid #e2e8f0;
+      text-align: left;
+    }
+    th {
+      background: #edf2f7;
+      font-weight: 600;
+    }
+    tbody tr:nth-child(even) {
+      background: #f7fafc;
+    }
+    input,
+    select {
+      margin-right: 0.5rem;
+    }
+    label {
+      margin-right: 1rem;
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+    button {
+      margin-top: 0.5rem;
+      margin-right: 0.5rem;
+      background: #3182ce;
+      color: #ffffff;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover { background: #2b6cb0; }
+    button:disabled {
+      background: #a0aec0;
+      cursor: not-allowed;
+    }
+    #shareControls button {
+      background: #4a5568;
+    }
+    #shareControls button:hover {
+      background: #2d3748;
+    }
+    .error { color: #c53030; }
+    .result { margin-top: 1rem; padding: 0.75rem; background: #f7fafc; border-radius: 4px; }
+    pre { background: #f7fafc; padding: 0.75rem; border-radius: 4px; overflow-x: auto; }
+  </style>
+
+  <!-- Canonical + hreflang -->
+  <link rel="canonical" href="https://www.pallet-calculator.com/how-many-pallets-in-40ft-container.html">
+  <link rel="alternate" href="https://www.pallet-calculator.com/how-many-pallets-in-40ft-container.html" hreflang="en">
+  <link rel="alternate" href="https://www.pallet-calculator.com/hi/how-many-pallets-in-40ft-container.html" hreflang="hi">
+  <link rel="alternate" href="https://www.pallet-calculator.com/how-many-pallets-in-40ft-container.html" hreflang="x-default">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="40‑Foot Container Pallet Calculator – How many pallets fit?">
+  <meta property="og:description" content="Calculate the number of pallets that fit in a 40‑foot container based on pallet length and width. Share results or embed the calculator.">
+  <meta property="og:url" content="https://www.pallet-calculator.com/how-many-pallets-in-40ft-container.html">
+  <meta property="og:image" content="https://www.pallet-calculator.com/assets/og/pallet.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- GA4 -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config','G-X4VDF9JBPE');
+    function ev(name, params){ try { gtag('event', name, params||{}); } catch(e) {} }
+  </script>
+
+  <!-- Schema: SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"40‑Foot Container Pallet Calculator",
+    "url":"https://www.pallet-calculator.com/how-many-pallets-in-40ft-container.html",
+    "applicationCategory":"BusinessApplication",
+    "operatingSystem":"Web",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+    "description":"Estimate the number of pallets that fit in a standard 40‑foot container based on pallet length and width.",
+    "publisher":{"@type":"Organization","name":"Pallet Tools"},
+    "inLanguage":"en"
+  }
+  </script>
+
+  <!-- Schema: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"How do I use the 40‑ft container pallet calculator?","acceptedAnswer":{"@type":"Answer","text":"Enter your pallet dimensions in inches and click Calculate. The tool determines how many pallets fit inside a 40‑foot container for two orientations."}},
+      {"@type":"Question","name":"What are the interior dimensions of a 40‑ft shipping container?","acceptedAnswer":{"@type":"Answer","text":"This calculator uses an interior length of approximately 473 inches and width of 92 inches for a 40‑foot container."}},
+      {"@type":"Question","name":"Does orientation affect pallet count?","acceptedAnswer":{"@type":"Answer","text":"Yes. The calculator evaluates both lengthwise and widthwise orientations and shows the maximum."}},
+      {"@type":"Question","name":"How can I share my pallet count?","acceptedAnswer":{"@type":"Answer","text":"Click Copy Link to copy a URL with your inputs, or click Embed to get an iframe code to embed the result on your website."}},
+      {"@type":"Question","name":"Can I input metric dimensions?","acceptedAnswer":{"@type":"Answer","text":"Inputs must be in inches. Convert your metric measurements to inches before using this tool."}}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>40‑Foot Container Pallet Calculator</h1>
+    <nav>
+      <!-- Use absolute URLs to avoid ambiguity and strengthen canonical signals -->
+      <a href="https://www.pallet-calculator.com/pallet-calculator/">Pallet Calculator</a>
+      <a href="https://www.pallet-calculator.com/ti-hi-calculator.html">TI HI Calculator</a>
+      <a href="https://www.pallet-calculator.com/pallet-weight-calculator.html">Weight Calculator</a>
+      <a href="https://www.pallet-calculator.com/pallet-cube-calculator.html">Cube Calculator</a>
+      <a href="https://www.pallet-calculator.com/how-many-pallets-in-53-foot-trailer.html">53-ft Trailer</a>
+      <a href="https://www.pallet-calculator.com/how-many-pallets-in-20ft-container.html">20 ft Container</a>
+      <a href="https://www.pallet-calculator.com/how-many-pallets-in-40ft-container.html">40 ft Container</a>
+      <a href="https://www.pallet-calculator.com/pallet-dimensions.html">Pallet Dimensions</a>
+    </nav>
+    <div class="lang-switch">
+      <a href="https://www.pallet-calculator.com/how-many-pallets-in-40ft-container.html">EN</a>
+      <a href="https://www.pallet-calculator.com/hi/how-many-pallets-in-40ft-container.html">HI</a>
+    </div>
+  </header>
+  <main>
+    <p>A standard 40‑foot shipping container has an interior length of approximately 473&nbsp;inches and width of 92&nbsp;inches. Use this calculator to estimate how many pallets fit inside, considering both orientations.</p>
+    <form id="containerForm">
+      <section>
+        <label>Pallet length (in): <input type="number" step="any" min="0" id="palletLength" required></label>
+        <label>Pallet width (in): <input type="number" step="any" min="0" id="palletWidth" required></label>
+      </section>
+      <button type="submit">Calculate</button>
+    </form>
+    <div id="containerResult"></div>
+    <div id="shareControls" style="margin-top:1rem; display:none;">
+      <button type="button" id="copyLink">Copy Link</button>
+      <button type="button" id="showEmbed">Embed</button>
+      <div id="embedCodeContainer" style="display:none; margin-top:0.5rem;">
+        <textarea id="embedCode" readonly style="width:100%; height:120px;"></textarea>
       </div>
-    </header>
-    <main>
-      <p>
-        A standard 40‑foot shipping container has an interior length of approximately 473 inches and width of 92 inches. Use this calculator to estimate how many pallets fit inside, considering both orientations.
-      </p>
-      <form id="containerForm">
-        <label>
-          Pallet length (in):
-          <input type="number" id="palletLength" step="any" min="1" value="48" required />
-        </label>
-        <label>
-          Pallet width (in):
-          <input type="number" id="palletWidth" step="any" min="1" value="40" required />
-        </label>
-        <button type="submit" class="btn">Calculate</button>
-      </form>
-      <div id="containerResult"></div>
-    </main>
-    <footer>
-      <p>
-        &copy; 2025 Pallet Tools. Last updated on
-        <time datetime="2025-08-17">August 17, 2025</time>.
-      </p>
-    </footer>
-    <script>
-      const CONTAINER_LENGTH = 473; // inches
-      const CONTAINER_WIDTH = 92; // inches
-      function parseParams() {
-        const params = new URLSearchParams(window.location.search);
-        const obj = {};
-        params.forEach((v, k) => (obj[k] = v));
-        return obj;
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2025 Pallet Tools. Last updated on August 17, 2025.</p>
+  </footer>
+  <script>
+    const CONTAINER_LENGTH = 473;
+    const CONTAINER_WIDTH = 92;
+    function parseParams(){ const params = new URLSearchParams(location.search); const obj={}; params.forEach((v,k)=>{ obj[k]=v; }); return obj; }
+    function loadFromQuery(){ const q=parseParams(); if(q.pl) document.getElementById('palletLength').value=q.pl; if(q.pw) document.getElementById('palletWidth').value=q.pw; }
+    function palletsByOrientation(length,width){ const countLength=Math.floor(CONTAINER_LENGTH/length); const countWidth=Math.floor(CONTAINER_WIDTH/width); return countLength*countWidth; }
+    function calculateContainer(){
+      const pL=parseFloat(document.getElementById('palletLength').value);
+      const pW=parseFloat(document.getElementById('palletWidth').value);
+      const resultEl=document.getElementById('containerResult');
+      if([pL,pW].some((v)=>isNaN(v)||v<=0)){
+        resultEl.innerHTML='<div class="error">Please enter valid positive pallet dimensions.</div>';
+        return;
       }
-      function loadFromQuery() {
-        const q = parseParams();
-        if (q.pl) document.getElementById('palletLength').value = q.pl;
-        if (q.pw) document.getElementById('palletWidth').value = q.pw;
-      }
-      document.getElementById('containerForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        calculateContainer();
-      });
-      function palletsByOrientation(length, width) {
-        const countLength = Math.floor(CONTAINER_LENGTH / length);
-        const countWidth = Math.floor(CONTAINER_WIDTH / width);
-        return countLength * countWidth;
-      }
-      function calculateContainer() {
-        const pL = parseFloat(document.getElementById('palletLength').value);
-        const pW = parseFloat(document.getElementById('palletWidth').value);
-        const resultEl = document.getElementById('containerResult');
-        if ([pL, pW].some((v) => isNaN(v) || v <= 0)) {
-          resultEl.innerHTML = '<div class="error">Please enter valid positive pallet dimensions.</div>';
-          return;
-        }
-        const countA = palletsByOrientation(pL, pW);
-        const countB = palletsByOrientation(pW, pL);
-        const maxCount = Math.max(countA, countB);
-        const orientation = countA >= countB ? 'lengthwise' : 'widthwise';
-        resultEl.innerHTML = `<div class="result"><p>Maximum pallets: <strong>${maxCount}</strong> (orientation: ${orientation})</p><p>Orientation A (pallet ${pL}"×${pW}"): ${countA}</p><p>Orientation B (pallet ${pW}"×${pL}"): ${countB}</p></div>`;
-        const params = new URLSearchParams();
-        params.set('pl', pL.toString());
-        params.set('pw', pW.toString());
-        const newUrl = window.location.pathname + '?' + params.toString();
-        window.history.replaceState({}, '', newUrl);
-      }
-      loadFromQuery();
-    </script>
-  </body>
+      const countA=palletsByOrientation(pL,pW);
+      const countB=palletsByOrientation(pW,pL);
+      const maxCount=Math.max(countA,countB);
+      const orientation=countA>=countB ? 'lengthwise' : 'widthwise';
+      resultEl.innerHTML=`<div class="result"><p>Maximum pallets: <strong>${maxCount}</strong> (orientation: ${orientation})</p><p>Orientation A (pallet ${pL}\"×${pW}\"): ${countA}</p><p>Orientation B (pallet ${pW}\"×${pL}\"): ${countB}</p></div>`;
+      const params=new URLSearchParams(); params.set('pl',pL.toString()); params.set('pw',pW.toString()); const newUrl=window.location.pathname+'?'+params.toString(); history.replaceState({},'',newUrl);
+      showShareControls();
+      ev('calculate_click',{tool:'container40',lang:'en'});
+    }
+    function showShareControls(){ const share=document.getElementById('shareControls'); share.style.display='block'; const iframeUrl=`https://www.pallet-calculator.com/embed/how-many-pallets-in-40ft-container/${location.search}`; const embedCode=`<iframe src=\"${iframeUrl}\" width=\"100%\" height=\"230\" style=\"border:1px solid #e5e7eb;border-radius:12px\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>`; document.getElementById('embedCode').value=embedCode; }
+    document.getElementById('containerForm').addEventListener('submit',function(e){ e.preventDefault(); calculateContainer(); });
+    document.getElementById('copyLink').addEventListener('click',async function(){ try{ await navigator.clipboard.writeText(location.href); ev('copy_result',{tool:'container40'}); alert('Link copied!'); } catch(e){ alert('Copy failed'); } });
+    document.getElementById('showEmbed').addEventListener('click',function(){ const container=document.getElementById('embedCodeContainer'); container.style.display=container.style.display==='none'?'block':'none'; ev('embed_view',{tool:'container40'}); });
+    loadFromQuery();
+  </script>
+</body>
 </html>
