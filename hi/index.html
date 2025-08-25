@@ -4,11 +4,21 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>पैलेट कैलकुलेटर और लोड‑प्लानिंग टूल्स</title>
-  <meta name="description" content="प्रति पैलेट बॉक्स, TI‑HI (लेयर्स × कॉलम), स्टैक ऊँचाई/वजन और 20ft/40ft क्षमता का अनुमान। EU/US प्रीसेट्स, साथ में AU/JP।" />
+  <meta name="description" content="प्रति पैलेट बॉक्स, TI‑HI (लेयर्स × कॉलम), स्टैक ऊँचाई/वजन और 20ft/40ft/53‑ft क्षमता का अनुमान। EU/US प्रीसेट्स, साथ में AU/JP।" />
   <link rel="canonical" href="https://pallet-calculator.com/hi/" />
   <link rel="alternate" hreflang="hi" href="https://pallet-calculator.com/hi/" />
   <link rel="alternate" hreflang="en" href="https://pallet-calculator.com/" />
   <link rel="alternate" hreflang="x-default" href="https://pallet-calculator.com/" />
+
+  <!-- Google tag (gtag.js) — place immediately after <head> (ONE snippet per page) -->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X4VDF9JBPE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'G-X4VDF9JBPE');
+  </script>
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="पैलेट कैलकुलेटर" />
@@ -19,18 +29,48 @@
   <link rel="icon" href="/favicon.ico" />
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 
-  <!-- Google tag (gtag.js) — place immediately after <head> (ONE snippet per page) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXJVLGW6C3"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} 
-    gtag('js', new Date());
-    gtag('config', 'G-MXJVLGW6C3');
-  </script>
-
-  <link rel="stylesheet" href="/styles.css" />
   <style>
-    .lang-switch{font-size:13px; color:#94a3b8}
+    /* —— Neutral blue‑gray theme (consistent with EN pages) —— */
+    :root{ --bg:#0b1220; --panel:#0f172a; --muted:#94a3b8; --text:#e5e7eb; --brand:#3b82f6; --brand-2:#60a5fa; --radius:14px; --shadow:0 6px 18px rgba(0,0,0,.28); --container: 1120px; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; background:linear-gradient(180deg,#0b1220 0%, #0b1220 60%, #0e1526 100%); color:var(--text); font: 16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
+    a{color:var(--brand); text-decoration:none}
+    a:hover{color:var(--brand-2)}
+    .container{max-width:var(--container); margin:0 auto; padding:24px}
+    header.site-header{position:sticky; top:0; backdrop-filter:saturate(150%) blur(8px); background:rgba(15,23,42,.65); border-bottom:1px solid rgba(148,163,184,.15); z-index:20}
+    .brand{display:inline-flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px; color:#fff}
+    .brand .dot{width:12px;height:12px;border-radius:50%;background:var(--brand); box-shadow:0 0 0 6px rgba(59,130,246,.18)}
+    nav.nav{display:flex; gap:12px; flex-wrap:wrap}
+    nav.nav a{color:var(--muted); padding:8px 12px; border-radius:999px; border:1px solid rgba(148,163,184,.18)}
+    nav.nav a[aria-current="page"], nav.nav a:hover{color:#fff; background:rgba(59,130,246,.12); border-color:rgba(59,130,246,.35)}
+
+    .hero{display:grid; gap:16px; align-items:center; padding:32px 0}
+    .hero h1{font-size:clamp(28px,3.2vw,42px); line-height:1.15; margin:0}
+    .hero p{color:var(--muted); margin:0}
+    .cta{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 16px; border-radius:12px; border:1px solid rgba(148,163,184,.25); background:#0b1220; color:#e5e7eb}
+    .btn:hover{border-color:rgba(59,130,246,.55); background:rgba(59,130,246,.10)}
+    .btn.primary{background:var(--brand); border-color:var(--brand); color:#fff}
+    .btn.primary:hover{background:#2563eb}
+
+    .grid{display:grid; gap:18px}
+    @media(min-width:960px){ .tools{grid-template-columns: repeat(3,1fr)} }
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)); border:1px solid rgba(148,163,184,.18); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .card .card-body{padding:18px}
+    .card h3{margin:0 0 8px}
+    .muted{color:var(--muted)}
+
+    .sample{display:grid; gap:12px}
+    @media(min-width:960px){ .sample{grid-template-columns: repeat(4,1fr)} }
+    .sample a{display:block; padding:14px; border-radius:12px; border:1px solid rgba(148,163,184,.18)}
+    .sample a:hover{background:rgba(59,130,246,.08); border-color:rgba(59,130,246,.35)}
+
+    footer{color:var(--muted); border-top:1px solid rgba(148,163,184,.15); margin-top:36px}
+    footer .container{display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between}
+
+    .lang-switch{font-size:13px; color:#94a3b8; margin-top:6px}
   </style>
 </head>
 <body>
@@ -45,6 +85,7 @@
         <a href="/pallet-weight-calculator.html">Weight</a>
         <a href="/how-many-pallets-in-20ft-container.html">20ft</a>
         <a href="/how-many-pallets-in-40ft-container.html">40ft</a>
+        <a href="/how-many-pallets-in-53-foot-trailer.html">53‑ft</a>
       </nav>
     </div>
   </header>
@@ -55,11 +96,12 @@
     <!-- Hero -->
     <section class="hero">
       <h1>पैलेट कैलकुलेटर और लोड‑प्लानिंग टूल्स</h1>
-      <p class="muted">प्रति पैलेट बॉक्स, <b>TI‑HI</b> (लेयर्स × कॉलम), स्टैक ऊँचाई/वजन और 20ft/40ft क्षमता का अनुमान। EU/US प्रीसेट्स, साथ में AU/JP।</p>
+      <p class="muted">प्रति पैलेट बॉक्स, <b>TI‑HI</b> (लेयर्स × कॉलम), स्टैक ऊँचाई/वजन और 20ft/40ft/53‑ft क्षमता का अनुमान। EU/US प्रीसेट्स, साथ में AU/JP।</p>
       <div class="cta">
         <a class="btn primary" href="/pallet-calculator.html" onclick="gtag('event','cta_click',{to:'pallet-calculator',lang:'hi'})">Pallet Calculator खोलें</a>
         <a class="btn" href="/how-many-pallets-in-20ft-container.html">20ft क्षमता</a>
         <a class="btn" href="/how-many-pallets-in-40ft-container.html">40ft क्षमता</a>
+        <a class="btn" href="/how-many-pallets-in-53-foot-trailer.html">53‑ft क्षमता</a>
       </div>
     </section>
 
@@ -86,7 +128,7 @@
         <p class="muted">बॉक्स वजन × मात्रा, पैलेट टेयर/एक्स्ट्रा और सीमाएँ।</p>
       </div></article>
       <article class="card"><div class="card-body">
-        <h3><a href="/pallet-calculator.html?container=20ft">Container Fit (20/40ft)</a></h3>
+        <h3><a href="/pallet-calculator.html?container=20ft">Container Fit (20/40/53‑ft)</a></h3>
         <p class="muted">कंटेनर प्रकार के साथ प्री‑सेट खोलें।</p>
       </div></article>
     </section>
@@ -98,6 +140,7 @@
         <a href="/pallet-calculator.html?units=mm&boxL=300&boxW=200&boxH=150&palL=1200&palW=1000&palH=144&palMax=1200&allowRotate=yes" onclick="gtag('event','sample_click',{sample:'EU 1200×1000',lang:'hi'})">EU 1200×1000 · बॉक्स 300×200×150mm · मैक्स 1200mm</a>
         <a href="/pallet-calculator.html?units=in&boxL=12&boxW=8&boxH=6&palL=48&palW=40&palH=5.5&palMax=48&allowRotate=yes" onclick="gtag('event','sample_click',{sample:'US 48×40',lang:'hi'})">US 48×40 · बॉक्स 12×8×6in · मैक्स 48in</a>
         <a href="/pallet-calculator.html?units=mm&boxL=300&boxW=300&boxH=200&palL=1165&palW=1165&allowRotate=no" onclick="gtag('event','sample_click',{sample:'AU 1165×1165',lang:'hi'})">AU 1165×1165 · बॉक्स 300×300×200mm · Single layer</a>
+        <a href="/pallet-calculator.html?container=53ft&units=in&palL=48&palW=40&allowRotate=yes" onclick="gtag('event','sample_click',{sample:'53‑ft 48×40',lang:'hi'})">53‑ft ट्रेलर · US 48×40 · Quick start</a>
       </div>
     </section>
 
@@ -121,6 +164,11 @@
       <p>Contact: <a href="mailto:support@pallet-calculator.com">support@pallet-calculator.com</a></p>
     </div>
   </footer>
+
+  <script>
+    function gnav(to){ try{ gtag('event','nav_click',{to,lang:'hi'}); }catch(e){} }
+    document.querySelectorAll('nav.nav a').forEach(a=>a.addEventListener('click',()=>gnav(a.textContent.trim())));
+  </script>
 
   <!-- Structured data: WebSite (hi) -->
   <script type="application/ld+json">
