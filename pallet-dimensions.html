@@ -1,140 +1,183 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Common Pallet Dimensions – Reference table</title>
-  <meta name="description" content="Reference table of common pallet sizes around the world, including US, European and Australian standards. Compare dimensions in inches and millimetres.">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-  <!-- Global CSS -->
-  <link rel="stylesheet" href="/style.css">
-  <!-- Inline critical styles for portability -->
-  <style>
-    /* Global styles for Pallet Calculator site */
-    *,
-    *::before,
-    *::after { box-sizing: border-box; }
-    body {
-      font: 16px/1.6 system-ui, Segoe UI, Roboto, sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #1a202c;
-      background: #fff;
-    }
-    header,
-    footer {
-      padding: 1rem;
-      background: #f8fafc;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 1.75rem;
-    }
-    nav a {
-      margin-right: 0.75rem;
-      color: #3182ce;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    nav a:hover { text-decoration: underline; }
-    .lang-switch a {
-      margin-left: 0.5rem;
-      color: #3182ce;
-      text-decoration: none;
-    }
-    .lang-switch a:hover { text-decoration: underline; }
-    main {
-      padding: 1rem;
-      max-width: 960px;
-      margin: 0 auto;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-    th,
-    td {
-      padding: 0.5rem;
-      border: 1px solid #e2e8f0;
-      text-align: left;
-    }
-    th {
-      background: #edf2f7;
-      font-weight: 600;
-    }
-    tbody tr:nth-child(even) {
-      background: #f7fafc;
-    }
-    input,
-    select {
-      margin-right: 0.5rem;
-    }
-    label {
-      margin-right: 1rem;
-      display: inline-block;
-      margin-top: 0.5rem;
-    }
-    button {
-      margin-top: 0.5rem;
-      margin-right: 0.5rem;
-      background: #3182ce;
-      color: #ffffff;
-      border: none;
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover { background: #2b6cb0; }
-    button:disabled {
-      background: #a0aec0;
-      cursor: not-allowed;
-    }
-    #shareControls button {
-      background: #4a5568;
-    }
-    #shareControls button:hover {
-      background: #2d3748;
-    }
-    .error { color: #c53030; }
-    .result { margin-top: 1rem; padding: 0.75rem; background: #f7fafc; border-radius: 4px; }
-    pre { background: #f7fafc; padding: 0.75rem; border-radius: 4px; overflow-x: auto; }
-  </style>
-
-  <!-- Speed: preconnect to GA/GTM -->
-  <link rel="preconnect" href="https://www.googletagmanager.com">
-
-  <!-- Canonical + hreflang -->
-  <link rel="canonical" href="https://www.pallet-calculator.com/pallet-dimensions.html">
-  <link rel="alternate" href="https://www.pallet-calculator.com/pallet-dimensions.html" hreflang="en">
-  <link rel="alternate" href="https://www.pallet-calculator.com/hi/pallet-dimensions.html" hreflang="hi">
-  <link rel="alternate" href="https://www.pallet-calculator.com/pallet-dimensions.html" hreflang="x-default">
-
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Common Pallet Dimensions – Reference table">
-  <meta property="og:description" content="Explore standard pallet sizes used in different regions. Dimensions are provided in both inches and millimetres.">
-  <meta property="og:url" content="https://www.pallet-calculator.com/pallet-dimensions.html">
-  <meta property="og:image" content="https://www.pallet-calculator.com/assets/og/pallet.png">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- GA4 -->
+  <!-- Google tag (gtag.js) — place immediately after <head> (ONE snippet per page) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXJVLGW6C3"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config','G-X4VDF9JBPE');
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'G-MXJVLGW6C3');
   </script>
 
-  <!-- Schema: WebPage + FAQPage -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pallet Dimensions — Common Standards (EU/US/AU/JP) + Quick Apply</title>
+  <meta name="description" content="Reference pallet sizes for EU, US, AU, and JP standards with quick links that pre‑fill the pallet calculator. Includes mm/in conversions and FAQs." />
+  <link rel="canonical" href="https://pallet-calculator.com/pallet-dimensions.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Pallet Dimensions" />
+  <meta property="og:description" content="EU/US/AU/JP pallet sizes with quick links into the calculator." />
+  <meta property="og:url" content="https://pallet-calculator.com/pallet-dimensions.html" />
+  <meta property="og:image" content="https://pallet-calculator.com/og-placeholder.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+
+  <style>
+    :root{ --bg:#0b1220; --panel:#0f172a; --muted:#94a3b8; --text:#e5e7eb; --brand:#3b82f6; --brand-2:#60a5fa; --radius:14px; --shadow:0 6px 18px rgba(0,0,0,.28); --container: 1120px; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; background:linear-gradient(180deg,#0b1220 0%, #0b1220 60%, #0e1526 100%); color:var(--text); font: 16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
+    a{color:var(--brand); text-decoration:none}
+    a:hover{color:var(--brand-2)}
+    .container{max-width:var(--container); margin:0 auto; padding:24px}
+    header.site-header{position:sticky; top:0; backdrop-filter:saturate(150%) blur(8px); background:rgba(15,23,42,.65); border-bottom:1px solid rgba(148,163,184,.15); z-index:20}
+    .brand{display:inline-flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px; color:#fff}
+    .brand .dot{width:12px;height:12px;border-radius:50%;background:var(--brand); box-shadow:0 0 0 6px rgba(59,130,246,.18)}
+    nav.nav{display:flex; gap:12px; flex-wrap:wrap}
+    nav.nav a{color:var(--muted); padding:8px 12px; border-radius:999px; border:1px solid rgba(148,163,184,.18)}
+    nav.nav a[aria-current="page"], nav.nav a:hover{color:#fff; background:rgba(59,130,246,.12); border-color:rgba(59,130,246,.35)}
+
+    h1{font-size:clamp(28px,3.2vw,40px); line-height:1.15; margin:24px 0 8px}
+    h2{font-size:clamp(20px,2.2vw,26px); margin:20px 0 12px}
+    h3{font-size:19px; margin:12px 0}
+    .muted{color:var(--muted)}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)); border:1px solid rgba(148,163,184,.18); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .card .card-body{padding:18px}
+
+    .table{width:100%; border-collapse:collapse}
+    .table th,.table td{padding:10px 12px; border-bottom:1px solid rgba(148,163,184,.18)}
+    .table th{text-align:left; color:#cbd5e1}
+
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:8px 12px; border-radius:12px; border:1px solid rgba(148,163,184,.25); background:#0b1220; color:#e5e7eb; cursor:pointer}
+    .btn:hover{border-color:rgba(59,130,246,.55); background:rgba(59,130,246,.10)}
+
+    .pill-group{display:flex; flex-wrap:wrap; gap:8px}
+    .pill{display:inline-flex; padding:6px 10px; border-radius:999px; border:1px solid rgba(148,163,184,.25); color:#dbeafe}
+    .pill:hover{border-color:rgba(59,130,246,.55); background:rgba(59,130,246,.10)}
+
+    footer{color:var(--muted); border-top:1px solid rgba(148,163,184,.15); margin-top:36px}
+    footer .container{display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:16px;">
+      <a class="brand" href="/index.html" aria-label="pallet-calculator home"><span class="dot"></span> pallet‑calculator</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/pallet-calculator.html">Pallet Calculator</a>
+        <a href="/ti-hi-calculator.html">TI‑HI</a>
+        <a href="/pallet-cube-calculator.html">Cube</a>
+        <a href="/pallet-dimensions.html" aria-current="page">Dimensions</a>
+        <a href="/pallet-weight-calculator.html">Weight</a>
+        <a href="/how-many-pallets-in-20ft-container.html">20ft</a>
+        <a href="/how-many-pallets-in-40ft-container.html">40ft</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Pallet Dimensions</h1>
+    <p class="muted" style="margin-top:-6px">Common pallet standards with mm/in conversions and quick links that open the <b>Pallet Calculator</b> pre‑filled. Sizes are nominal; always confirm with your supplier.</p>
+
+    <section class="card" style="margin-top:12px">
+      <div class="card-body">
+        <h2>Common standards</h2>
+        <table class="table" aria-describedby="note">
+          <thead>
+            <tr>
+              <th>Region / Standard</th>
+              <th>Size (mm)</th>
+              <th>Size (in)</th>
+              <th>Quick apply</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>EU — Euro (EPAL 1)</td>
+              <td>1200 × 800</td>
+              <td>47.2 × 31.5</td>
+              <td><a class="btn" href="/pallet-calculator.html?units=mm&palL=1200&palW=800" onclick="gtag('event','dim_apply',{std:'EU 1200x800'})">Use in Calculator</a></td>
+            </tr>
+            <tr>
+              <td>EU — Industrial</td>
+              <td>1200 × 1000</td>
+              <td>47.2 × 39.4</td>
+              <td><a class="btn" href="/pallet-calculator.html?units=mm&palL=1200&palW=1000" onclick="gtag('event','dim_apply',{std:'EU 1200x1000'})">Use in Calculator</a></td>
+            </tr>
+            <tr>
+              <td>US — GMA</td>
+              <td>1219 × 1016</td>
+              <td>48 × 40</td>
+              <td><a class="btn" href="/pallet-calculator.html?units=in&palL=48&palW=40" onclick="gtag('event','dim_apply',{std:'US 48x40'})">Use in Calculator</a></td>
+            </tr>
+            <tr>
+              <td>AU — Standard</td>
+              <td>1165 × 1165</td>
+              <td>45.9 × 45.9</td>
+              <td><a class="btn" href="/pallet-calculator.html?units=mm&palL=1165&palW=1165" onclick="gtag('event','dim_apply',{std:'AU 1165x1165'})">Use in Calculator</a></td>
+            </tr>
+            <tr>
+              <td>JP — Industrial</td>
+              <td>1100 × 1100</td>
+              <td>43.3 × 43.3</td>
+              <td><a class="btn" href="/pallet-calculator.html?units=mm&palL=1100&palW=1100" onclick="gtag('event','dim_apply',{std:'JP 1100x1100'})">Use in Calculator</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <p id="note" class="muted" style="margin:8px 0 0">Numbers are nominal. Height, deck style, and safe load vary by manufacturer and application.</p>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:18px">
+      <div class="card-body">
+        <h2>Quick presets</h2>
+        <div class="pill-group">
+          <a class="pill" href="/pallet-calculator.html?units=mm&palL=1200&palW=800">EU 1200×800</a>
+          <a class="pill" href="/pallet-calculator.html?units=mm&palL=1200&palW=1000">EU 1200×1000</a>
+          <a class="pill" href="/pallet-calculator.html?units=in&palL=48&palW=40">US 48×40</a>
+          <a class="pill" href="/pallet-calculator.html?units=mm&palL=1165&palW=1165">AU 1165×1165</a>
+          <a class="pill" href="/pallet-calculator.html?units=mm&palL=1100&palW=1100">JP 1100×1100</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:18px">
+      <div class="card-body">
+        <h2>FAQ</h2>
+        <h3>What about pallet height and weight ratings?</h3>
+        <p class="muted">Those vary widely by design (stringer vs block), material, and manufacturer. Use the <a href="/pallet-weight-calculator.html">Pallet Weight Calculator</a> and confirm ratings with your supplier.</p>
+        <h3>Do you support inches?</h3>
+        <p class="muted">Yes. Open the calculator in inches using the US link or switch units inside the tool.</p>
+        <h3>Are there other sizes?</h3>
+        <p class="muted">Yes. Industry and regional variants exist. You can enter any custom size in the calculator to plan your load.</p>
+        <h3>Disclaimer</h3>
+        <p class="muted">This page is for planning reference only. Verify specifications with your pallet supplier and logistics provider.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 pallet-calculator.com</p>
+      <p>Contact: <a href="mailto:contact@pallet-calculator.com">contact@pallet-calculator.com</a> (placeholder)</p>
+    </div>
+  </footer>
+
+  <!-- Structured data: ItemList of pallet standards + FAQ -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"WebPage",
-    "name":"Common Pallet Dimensions",
-    "url":"https://www.pallet-calculator.com/pallet-dimensions.html",
-    "description":"Reference table of common pallet sizes around the world, including US, European and Australian standards.",
-    "inLanguage":"en",
-    "publisher":{"@type":"Organization","name":"Pallet Tools"}
+    "@type":"ItemList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"EU 1200×800 (Euro)","url":"https://pallet-calculator.com/pallet-calculator.html?units=mm&palL=1200&palW=800"},
+      {"@type":"ListItem","position":2,"name":"EU 1200×1000 (Industrial)","url":"https://pallet-calculator.com/pallet-calculator.html?units=mm&palL=1200&palW=1000"},
+      {"@type":"ListItem","position":3,"name":"US 48×40 (1219×1016)","url":"https://pallet-calculator.com/pallet-calculator.html?units=in&palL=48&palW=40"},
+      {"@type":"ListItem","position":4,"name":"AU 1165×1165","url":"https://pallet-calculator.com/pallet-calculator.html?units=mm&palL=1165&palW=1165"},
+      {"@type":"ListItem","position":5,"name":"JP 1100×1100","url":"https://pallet-calculator.com/pallet-calculator.html?units=mm&palL=1100&palW=1100"}
+    ]
   }
   </script>
   <script type="application/ld+json">
@@ -142,60 +185,11 @@
     "@context":"https://schema.org",
     "@type":"FAQPage",
     "mainEntity":[
-      {"@type":"Question","name":"What is the standard pallet size in the US?","acceptedAnswer":{"@type":"Answer","text":"In the United States the most common pallet size is 48 × 40 inches (1219 × 1016 mm)."}},
-      {"@type":"Question","name":"What are Euro pallets?","acceptedAnswer":{"@type":"Answer","text":"Euro pallets are typically 1200 × 800 mm (47.2 × 31.5 inches) and are widely used across Europe."}},
-      {"@type":"Question","name":"Do pallet sizes vary by region?","acceptedAnswer":{"@type":"Answer","text":"Yes. Different regions and industries adopt different standard sizes, such as 1200 × 1000 mm in the UK/Asia and 1165 × 1165 mm in Australia."}},
-      {"@type":"Question","name":"How do I choose the right pallet size?","acceptedAnswer":{"@type":"Answer","text":"Select a pallet size based on your shipping standards, product dimensions and regional requirements. Our pallet calculators help you determine capacity given a specific pallet size."}},
-      {"@type":"Question","name":"Where can I calculate how many pallets fit in a container or trailer?","acceptedAnswer":{"@type":"Answer","text":"Use our 53‑ft Trailer and Container calculators linked in the navigation above to estimate how many pallets fit based on their dimensions."}}
+      {"@type":"Question","name":"What about pallet height and weight ratings?","acceptedAnswer":{"@type":"Answer","text":"They vary widely by design, material, and manufacturer. Use the Pallet Weight Calculator and confirm with your supplier."}},
+      {"@type":"Question","name":"Do you support inches?","acceptedAnswer":{"@type":"Answer","text":"Yes. Open the calculator in inches using the US link or switch units inside the tool."}},
+      {"@type":"Question","name":"Are there other sizes?","acceptedAnswer":{"@type":"Answer","text":"Yes. Many regional and industry variants exist. You can enter any custom size in the calculator."}}
     ]
   }
   </script>
-  <style>
-    /* Page-specific table styles (global table styles defined in style.css) */
-    .content { padding: 1rem; }
-    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-    th, td { padding: 0.5rem; border: 1px solid #e2e8f0; text-align: left; }
-    th { background: #edf2f7; font-weight: 600; }
-    tbody tr:nth-child(even) { background: #f7fafc; }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Common Pallet Dimensions</h1>
-    <nav>
-      <!-- Use absolute URLs to avoid ambiguity and strengthen canonical signals -->
-      <a href="https://www.pallet-calculator.com/pallet-calculator/">Pallet Calculator</a>
-      <a href="https://www.pallet-calculator.com/ti-hi-calculator.html">TI HI Calculator</a>
-      <a href="https://www.pallet-calculator.com/pallet-weight-calculator.html">Weight Calculator</a>
-      <a href="https://www.pallet-calculator.com/pallet-cube-calculator.html">Cube Calculator</a>
-      <a href="https://www.pallet-calculator.com/how-many-pallets-in-53-foot-trailer.html">53-ft Trailer</a>
-      <a href="https://www.pallet-calculator.com/how-many-pallets-in-20ft-container.html">20 ft Container</a>
-      <a href="https://www.pallet-calculator.com/how-many-pallets-in-40ft-container.html">40 ft Container</a>
-      <a href="https://www.pallet-calculator.com/pallet-dimensions.html">Pallet Dimensions</a>
-    </nav>
-    <div class="lang-switch">
-      <a href="https://www.pallet-calculator.com/pallet-dimensions.html">EN</a>
-      <a href="https://www.pallet-calculator.com/hi/pallet-dimensions.html">HI</a>
-    </div>
-  </header>
-  <div class="content">
-    <p>Pallet sizes vary by region and application. Below is a reference table of common pallet dimensions used around the world. Dimensions are shown as length × width; heights can vary depending on construction and material.</p>
-    <table>
-      <thead>
-        <tr><th>Region/Standard</th><th>Dimensions (mm)</th><th>Dimensions (in)</th><th>Notes</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>US (GMA)</td><td>1219 × 1016</td><td>48 × 40</td><td>Most common in North America</td></tr>
-        <tr><td>Euro Pallet (EUR)</td><td>1200 × 800</td><td>47.2 × 31.5</td><td>Standard across Europe</td></tr>
-        <tr><td>UK/Asia</td><td>1200 × 1000</td><td>47.2 × 39.4</td><td>Used in UK and parts of Asia</td></tr>
-        <tr><td>Australia</td><td>1165 × 1165</td><td>45.9 × 45.9</td><td>Australian standard size</td></tr>
-        <tr><td>Asia (ISO)</td><td>1100 × 1100</td><td>43.3 × 43.3</td><td>Common in Asia and for ISO containers</td></tr>
-        <tr><td>Industrial</td><td>1219 × 1219</td><td>48 × 48</td><td>Often used for drums or heavy goods</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <footer>
-    <p>&copy; 2025 Pallet Tools. Last updated on August 17, 2025.</p>
-  </footer>
 </body>
 </html>
