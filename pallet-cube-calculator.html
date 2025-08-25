@@ -3,12 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pallet Cube Calculator – Volume (m³/ft³) & Utilization</title>
-  <meta name="description" content="Estimate pallet cube (m³/ft³) from pallet size and stack height/layers. Optional box inputs compute TI, layers, total boxes, and volume utilization. EU/US + AU/JP presets." />
+  <title>Pallet Cube Calculator – Pallet Volume & Utilization</title>
+  <meta name="description" content="Compute pallet cube (m³/ft³) from pallet L × W × stack height. Optional box inputs estimate TI‑HI and volume utilization. EU/US + AU/JP presets." />
   <link rel="canonical" href="https://pallet-calculator.com/pallet-cube-calculator.html" />
+  <link rel="alternate" hreflang="en" href="https://pallet-calculator.com/pallet-cube-calculator.html" />
+  <link rel="alternate" hreflang="x-default" href="https://pallet-calculator.com/pallet-cube-calculator.html" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Pallet Cube Calculator" />
-  <meta property="og:description" content="Compute pallet volume and utilization; add box size to estimate TI, layers, and total boxes." />
+  <meta property="og:description" content="Estimate pallet volume (m³/ft³) and optional box utilization with TI‑HI." />
   <meta property="og:url" content="https://pallet-calculator.com/pallet-cube-calculator.html" />
   <meta property="og:image" content="https://pallet-calculator.com/og-placeholder.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -16,12 +18,13 @@
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 
   <!-- Google tag (gtag.js) — place immediately after <head> (ONE snippet per page) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXJVLGW6C3"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X4VDF9JBPE"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);} 
     gtag('js', new Date());
-    gtag('config', 'G-MXJVLGW6C3');
+    gtag('config', 'G-X4VDF9JBPE');
   </script>
 
   <style>
@@ -61,13 +64,11 @@
     .btn:hover{border-color:rgba(59,130,246,.55); background:rgba(59,130,246,.10)}
     .btn.primary{background:var(--brand); border-color:var(--brand); color:#fff}
     .btn.primary:hover{background:#2563eb}
-    .btn.ghost{background:transparent}
-    .pill-group{display:flex; flex-wrap:wrap; gap:8px}
 
     .stat{background:rgba(148,163,184,.10); padding:10px 12px; border:1px dashed rgba(148,163,184,.25); border-radius:10px; margin-bottom:10px}
     .stat b{font-size:18px}
 
-    .preview{height:240px; background:repeating-linear-gradient(45deg, rgba(59,130,246,.08) 0 12px, transparent 12px 24px); border-radius:var(--radius); border:1px dashed rgba(148,163,184,.25); display:flex; align-items:center; justify-content:center; color:var(--muted)}
+    .preview{height:220px; background:repeating-linear-gradient(45deg, rgba(59,130,246,.08) 0 12px, transparent 12px 24px); border-radius:var(--radius); border:1px dashed rgba(148,163,184,.25); display:flex; align-items:center; justify-content:center; color:var(--muted)}
 
     footer{color:var(--muted); border-top:1px solid rgba(148,163,184,.15); margin-top:36px}
     footer .container{display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between}
@@ -85,33 +86,28 @@
         <a href="/pallet-weight-calculator.html">Weight</a>
         <a href="/how-many-pallets-in-20ft-container.html">20ft</a>
         <a href="/how-many-pallets-in-40ft-container.html">40ft</a>
+        <a href="/how-many-pallets-in-53-foot-trailer.html">53‑ft</a>
       </nav>
     </div>
   </header>
 
   <main class="container">
     <h1>Pallet Cube Calculator</h1>
-    <p class="muted" style="margin-top:-6px">Compute pallet volume in <b>m³</b> and <b>ft³</b>. Enter pallet size and either a <i>max stack height</i> or a <i>number of layers</i>. Add optional box dimensions to estimate TI, layers, total boxes, and <b>volume utilization</b>.</p>
+    <p class="muted" style="margin-top:-6px">Enter pallet L × W and either a <b>max stack height</b> or <b>layers × box height</b>. Optionally add box dimensions to estimate <b>TI‑HI</b> and <b>cube utilization</b>.</p>
 
     <div class="grid grid-2" style="margin-top:12px">
       <!-- Inputs -->
       <section class="card" aria-labelledby="inputs">
         <div class="card-body">
           <h2 id="inputs">Inputs</h2>
-          <div class="form-row-2" role="group" aria-label="Units and mode">
+          <div class="form-row-2" role="group" aria-label="Units and height mode">
             <div class="field">
               <label for="units">Units</label>
-              <select id="units">
-                <option value="mm">Millimeters (mm)</option>
-                <option value="in">Inches (in)</option>
-              </select>
+              <select id="units"><option value="mm">Millimeters (mm)</option><option value="in">Inches (in)</option></select>
             </div>
             <div class="field">
-              <label for="mode">Height mode</label>
-              <select id="mode">
-                <option value="stack">Max stack height</option>
-                <option value="layers">Number of layers</option>
-              </select>
+              <label for="hmode">Height mode</label>
+              <select id="hmode"><option value="max">Max stack height</option><option value="layers">Layers × box height</option></select>
             </div>
           </div>
 
@@ -126,24 +122,24 @@
           <div class="form-row" role="group" aria-label="Pallet dimensions">
             <div class="field"><label for="palL">Length</label> <input id="palL" type="number" min="0" step="0.01" placeholder="e.g. 1200"/></div>
             <div class="field"><label for="palW">Width</label>  <input id="palW" type="number" min="0" step="0.01" placeholder="e.g. 1000"/></div>
-            <div class="field"><label for="palH">Pallet base height (optional)</label> <input id="palH" type="number" min="0" step="0.01" placeholder="e.g. 144"/></div>
-            <div class="field stack-field"><label for="maxH">Max stack height</label> <input id="maxH" type="number" min="0" step="0.01" placeholder="e.g. 1200"/></div>
-            <div class="field layers-field" style="display:none"><label for="layers">Number of layers</label> <input id="layers" type="number" min="0" step="1" placeholder="e.g. 5"/></div>
+            <div class="field only-max"><label for="palH">Max stack height</label> <input id="palH" type="number" min="0" step="0.01" placeholder="e.g. 1200"/></div>
+            <div class="field only-layers" style="display:none"><label for="layers">Layers (HI)</label> <input id="layers" type="number" min="0" step="1" placeholder="e.g. 5"/></div>
+            <div class="field only-layers" style="display:none"><label for="boxH">Box height</label> <input id="boxH" type="number" min="0" step="0.01" placeholder="e.g. 150"/></div>
           </div>
 
           <h3 style="margin-top:10px">Box (optional)</h3>
-          <div class="form-row" role="group" aria-label="Box dimensions">
+          <div class="form-row" role="group" aria-label="Box dimensions for TI‑HI and utilization">
             <div class="field"><label for="boxL">Length</label> <input id="boxL" type="number" min="0" step="0.01" placeholder="e.g. 300"/></div>
             <div class="field"><label for="boxW">Width</label>  <input id="boxW" type="number" min="0" step="0.01" placeholder="e.g. 200"/></div>
-            <div class="field"><label for="boxH">Height</label> <input id="boxH" type="number" min="0" step="0.01" placeholder="e.g. 150"/></div>
             <div class="field"><label for="allowRotate">Allow 90° rotation</label>
               <select id="allowRotate"><option value="yes">Yes</option><option value="no">No</option></select>
             </div>
+            <div class="field"><label for="gap">Spacing allowance (mm/in)</label> <input id="gap" type="number" min="0" step="0.1" placeholder="0"></div>
           </div>
 
-          <div style="display:flex; gap:10px; margin-top:14px">
+          <div style="display:flex; gap:10px; margin-top:14px; flex-wrap:wrap">
             <button id="calcBtn" class="btn primary" type="button">Calculate</button>
-            <button id="example" class="btn ghost" type="button">Try example</button>
+            <button id="example" class="btn" type="button">Try example</button>
             <a class="btn" id="openCalc" href="/pallet-calculator.html" onclick="gtag('event','cta_click',{from:'cube',to:'pallet-calculator'})">Open Pallet Calculator</a>
           </div>
         </div>
@@ -153,10 +149,10 @@
       <section class="card" aria-labelledby="results">
         <div class="card-body">
           <h2 id="results">Results</h2>
-          <div class="stat">Estimated total height: <b id="estHeight">–</b> <span id="uH">mm</span></div>
           <div class="stat">Pallet cube: <b id="cubeM3">–</b> m³ · <b id="cubeFT3">–</b> ft³</div>
-          <div class="stat">Boxes per layer (TI): <b id="ti">–</b> · Layers: <b id="hi">–</b> · Total boxes: <b id="total">–</b></div>
-          <div class="stat">Volume utilization (if box given): <b id="util">–</b></div>
+          <div class="stat">If box given: TI <b id="ti">–</b> · HI <b id="hi">–</b> · Boxes/pallet <b id="total">–</b></div>
+          <div class="stat">Box cube: <b id="boxM3">–</b> m³ · <b id="boxFT3">–</b> ft³</div>
+          <div class="stat">Volume utilization: <b id="util">–</b></div>
           <div class="preview" id="preview">Preview will render here</div>
           <div style="display:flex; gap:8px; margin-top:12px">
             <button id="copyText" class="btn" type="button">Copy (text)</button>
@@ -169,20 +165,12 @@
 
     <section class="card" style="margin-top:18px">
       <div class="card-body">
-        <h2>How we compute cube</h2>
-        <p>Pallet cube (volume) is <span class="muted">length × width × <i>estimated total height</i></span>. Total height equals pallet base height (if provided) plus either your max stack height or <span class="muted">layers × box height</span> when layers are used and a box height is given. If no box height is provided with "layers" mode, height is estimated from layers × an entered <i>average layer height</i> (not shown here for simplicity).</p>
-      </div>
-    </section>
-
-    <section class="card" style="margin-top:18px">
-      <div class="card-body">
-        <h2>FAQ</h2>
-        <h3>Why is utilization blank?</h3>
-        <p class="muted">We need your box dimensions to compute TI (per‑layer boxes), estimated layers, and total box volume relative to pallet cube.</p>
-        <h3>Standards included</h3>
-        <p class="muted">Presets include EU (1200×800, 1200×1000), US (48×40 / 1219×1016), AU (1165×1165), JP (1100×1100). You can input any custom size.</p>
-        <h3>Disclaimer</h3>
-        <p class="muted">All results are planning estimates. Verify against handling rules, carrier limits, and safety standards.</p>
+        <h2>Notes & disclaimer</h2>
+        <ul>
+          <li>We compute pallet cube from L × W × <b>stack height</b>. In Layers mode, height = HI × box height.</li>
+          <li><b>TI</b> is derived from pallet area vs. box footprint (with optional 90° rotation and spacing allowance).</li>
+          <li>Results are planning estimates; confirm against handling rules, weight limits, and safety standards.</li>
+        </ul>
       </div>
     </section>
   </main>
@@ -190,26 +178,23 @@
   <footer>
     <div class="container">
       <p>© 2025 pallet-calculator.com</p>
-      <p>Contact: <a href="mailto:contact@pallet-calculator.com">contact@pallet-calculator.com</a> (placeholder)</p>
+      <p>Contact: <a href="mailto:support@pallet-calculator.com">support@pallet-calculator.com</a></p>
     </div>
   </footer>
 
   <script>
     const $ = (s)=>document.querySelector(s);
     const mmPerIn = 25.4;
-    const M3_PER_MM3 = 1e-9; // 1 mm³ = 1e-9 m³
-    const FT3_PER_M3 = 35.3146667;
-    const q = new URLSearchParams(location.search);
+    const FT_PER_MM = 0.003280839895; // 1 mm = 0.00328084 ft
 
-    function showMode(){
-      const m = $('#mode').value;
-      $('.stack-field').style.display = (m==='stack')? 'block':'none';
-      $('.layers-field').style.display = (m==='layers')? 'block':'none';
+    function toggleMode(){
+      const m = $('#hmode').value;
+      document.querySelectorAll('.only-max').forEach(e=>e.style.display = (m==='max')?'block':'none');
+      document.querySelectorAll('.only-layers').forEach(e=>e.style.display = (m==='layers')?'block':'none');
     }
+    $('#hmode').addEventListener('change', toggleMode);
 
-    $('#mode').addEventListener('change', showMode);
-
-    // Presets for pallet
+    // Presets
     document.querySelectorAll('[data-preset]').forEach(btn=>{
       btn.addEventListener('click',()=>{
         const [L,W] = btn.dataset.preset.split('x').map(Number);
@@ -219,91 +204,88 @@
 
     // Example
     $('#example').addEventListener('click',()=>{
-      $('#units').value='mm';
-      $('#mode').value='stack'; showMode();
-      $('#palL').value=1200; $('#palW').value=1000; $('#palH').value=144; $('#maxH').value=1200;
-      $('#boxL').value=300; $('#boxW').value=200; $('#boxH').value=150; $('#allowRotate').value='yes';
+      $('#units').value='mm'; $('#hmode').value='max'; toggleMode();
+      $('#palL').value=1200; $('#palW').value=1000; $('#palH').value=1200;
+      $('#boxL').value=300; $('#boxW').value=200; $('#boxH').value=150; $('#allowRotate').value='yes'; $('#gap').value=0;
       try{gtag('event','example_apply',{page:'cube'})}catch(e){}
     });
 
-    // Prefill from URL
+    const q = new URLSearchParams(location.search);
     (function prefill(){
-      ['units','mode','palL','palW','palH','maxH','layers','boxL','boxW','boxH','allowRotate'].forEach(k=>{ if(q.has(k)){ const el = document.getElementById(k); if(el) el.value = q.get(k); }});
-      showMode();
+      ['units','hmode','palL','palW','palH','layers','boxL','boxW','boxH','allowRotate','gap'].forEach(k=>{ if(q.has(k)){ const el = document.getElementById(k); if(el) el.value = q.get(k); }});
+      toggleMode();
     })();
 
-    function num(id){return parseFloat(document.getElementById(id).value)||0}
+    function n(id){return parseFloat(document.getElementById(id).value)||0}
 
     function calc(){
       const units = $('#units').value; const K = (units==='in')? mmPerIn : 1;
-      const pL = num('palL')*K, pW = num('palW')*K, pH = num('palH')*K; // pH optional
-      if(!(pL>0 && pW>0)) { alert('Please enter positive numbers for pallet length and width.'); return; }
+      const palL = n('palL')*K, palW = n('palW')*K;
+      if(!(palL>0 && palW>0)) { alert('Enter positive pallet length/width.'); return; }
 
-      const mode = $('#mode').value;
-      const bL = num('boxL')*K, bW = num('boxW')*K, bH = num('boxH')*K;
-
-      // TI computation if box provided
-      let perLayer = 0, layout = '-';
-      if(bL>0 && bW>0){
-        const ti1 = Math.floor(pL/bL)*Math.floor(pW/bW);
-        const canRot = $('#allowRotate').value==='yes';
-        const ti2 = canRot? Math.floor(pL/bW)*Math.floor(pW/bL) : 0;
-        if(ti2>ti1){ perLayer = ti2; layout = `${Math.floor(pL/bW)}×${Math.floor(pW/bL)} (90°)`; }
-        else { perLayer = ti1; layout = `${Math.floor(pL/bL)}×${Math.floor(pW/bW)} (0°)`; }
-      }
-
-      let layers = 0; let estTotalH = 0;
-      if(mode==='stack'){
-        const maxH = num('maxH')*K;
-        if(maxH<=0){ alert('Please enter a positive max stack height.'); return; }
-        if(bH>0) layers = Math.max(0, Math.floor(maxH / bH));
-        estTotalH = maxH + (pH||0);
+      let stackH = 0; const mode = $('#hmode').value;
+      if(mode==='max'){
+        stackH = n('palH')*K;
       }else{
-        layers = Math.max(0, Math.floor(num('layers')));
-        estTotalH = (bH>0? layers*bH : 0) + (pH||0);
+        const hi = Math.max(0, Math.floor(n('layers')));
+        const bH = n('boxH')*K;
+        if(!(hi>0 && bH>0)) { alert('Enter layers and box height.'); return; }
+        stackH = hi * bH;
       }
+      if(!(stackH>0)) { alert('Enter a positive stack height.'); return; }
 
-      const totalBoxes = perLayer * (layers||1);
-      const cubeMM3 = pL * pW * (estTotalH|| (bH>0? layers*bH : 0));
-      const cubeM3 = cubeMM3 * M3_PER_MM3;
-      const cubeFT3 = cubeM3 * FT3_PER_M3;
+      // Pallet cube in mm³
+      const cubeMM3 = palL * palW * stackH;
+      const cubeM3 = cubeMM3 / 1e9; // 1 m³ = 1e9 mm³
+      const cubeFT3 = cubeMM3 * (FT_PER_MM**3); // convert mm to ft then cube
 
-      // Utilization if box provided
-      let util = '–';
-      if(bL>0 && bW>0 && bH>0 && totalBoxes>0 && cubeMM3>0){
-        const boxesVol = totalBoxes * (bL*bW*bH);
-        util = `${(100*boxesVol / cubeMM3).toFixed(1)}%`;
+      // Optional box/TI/HI
+      const bL = n('boxL')*K, bW = n('boxW')*K, bH2 = n('boxH')*K; // boxH reused
+      let TI = 0, HI = 0, total = 0, util = NaN;
+      if(bL>0 && bW>0){
+        const gap = n('gap')*K; const allowRot = $('#allowRotate').value==='yes';
+        const effL = Math.max(0, palL - gap), effW = Math.max(0, palW - gap);
+        const ti0 = Math.floor(effL/bL)*Math.floor(effW/bW);
+        const ti90 = allowRot? Math.floor(effL/bW)*Math.floor(effW/bL) : 0;
+        TI = Math.max(ti0, ti90);
+        if(mode==='max' && bH2>0){ HI = Math.max(0, Math.floor(stackH / bH2)); }
+        if(mode==='layers'){ HI = Math.max(0, Math.floor(n('layers'))); }
+        total = TI * HI;
+
+        const boxCubeMM3 = (bL*bW*(bH2||n('boxH')*K));
+        const boxesCubeMM3 = boxCubeMM3 * total;
+        util = (cubeMM3>0 && total>0)? (boxesCubeMM3 / cubeMM3) : NaN;
+
+        $('#boxM3').textContent = (boxCubeMM3/1e9).toFixed(5);
+        $('#boxFT3').textContent = (boxCubeMM3 * (FT_PER_MM**3)).toFixed(5);
       }
 
       // Render
-      $('#estHeight').textContent = (units==='in')? (estTotalH/mmPerIn).toFixed(1) : estTotalH.toFixed(1);
-      $('#uH').textContent = (units==='in')? 'in' : 'mm';
-      $('#cubeM3').textContent = cubeM3.toFixed(3);
-      $('#cubeFT3').textContent = cubeFT3.toFixed(2);
-      $('#ti').textContent = perLayer? perLayer : '–';
-      $('#hi').textContent = layers? layers : (mode==='layers'? '0' : '—');
-      $('#total').textContent = totalBoxes? totalBoxes : '–';
-      $('#util').textContent = util;
-      $('#preview').textContent = `Cube ${cubeM3.toFixed(3)} m³ (${cubeFT3.toFixed(2)} ft³) · Height ${(units==='in'? (estTotalH/mmPerIn).toFixed(1)+' in' : estTotalH.toFixed(1)+' mm')} · TI ${perLayer||'-'} · HI ${layers||'-'} · Util ${util}`;
+      $('#cubeM3').textContent = cubeM3.toFixed(4);
+      $('#cubeFT3').textContent = cubeFT3.toFixed(4);
+      $('#ti').textContent = TI? TI : '–';
+      $('#hi').textContent = HI? HI : (mode==='layers'? (n('layers')||'-') : '-');
+      $('#total').textContent = total? total : '–';
+      $('#util').textContent = isFinite(util)? (util*100).toFixed(1)+"%" : '–';
+      $('#preview').textContent = `Cube ${cubeM3.toFixed(4)} m³ (${cubeFT3.toFixed(2)} ft³) · TI ${TI||'-'} · HI ${HI||'-'} · Util ${isFinite(util)? (util*100).toFixed(1)+'%':'-'} `;
 
       // CTA link to full calculator with params
-      const params = new URLSearchParams({units: $('#units').value, palL: $('#palL').value, palW: $('#palW').value, palH: $('#palH').value, allowRotate: $('#allowRotate').value, boxL: $('#boxL').value, boxW: $('#boxW').value, boxH: $('#boxH').value});
-      if(mode==='stack') params.set('palMax', $('#maxH').value); else params.set('layers', $('#layers').value);
+      const params = new URLSearchParams({units: $('#units').value, hmode: $('#hmode').value, palL: $('#palL').value, palW: $('#palW').value, palH: $('#palH').value, layers: $('#layers').value, boxL: $('#boxL').value, boxW: $('#boxW').value, boxH: $('#boxH').value, allowRotate: $('#allowRotate').value, gap: $('#gap').value});
       $('#openCalc').href = `/pallet-calculator.html?${params.toString()}`;
 
-      try{ gtag('event','calculate_click',{page:'cube', cube_m3:cubeM3}); }catch(e){}
-      return {units, mode, pL,pW,pH, bL,bW,bH, perLayer, layers, totalBoxes, cubeM3, cubeFT3, estTotalH, util};
+      try{ gtag('event','calculate_click',{page:'cube', cube_m3: cubeM3}); }catch(e){}
+      return {cubeM3,cubeFT3,TI,HI,total,util};
     }
 
     document.getElementById('calcBtn').addEventListener('click', calc);
 
     // Copy helpers
     function copyText(r){
-      const s = `Pallet cube: ${r.cubeM3.toFixed(3)} m³ (${r.cubeFT3.toFixed(2)} ft³)\nEstimated height: ${(r.units==='in'? (r.estTotalH/mmPerIn).toFixed(1)+' in' : r.estTotalH.toFixed(1)+' mm')}\nTI: ${r.perLayer||'-'} · HI: ${r.layers||'-'} · Total boxes: ${r.totalBoxes||'-'}\nUtilization: ${r.util}`;
+      const s = `Pallet cube: ${r.cubeM3.toFixed(4)} m³ (${r.cubeFT3.toFixed(2)} ft³)\nTI: ${r.TI||'-'}  HI: ${r.HI||'-'}  Total: ${r.total||'-'}\nUtilization: ${isFinite(r.util)? (r.util*100).toFixed(1)+'%':'-'} `;
       navigator.clipboard.writeText(s).then(()=>alert('Copied to clipboard'));
     }
     function copyJSON(r){
-      const data = {units:r.units, mode:r.mode, pallet:{L:r.pL,W:r.pW,H:r.pH}, box:{L:r.bL,W:r.bW,H:r.bH}, ti:r.perLayer, hi:r.layers, totalBoxes:r.totalBoxes, cube_m3:+r.cubeM3.toFixed(3), cube_ft3:+r.cubeFT3.toFixed(2), estHeight:r.estTotalH, utilization:r.util};
+      const data = {cube_m3:r.cubeM3, cube_ft3:r.cubeFT3, ti:r.TI, hi:r.HI, total:r.total, utilization:r.util};
       navigator.clipboard.writeText(JSON.stringify(data, null, 2)).then(()=>alert('JSON copied'));
     }
 
@@ -312,7 +294,7 @@
 
     document.getElementById('shareBtn').addEventListener('click',()=>{
       const r = calc(); if(!r) return;
-      const params = new URLSearchParams({units: $('#units').value, mode: $('#mode').value, palL: $('#palL').value, palW: $('#palW').value, palH: $('#palH').value, maxH: $('#maxH').value, layers: $('#layers').value, boxL: $('#boxL').value, boxW: $('#boxW').value, boxH: $('#boxH').value, allowRotate: $('#allowRotate').value});
+      const params = new URLSearchParams({units: $('#units').value, hmode: $('#hmode').value, palL: $('#palL').value, palW: $('#palW').value, palH: $('#palH').value, layers: $('#layers').value, boxL: $('#boxL').value, boxW: $('#boxW').value, boxH: $('#boxH').value, allowRotate: $('#allowRotate').value, gap: $('#gap').value});
       const url = `${location.origin}${location.pathname}?${params.toString()}`;
       navigator.clipboard.writeText(url).then(()=>alert('Shareable link copied'));
       try{ gtag('event','share_click',{channel:'link'}) }catch(e){}
@@ -335,9 +317,9 @@
     "@context":"https://schema.org",
     "@type":"FAQPage",
     "mainEntity":[
-      {"@type":"Question","name":"How is pallet cube calculated?","acceptedAnswer":{"@type":"Answer","text":"Cube equals pallet length × width × estimated total height (pallet base + stack height or layers × box height)."}},
-      {"@type":"Question","name":"Why is utilization blank?","acceptedAnswer":{"@type":"Answer","text":"We must know box dimensions to compute TI, layers, and compare total box volume with pallet cube."}},
-      {"@type":"Question","name":"Which standards are included?","acceptedAnswer":{"@type":"Answer","text":"EU (1200×800, 1200×1000), US (48×40 / 1219×1016), AU (1165×1165), JP (1100×1100). Any custom size is allowed."}}
+      {"@type":"Question","name":"What is pallet cube?","acceptedAnswer":{"@type":"Answer","text":"Volume of the stacked pallet (L × W × stack height)."}},
+      {"@type":"Question","name":"How do I get HI (layers)?","acceptedAnswer":{"@type":"Answer","text":"Use Layers mode with your box height, or in Max mode enter stack height and we estimate HI from box height if provided."}},
+      {"@type":"Question","name":"Can I estimate utilization?","acceptedAnswer":{"@type":"Answer","text":"Yes. Provide box L × W × H. We compute TI from footprint and HI from height to estimate volume utilization."}}
     ]
   }
   </script>
