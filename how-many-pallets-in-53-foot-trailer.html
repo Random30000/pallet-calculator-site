@@ -1,252 +1,175 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>53‑Foot Trailer Pallet Calculator – How many pallets fit?</title>
-  <meta name="description" content="Estimate how many pallets fit in a standard 53‑foot trailer. Enter pallet dimensions and optional walkway width to calculate maximum count and orientation. Share your result or embed this tool.">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How many pallets fit in a 53‑foot trailer? | Guide + Quick Estimator</title>
+  <meta name="description" content="Most common single‑stack floor count in a 53‑foot dry van: about 26 US pallets (48×40). Counts vary with trailer width, loading pattern and policies. Quick selector + link to the full pallet calculator." />
+  <link rel="canonical" href="https://pallet-calculator.com/how-many-pallets-in-53-foot-trailer.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="How many pallets fit in a 53‑foot trailer?" />
+  <meta property="og:description" content="Typical single‑stack floor counts and a quick estimator for 53‑foot trailers. Open the calculator to refine for your exact pallet size and stack rules." />
+  <meta property="og:url" content="https://pallet-calculator.com/how-many-pallets-in-53-foot-trailer.html" />
+  <meta property="og:image" content="https://pallet-calculator.com/og-placeholder.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 
-  <!-- Speed: preconnect to GA/GTM -->
-  <link rel="preconnect" href="https://www.googletagmanager.com">
-
-  <!-- Global CSS -->
-  <link rel="stylesheet" href="/style.css">
-  <!-- Inline critical styles for portability -->
-  <style>
-    /* Global styles for Pallet Calculator site */
-    *,
-    *::before,
-    *::after { box-sizing: border-box; }
-    body {
-      font: 16px/1.6 system-ui, Segoe UI, Roboto, sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #1a202c;
-      background: #fff;
-    }
-    header,
-    footer {
-      padding: 1rem;
-      background: #f8fafc;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 1.75rem;
-    }
-    nav a {
-      margin-right: 0.75rem;
-      color: #3182ce;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    nav a:hover { text-decoration: underline; }
-    .lang-switch a {
-      margin-left: 0.5rem;
-      color: #3182ce;
-      text-decoration: none;
-    }
-    .lang-switch a:hover { text-decoration: underline; }
-    main {
-      padding: 1rem;
-      max-width: 960px;
-      margin: 0 auto;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-    th,
-    td {
-      padding: 0.5rem;
-      border: 1px solid #e2e8f0;
-      text-align: left;
-    }
-    th {
-      background: #edf2f7;
-      font-weight: 600;
-    }
-    tbody tr:nth-child(even) {
-      background: #f7fafc;
-    }
-    input,
-    select {
-      margin-right: 0.5rem;
-    }
-    label {
-      margin-right: 1rem;
-      display: inline-block;
-      margin-top: 0.5rem;
-    }
-    button {
-      margin-top: 0.5rem;
-      margin-right: 0.5rem;
-      background: #3182ce;
-      color: #ffffff;
-      border: none;
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover { background: #2b6cb0; }
-    button:disabled {
-      background: #a0aec0;
-      cursor: not-allowed;
-    }
-    #shareControls button {
-      background: #4a5568;
-    }
-    #shareControls button:hover {
-      background: #2d3748;
-    }
-    .error { color: #c53030; }
-    .result { margin-top: 1rem; padding: 0.75rem; background: #f7fafc; border-radius: 4px; }
-    pre { background: #f7fafc; padding: 0.75rem; border-radius: 4px; overflow-x: auto; }
-  </style>
-
-  <!-- Canonical + hreflang -->
-  <link rel="canonical" href="https://www.pallet-calculator.com/how-many-pallets-in-53-foot-trailer.html">
-  <link rel="alternate" href="https://www.pallet-calculator.com/how-many-pallets-in-53-foot-trailer.html" hreflang="en">
-  <link rel="alternate" href="https://www.pallet-calculator.com/hi/how-many-pallets-in-53-foot-trailer.html" hreflang="hi">
-  <link rel="alternate" href="https://www.pallet-calculator.com/how-many-pallets-in-53-foot-trailer.html" hreflang="x-default">
-
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="53‑Foot Trailer Pallet Calculator – How many pallets fit?">
-  <meta property="og:description" content="Calculate how many pallets fit inside a 53‑foot trailer considering pallet dimensions and an optional walkway. Share the calculation via link or embed.">
-  <meta property="og:url" content="https://www.pallet-calculator.com/how-many-pallets-in-53-foot-trailer.html">
-  <meta property="og:image" content="https://www.pallet-calculator.com/assets/og/pallet.png">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- GA4 -->
+  <!-- Google tag (gtag.js) — place immediately after <head> (ONE snippet per page) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXJVLGW6C3"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config','G-X4VDF9JBPE');
-    function ev(name, params){ try { gtag('event', name, params || {}); } catch(e) {} }
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'G-MXJVLGW6C3');
   </script>
 
-  <!-- Schema: SoftwareApplication -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"SoftwareApplication",
-    "name":"53‑Foot Trailer Pallet Calculator",
-    "url":"https://www.pallet-calculator.com/how-many-pallets-in-53-foot-trailer.html",
-    "applicationCategory":"BusinessApplication",
-    "operatingSystem":"Web",
-    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
-    "description":"Estimate the number of pallets that fit in a standard 53‑foot trailer based on pallet length, width and optional walkway width.",
-    "publisher":{"@type":"Organization","name":"Pallet Tools"},
-    "inLanguage":"en"
-  }
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:16px;">
+      <a class="brand" href="/index.html" aria-label="pallet-calculator home"><span class="dot"></span> pallet‑calculator</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/pallet-calculator.html">Pallet Calculator</a>
+        <a href="/ti-hi-calculator.html">TI‑HI</a>
+        <a href="/pallet-cube-calculator.html">Cube</a>
+        <a href="/pallet-dimensions.html">Dimensions</a>
+        <a href="/pallet-weight-calculator.html">Weight</a>
+        <a href="/how-many-pallets-in-20ft-container.html">20ft</a>
+        <a href="/how-many-pallets-in-40ft-container.html">40ft</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <p class="badge">53‑ft dry van · quick guide + estimator</p>
+    <h1>How many pallets fit in a 53‑foot trailer?</h1>
+    <p class="muted" style="margin-top:-6px">Short answer for <b>single‑stack floor loading</b> (most common): <b>about 26 US pallets (48×40)</b>. Counts can vary with <b>trailer interior width</b>, <b>loading pattern</b> (straight vs. mixed/pin‑wheel), door clearance, and carrier policies.</p>
+
+    <div class="grid grid-2" style="margin-top:12px">
+      <section class="card" aria-labelledby="quick-select">
+        <div class="card-body">
+          <h2 id="quick-select">Quick estimator</h2>
+          <div class="field" style="max-width:420px">
+            <label for="std">Choose a pallet standard</label>
+            <select id="std">
+              <option value="us-48x40">US 48×40 / 1219×1016</option>
+              <option value="eu-1200x800">EU 1200×800 (Euro)</option>
+              <option value="eu-1200x1000">EU 1200×1000 (Industrial)</option>
+              <option value="au-1165x1165">AU 1165×1165</option>
+              <option value="jp-1100x1100">JP 1100×1100</option>
+            </select>
+          </div>
+
+          <p style="margin:12px 0 6px">Most common single‑stack floor capacity:</p>
+          <div class="card" style="border-style:dashed">
+            <div class="card-body" id="answer" aria-live="polite">
+              US 48×40 → <b>~26 pallets</b>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap">
+            <a class="btn primary" id="openCalc" href="/pallet-calculator.html?container=53ft" onclick="gtag('event','cta_click',{from:'53ft',to:'pallet-calculator'})">Open full calculator</a>
+            <a class="btn" href="/how-many-pallets-in-40ft-container.html">See 40ft guide</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="dims">
+        <div class="card-body">
+          <h2 id="dims">Reference dimensions</h2>
+          <table class="table" aria-describedby="dims-note">
+            <thead>
+              <tr><th>Type</th><th>Internal L × W × H (approx)</th><th>Typical single‑stack pallets</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>53‑ft dry van</td><td>~16.15 m × 2.46–2.60 m × 2.7–2.8 m</td><td>~26 × 48×40 (US)
+                · ~26 × 1200×1000 (EU)
+                · ~26 × 1200×800 (EU)
+                · ~26 × 1165×1165 (AU)
+                · ~28 × 1100×1100 (JP)
+              </td></tr>
+            </tbody>
+          </table>
+          <p id="dims-note" class="muted" style="margin:8px 0 0">Numbers reflect common floor counts. Real capacity depends on actual trailer specs and loading pattern; always verify with your carrier.</p>
+        </div>
+      </section>
+    </div>
+
+    <section class="card" style="margin-top:18px">
+      <div class="card-body">
+        <h2>Why the numbers vary</h2>
+        <ul>
+          <li><b>Trailer width</b> (e.g., 101–102″ interiors) affects whether tighter patterns add rows.</li>
+          <li><b>Loading pattern</b> (straight vs. mixed/pin‑wheel) can change totals; some setups report slightly higher counts, others restrict due to policies.</li>
+          <li>Door/ceiling clearances and <b>pallet overhang rules</b> reduce theoretical counts.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:18px">
+      <div class="card-body">
+        <h2>FAQ</h2>
+        <h3>Is 26 pallets always correct?</h3>
+        <p class="muted">No. 26 is the <i>most common</i> single‑stack floor count for 48×40 in a 53‑ft dry van. Some combinations, patterns, or trailer widths may differ.</p>
+        <h3>Do you support inches?</h3>
+        <p class="muted">Yes. Switch to inches inside the Pallet Calculator. All outputs will follow your selection.</p>
+        <h3>How do I get a precise answer?</h3>
+        <p class="muted">Open the calculator with <b>container=53ft</b> pre‑selected, enter your pallet size and stack rules, and review the estimate.</p>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:18px">
+      <div class="card-body">
+        <h2>Disclaimer</h2>
+        <p class="muted">This page provides planning estimates only. Real‑world loading depends on carrier policies, packaging tolerances, pallet quality, and local safety regulations.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 pallet-calculator.com</p>
+      <p>Contact: <a href="mailto:contact@pallet-calculator.com">contact@pallet-calculator.com</a> (placeholder)</p>
+    </div>
+  </footer>
+
+  <script>
+    const common53 = {
+      'us-48x40':   {label:'US 48×40 / 1219×1016', pallets:'~26', href:'/pallet-calculator.html?container=53ft&units=in&palL=48&palW=40'},
+      'eu-1200x800':{label:'EU 1200×800 (Euro)', pallets:'~26', href:'/pallet-calculator.html?container=53ft&units=mm&palL=1200&palW=800'},
+      'eu-1200x1000':{label:'EU 1200×1000 (Industrial)', pallets:'~26', href:'/pallet-calculator.html?container=53ft&units=mm&palL=1200&palW=1000'},
+      'au-1165x1165':{label:'AU 1165×1165', pallets:'~26', href:'/pallet-calculator.html?container=53ft&units=mm&palL=1165&palW=1165'},
+      'jp-1100x1100':{label:'JP 1100×1100', pallets:'~28', href:'/pallet-calculator.html?container=53ft&units=mm&palL=1100&palW=1100'}
+    };
+
+    const sel = document.getElementById('std');
+    const answer = document.getElementById('answer');
+    const openCalc = document.getElementById('openCalc');
+
+    function render(){
+      const v = common53[sel.value];
+      answer.innerHTML = `${v.label} → <b>${v.pallets} pallets</b>`;
+      openCalc.href = v.href;
+      try{ gtag('event','53ft_select',{standard: sel.value, pallets: v.pallets}); }catch(e){}
+    }
+
+    sel.addEventListener('change', render);
+    render();
   </script>
 
-  <!-- Schema: FAQPage -->
+  <!-- FAQ structured data -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"FAQPage",
     "mainEntity":[
-      {
-        "@type":"Question",
-        "name":"How do I use the 53‑ft trailer pallet calculator?",
-        "acceptedAnswer":{"@type":"Answer","text":"Enter your pallet length and width in inches. Optionally specify a walkway width for access. The tool calculates how many pallets fit in both orientations and highlights the optimal one."}
-      },
-      {
-        "@type":"Question",
-        "name":"What does the walkway width field do?",
-        "acceptedAnswer":{"@type":"Answer","text":"If you plan to leave a walkway down the trailer for access, enter its width in inches. The calculator subtracts this from the trailer width before computing pallet counts."}
-      },
-      {
-        "@type":"Question",
-        "name":"What are the dimensions of a standard 53‑ft trailer?",
-        "acceptedAnswer":{"@type":"Answer","text":"This tool assumes an interior length of approximately 636 inches and an interior width of 101 inches, which are common measurements for a 53‑foot trailer."}
-      },
-      {
-        "@type":"Question",
-        "name":"How do I share my trailer calculation?",
-        "acceptedAnswer":{"@type":"Answer","text":"After calculating, click Copy Link to get a URL with your inputs, or click Embed to obtain an iframe code for your website."}
-      },
-      {
-        "@type":"Question",
-        "name":"Can the calculator handle metric units?",
-        "acceptedAnswer":{"@type":"Answer","text":"This tool works in inches. For metric conversions you may need a separate converter or adjust your input accordingly."}
-      }
+      {"@type":"Question","name":"Is 26 pallets always correct?","acceptedAnswer":{"@type":"Answer","text":"No. 26 is the most common single‑stack floor count for 48×40 pallets in a 53‑ft dry van. Actual counts vary by trailer width, loading pattern, and carrier policy."}},
+      {"@type":"Question","name":"Do you support inches?","acceptedAnswer":{"@type":"Answer","text":"Yes. Switch to inches inside the Pallet Calculator; outputs will follow your selection."}},
+      {"@type":"Question","name":"How do I get a precise answer?","acceptedAnswer":{"@type":"Answer","text":"Open the calculator with container=53ft pre‑selected, enter your pallet size and stacking rules, and review the estimate."}}
     ]
   }
-  </script>
-</head>
-<body>
-  <header>
-    <h1>53‑Foot Trailer Pallet Calculator</h1>
-    <nav>
-      <!-- Use absolute URLs to avoid ambiguity and strengthen canonical signals -->
-      <a href="https://www.pallet-calculator.com/pallet-calculator/">Pallet Calculator</a>
-      <a href="https://www.pallet-calculator.com/ti-hi-calculator.html">TI HI Calculator</a>
-      <a href="https://www.pallet-calculator.com/pallet-weight-calculator.html">Weight Calculator</a>
-      <a href="https://www.pallet-calculator.com/pallet-cube-calculator.html">Cube Calculator</a>
-      <a href="https://www.pallet-calculator.com/how-many-pallets-in-53-foot-trailer.html">53-ft Trailer</a>
-      <a href="https://www.pallet-calculator.com/how-many-pallets-in-20ft-container.html">20 ft Container</a>
-      <a href="https://www.pallet-calculator.com/how-many-pallets-in-40ft-container.html">40 ft Container</a>
-      <a href="https://www.pallet-calculator.com/pallet-dimensions.html">Pallet Dimensions</a>
-    </nav>
-    <div class="lang-switch">
-      <a href="https://www.pallet-calculator.com/how-many-pallets-in-53-foot-trailer.html">EN</a>
-      <a href="https://www.pallet-calculator.com/hi/how-many-pallets-in-53-foot-trailer.html">HI</a>
-    </div>
-  </header>
-  <main>
-    <p>A standard 53‑foot trailer has an interior length of approximately 636&nbsp;inches and width of 101&nbsp;inches. Use this calculator to estimate how many pallets can fit, considering both orientations and an optional walkway down the trailer.</p>
-    <form id="trailerForm">
-      <section>
-        <label>Pallet length (in): <input type="number" step="any" min="0" id="palletLength" required></label>
-        <label>Pallet width (in): <input type="number" step="any" min="0" id="palletWidth" required></label>
-        <label>Walkway width (in) (optional): <input type="number" step="any" min="0" id="walkway"></label>
-      </section>
-      <button type="submit">Calculate</button>
-    </form>
-    <div id="trailerResult"></div>
-    <div id="shareControls" style="margin-top:1rem; display:none;">
-      <button type="button" id="copyLink">Copy Link</button>
-      <button type="button" id="showEmbed">Embed</button>
-      <div id="embedCodeContainer" style="display:none; margin-top:0.5rem;">
-        <textarea id="embedCode" readonly style="width:100%; height:120px;"></textarea>
-      </div>
-    </div>
-  </main>
-  <footer>
-    <p>&copy; 2025 Pallet Tools. Last updated on August 17, 2025.</p>
-  </footer>
-  <script>
-    const TRAILER_LENGTH = 636; // inches
-    const TRAILER_WIDTH = 101; // inches
-    function parseParams(){ const params = new URLSearchParams(location.search); const obj = {}; params.forEach((v,k)=>{ obj[k]=v; }); return obj; }
-    function loadFromQuery(){ const q = parseParams(); if(q.pl) document.getElementById('palletLength').value = q.pl; if(q.pw) document.getElementById('palletWidth').value = q.pw; if(q.w) document.getElementById('walkway').value = q.w; }
-    function palletsByOrientation(length,width,walk){ const lengthAvailable = TRAILER_LENGTH; const widthAvailable = TRAILER_WIDTH - walk; if(widthAvailable <= 0) return 0; const countLength = Math.floor(lengthAvailable / length); const countWidth = Math.floor(widthAvailable / width); return countLength * countWidth; }
-    function calculateTrailer(){
-      const pL = parseFloat(document.getElementById('palletLength').value);
-      const pW = parseFloat(document.getElementById('palletWidth').value);
-      const walk = parseFloat(document.getElementById('walkway').value) || 0;
-      const resultEl = document.getElementById('trailerResult');
-      if ([pL,pW].some((v) => isNaN(v) || v <= 0) || walk < 0) {
-        resultEl.innerHTML = '<div class="error">Please enter valid positive pallet dimensions.</div>';
-        return;
-      }
-      const countA = palletsByOrientation(pL,pW,walk);
-      const countB = palletsByOrientation(pW,pL,walk);
-      const maxCount = Math.max(countA,countB);
-      const orientation = countA >= countB ? 'lengthwise' : 'widthwise';
-      resultEl.innerHTML = `<div class="result"><p>Maximum pallets: <strong>${maxCount}</strong> (orientation: ${orientation})</p><p>Orientation A (pallet ${pL}"×${pW}" aligned lengthwise): ${countA}</p><p>Orientation B (pallet ${pW}"×${pL}" aligned widthwise): ${countB}</p></div>`;
-      const params = new URLSearchParams(); params.set('pl', pL.toString()); params.set('pw', pW.toString()); if(walk > 0) params.set('w', walk.toString()); const newUrl = window.location.pathname + '?' + params.toString(); history.replaceState({}, '', newUrl);
-      showShareControls();
-      ev('calculate_click', {tool:'trailer53', lang:'en'});
-    }
-    function showShareControls(){
-      const share = document.getElementById('shareControls'); share.style.display = 'block'; const iframeUrl = `https://www.pallet-calculator.com/embed/how-many-pallets-in-53-foot-trailer/${location.search}`; const embedCode = `<iframe src=\"${iframeUrl}\" width=\"100%\" height=\"240\" style=\"border:1px solid #e5e7eb;border-radius:12px\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>`; document.getElementById('embedCode').value = embedCode; }
-    document.getElementById('trailerForm').addEventListener('submit', function(e){ e.preventDefault(); calculateTrailer(); });
-    document.getElementById('copyLink').addEventListener('click', async function(){ try { await navigator.clipboard.writeText(location.href); ev('copy_result', {tool:'trailer53'}); alert('Link copied!'); } catch(e){ alert('Copy failed'); } });
-    document.getElementById('showEmbed').addEventListener('click', function(){ const container = document.getElementById('embedCodeContainer'); container.style.display = container.style.display === 'none' ? 'block' : 'none'; ev('embed_view',{tool:'trailer53'}); });
-    loadFromQuery();
   </script>
 </body>
 </html>
